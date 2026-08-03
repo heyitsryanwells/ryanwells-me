@@ -8,7 +8,6 @@
 
 export const site = {
   name: "Ryan Wells",
-  domain: "ryanwells.me",
   url: "https://ryanwells.me",
   role: "Revenue Operations",
   // PLACEHOLDER: confirm how you want to describe your years in the field.
@@ -18,15 +17,18 @@ export const site = {
   // Pre-sized WebP (1100px). Rendered grayscale to match the printed feel.
   portrait: "/portrait.webp",
   email: "hello@ryanwells.me", // PLACEHOLDER: set the address you want public.
-  location: "Chattanooga, TN", // PLACEHOLDER: confirm.
+  location: "Knoxville, TN",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ryanwells" }, // PLACEHOLDER: real profile URL.
     { label: "GitHub", href: "https://github.com/heyitsryanwells" },
     { label: "Email", href: "mailto:hello@ryanwells.me" },
   ],
-  // Document furniture for the header and footer bars.
-  docClass: "Personal / Revenue Operations",
-  rev: "REV 2026.08",
+};
+
+export const footer = {
+  madeWith: "Made with",
+  madeWithEmphasis: "love",
+  madeWithPlace: "in Knoxville",
 };
 
 export const nav = [
@@ -49,7 +51,7 @@ export const hero = {
     { label: "Role", value: "Revenue Operations, Ambition" },
     { label: "Focus", value: "CRM architecture / bookings / GTM automation" },
     { label: "Writes", value: "The Operating Layer, twice monthly" },
-    { label: "Based", value: "Chattanooga, TN" }, // PLACEHOLDER
+    { label: "Based", value: "Knoxville, TN" },
   ],
   primaryCta: { label: "Read the newsletter", href: "/newsletter" },
   secondaryCta: { label: "Browse the guides", href: "/guides" },

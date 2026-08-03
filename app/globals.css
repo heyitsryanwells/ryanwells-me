@@ -9,8 +9,12 @@
      - Zero border radius. Anywhere.
      - No cards. Structure comes from hairline rules and a real grid.
      - Monospace carries all structure: labels, refs, metadata, figures.
-     - One accent, used sparingly, on paper rather than on a dark field.
+     - One accent, used sparingly.
      - Type contrast is extreme. Display is huge, metadata is 10-11px.
+
+   Every foreground/background pairing below, including the 11px mono labels,
+   clears WCAG AA for small text (4.5:1). `faint` is the tightest at 4.64:1 on
+   panel, so darken it further only after re-checking contrast.
 --------------------------------------------------------------------------- */
 
 @theme inline {
@@ -30,15 +34,23 @@
 }
 
 :root {
-  --paper: #f2f1ec;
-  --panel: #fbfaf7;
-  --ink: #16150f;
-  --muted: #66635a;
-  --faint: #938f83;
-  --line: #ccc7b9;
-  --rule: #1a1811;
-  --accent: #d6400f;
-  --on-accent: #fdf6f2;
+  /* Warm near-black ground. "paper" and "ink" keep their names from the
+     print metaphor even though the polarity is inverted. */
+  --paper: #141410;
+  --panel: #1c1c17;
+  --ink: #eceae1;
+  --muted: #a5a094;
+  --faint: #89857a;
+  --line: #35342c;
+  /* The heavy section rule reads light on dark to keep the weight it had. */
+  --rule: #d9d6c9;
+  --accent: #ff5c26;
+  --on-accent: #170a03;
+}
+
+/* Browser UI (form controls, scrollbars) should follow the dark ground. */
+:root {
+  color-scheme: dark;
 }
 
 * {
@@ -125,9 +137,11 @@ body {
   color: var(--accent);
 }
 
-/* Photographic plates are flattened to match the printed-document feel. */
+/* Photographic plates are flattened to match the printed-document feel.
+   Pulled down slightly so a bright grayscale photo does not glare against
+   the dark ground. */
 .plate img {
-  filter: grayscale(1) contrast(1.08) brightness(1.02);
+  filter: grayscale(1) contrast(1.05) brightness(0.9);
 }
 
 /* Registration marks in the corner of the document header. */

@@ -9,8 +9,7 @@ finished, but these are not your real facts. All of it lives in
 | Field | What's there now | What I need |
 | --- | --- | --- |
 | `site.email` | `hello@ryanwells.me` | The address you want public |
-| `site.socials` | Guessed LinkedIn URL, empty GitHub | Real profile URLs, or delete the ones you don't want |
-| `site.location` | Chattanooga, TN | Confirm or change |
+| `site.socials` | Guessed LinkedIn URL | Your real LinkedIn URL (the GitHub one is correct) |
 | `about.timeline` | One real row, two "Add your prior role" stubs | Your actual roles, orgs, and one line each |
 | `newsletterIssues` | 3 invented issues with invented dates | Real issues, or delete the section until you have three |
 | `guides` | 5 invented guides | Real assets, or cut to the ones you'll actually produce |
@@ -30,9 +29,15 @@ finished, but these are not your real facts. All of it lives in
 - `toolCategories` — real tools from your stack. The one-line takes are mine; make them yours.
 - `about.paragraphs` — plausible narrative, correct in outline, invented in specifics.
 
+## Resolved
+
+- `site.location` is now Knoxville, TN, in both `site.location` and the `Based`
+  row of `hero.specs`.
+
 ## Assets
 
-- `public/portrait.png` is your existing dark-navy headshot. It sits perfectly
-  against the Signal theme. On the Editorial (cream) theme, swap to
-  `portrait-light.png` or a background-removed cutout.
+- `public/portrait.webp` is your existing headshot, pre-sized to 1100px. It
+  renders through the `.plate` treatment in `app/globals.css`: grayscale, hard
+  edges, slightly dimmed so it does not glare against the dark ground.
+- `public/portrait-light.webp` is the alternate source photo, currently unused.
 - No favicon or social share image yet. Both worth adding before you promote the site.

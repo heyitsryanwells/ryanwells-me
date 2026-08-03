@@ -58,7 +58,7 @@ lib/
   content.ts        all site copy
 public/
   portrait.webp     hero and about plate
-  portrait-light.png  alternate, suits the editorial theme better
+  portrait-light.webp  alternate source photo, currently unused
 ```
 
 ## Deploy (GitHub Pages)

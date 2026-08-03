@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { nav, site } from "@/lib/content";
-import { Container, Label } from "./ui";
+import { Container } from "./ui";
 
 export function Nav() {
   const pathname = usePathname();
@@ -15,19 +15,6 @@ export function Nav() {
 
   return (
     <header className="sticky top-0 z-40 bg-paper">
-      {/* Document masthead strip. Metadata, not navigation. */}
-      <div className="border-b border-line">
-        <Container>
-          <div className="flex items-center justify-between gap-4 py-1.5">
-            <Label className="text-faint">{site.domain}</Label>
-            <Label className="hidden text-faint sm:block">
-              {site.docClass}
-            </Label>
-            <Label className="text-faint">{site.rev}</Label>
-          </div>
-        </Container>
-      </div>
-
       <div className="border-b-2 border-rule">
         <Container>
           <div className="flex h-14 items-center justify-between sm:h-16">
