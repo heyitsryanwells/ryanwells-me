@@ -11,31 +11,28 @@ npm run dev
 
 Then open http://localhost:3000.
 
-## Pick a visual direction
+## Design direction: Spec Sheet
 
-Three complete directions ship in this repo. Compare them with the floating
-switcher in the bottom-right corner, or link straight to one:
+The site is styled as a technical reference document rather than a product
+landing page. The rules that keep it from drifting back toward generic SaaS:
 
-- http://localhost:3000/?theme=terminal — near-black, monospace display, lime accent
-- http://localhost:3000/?theme=editorial — warm cream paper, serif display, rust accent
-- http://localhost:3000/?theme=signal — deep navy, geometric sans, cyan accent
+- **Zero border radius.** Set globally in `app/globals.css`.
+- **No cards.** Structure comes from hairline rules and a shared column grid.
+  `SpecRow` replaces the card grid everywhere.
+- **Monospace carries all structure.** Labels, refs, captions, and metadata use
+  `.type-label`. Body copy stays in IBM Plex Sans.
+- **One accent** (`--accent`, a print red-orange) used sparingly, on paper.
+- **Extreme type contrast.** Condensed display at 7-9rem against 11px mono.
+- **Photos are plates.** Hard edges, flattened to grayscale, mono figure caption.
 
-Every color, font, and corner radius resolves through CSS variables in
-`app/globals.css`, so switching costs nothing and no component knows which
-theme is active.
-
-### Locking one in
-
-1. Set `data-theme` on `<html>` in `app/layout.tsx` to the winner.
-2. Delete `<ThemeSwitcher />`, its import, and the `noFlashScript` block in
-   `app/layout.tsx`.
-3. Delete `components/theme-switcher.tsx`.
-4. Delete the two losing theme blocks in `app/globals.css`.
+Type is IBM Plex: Sans for body, Mono for structure, Sans Condensed for
+display. Colors and fonts all resolve through CSS variables at the top of
+`app/globals.css`.
 
 ## Editing content
 
 All copy lives in `lib/content.ts`. Components never hardcode text, so changing
-a headline, adding a guide, or reordering the expertise cards is a one-file
+a headline, adding a guide, or reordering the capability index is a one-file
 edit. See `CONTENT-TODO.md` for everything still carrying placeholder text.
 
 ## Connecting the newsletter
@@ -48,20 +45,19 @@ stays reviewable.
 
 ```
 app/
-  layout.tsx        root shell, fonts, metadata, theme bootstrap
-  globals.css       theme tokens for all three directions
+  layout.tsx        root shell, IBM Plex fonts, metadata
+  globals.css       Spec Sheet tokens and typographic roles
   page.tsx          home
   about|guides|newsletter|tools|contact/
 components/
-  ui.tsx            Container, Section, Card, ButtonLink, headings
+  ui.tsx            Container, Section, SpecRow, SpecList, BracketLink, Plate
   nav.tsx           sticky nav with mobile menu
   footer.tsx
   newsletter-form.tsx
-  theme-switcher.tsx  preview-only, delete before launch
 lib/
   content.ts        all site copy
 public/
-  portrait.png      hero and about photo
+  portrait.webp     hero and about plate
   portrait-light.png  alternate, suits the editorial theme better
 ```
 

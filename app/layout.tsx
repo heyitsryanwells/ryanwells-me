@@ -1,38 +1,32 @@
 import type { Metadata } from "next";
 import {
-  Inter,
-  JetBrains_Mono,
-  Instrument_Serif,
-  Space_Grotesk,
+  IBM_Plex_Sans,
+  IBM_Plex_Mono,
+  IBM_Plex_Sans_Condensed,
 } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { site } from "@/lib/content";
 
-const inter = Inter({
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-body",
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-sans",
   display: "swap",
 });
 
-const jetbrains = JetBrains_Mono({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains",
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-mono",
   display: "swap",
 });
 
-const instrument = Instrument_Serif({
+const plexCondensed = IBM_Plex_Sans_Condensed({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  weight: ["600", "700"],
+  variable: "--font-plex-condensed",
   display: "swap",
 });
 
@@ -57,19 +51,6 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * Applies the saved theme before first paint so the page never flashes the
- * default. Delete this along with <ThemeSwitcher /> once a direction is picked.
- */
-const noFlashScript = `
-(function(){try{
-  var valid=['terminal','editorial','signal'];
-  var q=new URLSearchParams(location.search).get('theme');
-  var t=(q&&valid.indexOf(q)>-1)?q:localStorage.getItem('rw-theme');
-  if(t&&valid.indexOf(t)>-1){document.documentElement.setAttribute('data-theme',t);}
-}catch(e){}})();
-`;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -78,17 +59,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="terminal"
-      className={`${inter.variable} ${jetbrains.variable} ${instrument.variable} ${spaceGrotesk.variable} h-full`}
-      suppressHydrationWarning
+      className={`${plexSans.variable} ${plexMono.variable} ${plexCondensed.variable} h-full`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: noFlashScript }} />
-      </head>
-      <body className="flex min-h-full flex-col bg-bg text-ink">
+      <body className="flex min-h-full flex-col bg-paper text-ink">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
+          className="type-label sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
         >
           Skip to content
         </a>
@@ -97,7 +73,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <ThemeSwitcher />
       </body>
     </html>
   );

@@ -15,8 +15,7 @@ export const site = {
   tagline:
     "I build the revenue systems behind go-to-market teams. Salesforce architecture, GTM automation, and the reporting that executives actually trust.",
   monogram: "RW",
-  // Pre-sized WebP (1100px). Swap to /portrait-light.webp on the editorial
-  // theme, where the navy background fights the cream page.
+  // Pre-sized WebP (1100px). Rendered grayscale to match the printed feel.
   portrait: "/portrait.webp",
   email: "hello@ryanwells.me", // PLACEHOLDER: set the address you want public.
   location: "Chattanooga, TN", // PLACEHOLDER: confirm.
@@ -25,68 +24,77 @@ export const site = {
     { label: "GitHub", href: "https://github.com/heyitsryanwells" },
     { label: "Email", href: "mailto:hello@ryanwells.me" },
   ],
+  // Document furniture for the header and footer bars.
+  docClass: "Personal / Revenue Operations",
+  rev: "REV 2026.08",
 };
 
 export const nav = [
-  { label: "Home", href: "/" },
+  { label: "Index", href: "/" },
   { label: "About", href: "/about" },
   { label: "Guides", href: "/guides" },
   { label: "Newsletter", href: "/newsletter" },
-  { label: "Tools I Use", href: "/tools" },
+  { label: "Tools", href: "/tools" },
   { label: "Contact", href: "/contact" },
 ];
 
 export const hero = {
-  greeting: "Hi, I'm",
-  firstName: "Ryan",
-  // PLACEHOLDER: swap in your own framing and years.
+  name: "Ryan Wells",
+  role: "Revenue Operations",
+  // PLACEHOLDER: swap in your own framing.
   intro:
     "I run revenue operations at a go-to-market software company, where I own the Salesforce architecture, the bookings model, and the automation that keeps both honest. I write about the parts nobody documents.",
+  // The hero data block. Dense on purpose.
+  specs: [
+    { label: "Role", value: "Revenue Operations, Ambition" },
+    { label: "Focus", value: "CRM architecture / bookings / GTM automation" },
+    { label: "Writes", value: "The Operating Layer, twice monthly" },
+    { label: "Based", value: "Chattanooga, TN" }, // PLACEHOLDER
+  ],
   primaryCta: { label: "Read the newsletter", href: "/newsletter" },
   secondaryCta: { label: "Browse the guides", href: "/guides" },
-  portraitAlt: "Portrait of Ryan Wells",
+  plateCaption: "Fig. 1 — R. Wells",
 };
 
 export const proofBar = {
   // PLACEHOLDER: replace with logos of tools you're certified in, companies
   // you've worked with, or publications that have run your writing.
-  heading: "Systems I work in every day",
-  items: [
-    "Salesforce",
-    "HubSpot",
-    "n8n",
-    "Clay",
-    "Gong",
-    "Linear",
-  ],
+  heading: "Systems of record",
+  items: ["Salesforce", "HubSpot", "n8n", "Clay", "Gong", "Linear"],
 };
 
 export const expertise = {
-  heading: "What I actually do",
+  heading: "Areas of work",
   subheading:
-    "Six areas where I've done the work end to end, in production, with revenue riding on it.",
+    "Six areas taken end to end, in production, with revenue riding on the outcome.",
   areas: [
     {
+      ref: "1.0",
       title: "Salesforce Architecture",
       body: "Data models that hold up under real deal structures. Contracts and orders, line-item economics, validation rules, and a permission model built on permission sets rather than a sprawl of profiles.",
     },
     {
+      ref: "2.0",
       title: "Bookings & Revenue Reporting",
       body: "ACV, TCV, and retention modeled from line items rather than guessed at the header. Reporting that reconciles to the signed paper, so finance and sales stop arguing about whose number is right.",
     },
     {
+      ref: "3.0",
       title: "GTM Automation & AI",
       body: "Workflow automation across n8n, Zapier, and the CRM itself, plus AI agents wired directly into the stack through MCP. The goal is removing manual steps that quietly break every quarter.",
     },
     {
+      ref: "4.0",
       title: "Data Quality & Enrichment",
       body: "Contact lifecycle design, deduplication, departure detection, and enrichment pipelines that fill gaps without spending credits twice. Clean data is a process, not a cleanup project.",
     },
     {
+      ref: "5.0",
       title: "Pipeline & Campaign Operations",
       body: "Campaign hierarchy, inbound routing, list sync between marketing and sales systems, and attribution that survives contact with the actual funnel.",
     },
     {
+      ref: "6.0",
       title: "Systems Governance",
       body: "Role hierarchy, access reviews, change management, and documentation that outlives the person who wrote it. The unglamorous work that keeps an org from calcifying.",
     },
@@ -100,6 +108,7 @@ export const expertise = {
  */
 export const newsletterIssues = [
   {
+    no: "012",
     title: "Your bookings number is wrong and here's where it breaks",
     dek: "Most CRMs compute ACV at the opportunity header. That quietly misstates every multi-year and partial-term deal. Here's the line-item model that fixes it.",
     date: "2026-07-28",
@@ -107,6 +116,7 @@ export const newsletterIssues = [
     tag: "Reporting",
   },
   {
+    no: "011",
     title: "Stop asking for a new field. Ask what decision it changes.",
     dek: "A framework for triaging field requests that kills 80% of them before they reach the object, and makes the survivors much easier to defend.",
     date: "2026-07-14",
@@ -114,6 +124,7 @@ export const newsletterIssues = [
     tag: "Governance",
   },
   {
+    no: "010",
     title: "I wired Claude directly into Salesforce. Here's what broke.",
     dek: "Running an AI agent against a production CRM through MCP, what it handled well, and the three guardrails I'd put in before you try it.",
     date: "2026-06-30",
@@ -128,12 +139,17 @@ export const newsletter = {
     "A twice-monthly letter on revenue operations. Real systems, real failures, and the fixes that held up.",
   // PLACEHOLDER: real subscriber count once you have one.
   socialProof: "Written for operators who own the system, not just the report.",
-  cadence: "Twice a month",
+  cadence: "Twice monthly",
   ctaLabel: "Subscribe",
   placeholder: "you@company.com",
   // Drop your Beehiiv / Kit / Substack embed URL here to make the form live.
   formAction: "",
   disclaimer: "No spam. Unsubscribe in one click.",
+  promises: [
+    "A real system I built or broke, with the reasoning behind the decisions.",
+    "Queries, field specs, and report definitions you can lift directly.",
+    "The failure modes I hit, so you can skip that part.",
+  ],
 };
 
 /**
@@ -142,7 +158,7 @@ export const newsletter = {
  */
 export const guides = [
   {
-    emoji: "🧱",
+    ref: "A",
     title: "The Salesforce Contract & Order Data Model",
     dek: "How to structure contracts, orders, and line items so renewals, expansions, and mid-term changes all reconcile without manual patching.",
     href: "/guides",
@@ -150,7 +166,7 @@ export const guides = [
     featured: true,
   },
   {
-    emoji: "📊",
+    ref: "B",
     title: "Bookings Reporting That Survives an Audit",
     dek: "A reporting model for ACV, TCV, and net retention that ties every number back to a signed line item. Includes report definitions you can deploy.",
     href: "/guides",
@@ -158,7 +174,7 @@ export const guides = [
     featured: true,
   },
   {
-    emoji: "🤖",
+    ref: "C",
     title: "The RevOps Guide to AI Agents in Production",
     dek: "Where AI agents earn their keep inside a revenue stack, which tasks to keep human-gated, and how to wire them in without handing over write access to everything.",
     href: "/guides",
@@ -166,7 +182,7 @@ export const guides = [
     featured: true,
   },
   {
-    emoji: "🧹",
+    ref: "D",
     title: "Contact Hygiene Field Guide",
     dek: "The lifecycle model, the departure flags, and the enrichment sequence that keeps a contact database usable past year three.",
     href: "/guides",
@@ -174,7 +190,7 @@ export const guides = [
     featured: false,
   },
   {
-    emoji: "🔐",
+    ref: "E",
     title: "Permission Sets Over Profiles",
     dek: "A migration path from profile sprawl to a permission-set-led access model, with the audit queries to prove nothing broke.",
     href: "/guides",
@@ -188,6 +204,7 @@ export const guides = [
  */
 export const toolCategories = [
   {
+    ref: "1.0",
     category: "Core CRM & GTM",
     tools: [
       { name: "Salesforce", note: "The system of record. Everything else reconciles back to it.", href: "https://salesforce.com" },
@@ -196,6 +213,7 @@ export const toolCategories = [
     ],
   },
   {
+    ref: "2.0",
     category: "Automation & AI",
     tools: [
       { name: "Claude Code", note: "Where most of my systems work happens now, wired to the CRM through MCP.", href: "https://claude.com/claude-code" },
@@ -204,6 +222,7 @@ export const toolCategories = [
     ],
   },
   {
+    ref: "3.0",
     category: "Data & Enrichment",
     tools: [
       { name: "Clay", note: "Enrichment orchestration when a single provider will not cover the list.", href: "https://clay.com" },
@@ -212,6 +231,7 @@ export const toolCategories = [
     ],
   },
   {
+    ref: "4.0",
     category: "Process & Documentation",
     tools: [
       { name: "Linear", note: "Every RevOps request becomes an issue. No exceptions, no Slack-only asks.", href: "https://linear.app" },
@@ -248,28 +268,27 @@ export const about = {
 };
 
 export const contact = {
-  heading: "Get in touch",
+  heading: "Contact",
   lede: "The best way to reach me is email. I read everything, and I answer anything specific.",
   reasons: [
-    { title: "You're stuck on a systems problem", body: "Describe it in a few sentences. If I've hit the same wall I'll tell you what worked." },
-    { title: "You want to talk about advisory work", body: "Tell me the scope and the timeline and we'll figure out whether I'm the right fit." },
-    { title: "You want me to write or speak", body: "Send the audience, the topic, and the date." },
+    { ref: "1.0", title: "You're stuck on a systems problem", body: "Describe it in a few sentences. If I've hit the same wall I'll tell you what worked." },
+    { ref: "2.0", title: "You want to talk about advisory work", body: "Tell me the scope and the timeline and we'll figure out whether I'm the right fit." },
+    { ref: "3.0", title: "You want me to write or speak", body: "Send the audience, the topic, and the date." },
   ],
 };
 
-export const themes = [
-  { id: "terminal", label: "Terminal", note: "Near-black, mono, electric accent" },
-  { id: "editorial", label: "Editorial", note: "Warm paper, serif display, ink" },
-  { id: "signal", label: "Signal", note: "Deep navy, geometric sans, cool accent" },
-] as const;
-
-export type ThemeId = (typeof themes)[number]["id"];
-
 export function formatDate(iso: string) {
   return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
+    month: "short",
+    day: "2-digit",
     year: "numeric",
     timeZone: "UTC",
   });
+}
+
+export function formatDateShort(iso: string) {
+  return new Date(`${iso}T12:00:00Z`)
+    .toISOString()
+    .slice(0, 10)
+    .replace(/-/g, ".");
 }

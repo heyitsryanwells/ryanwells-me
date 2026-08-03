@@ -1,13 +1,14 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import { about, site } from "@/lib/content";
 import {
-  ArrowRight,
-  ButtonLink,
-  Card,
+  BracketLink,
   Container,
+  Label,
   PageHeader,
+  Plate,
   Section,
+  SectionHead,
+  SpecRow,
 } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -18,81 +19,80 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHeader eyebrow="About" title={about.heading} lede={about.lede} />
+      <PageHeader
+        sectionRef="02"
+        label="About"
+        title={about.heading}
+        lede={about.lede}
+      />
 
       <Section top="tight">
         <Container>
-          <div className="grid gap-14 lg:grid-cols-[1fr_20rem] lg:gap-20">
+          <div className="grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
             <div className="max-w-2xl">
               {about.paragraphs.map((paragraph) => (
                 <p
                   key={paragraph.slice(0, 40)}
-                  className="mb-6 text-lg leading-relaxed text-muted"
+                  className="mb-5 text-base leading-relaxed text-ink sm:text-lg"
                 >
                   {paragraph}
                 </p>
               ))}
 
-              <h2 className="font-display mt-14 mb-6 text-2xl text-ink">
-                Things I&apos;ve shipped
-              </h2>
-              <ul className="space-y-4">
-                {about.wins.map((win) => (
-                  <li key={win.slice(0, 40)} className="flex gap-4">
-                    <span
-                      className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
-                      aria-hidden="true"
+              <div className="mt-12">
+                <SectionHead
+                  sectionRef="§ 1"
+                  label="Selected work"
+                  note={`${about.wins.length} entries`}
+                />
+                <div className="border-b border-line">
+                  {about.wins.map((win, i) => (
+                    <SpecRow
+                      key={win.slice(0, 30)}
+                      sectionRef={String(i + 1).padStart(2, "0")}
+                      title={win}
                     />
-                    <span className="text-base leading-relaxed text-muted">
-                      {win}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                  ))}
+                </div>
+              </div>
 
-              <div className="mt-14 flex flex-wrap gap-4">
-                <ButtonLink href="/contact" variant="primary">
-                  Get in touch
-                  <ArrowRight />
-                </ButtonLink>
-                <ButtonLink href="/newsletter" variant="ghost">
+              <div className="mt-10 flex flex-wrap gap-3">
+                <BracketLink href="/contact">Get in touch</BracketLink>
+                <BracketLink href="/newsletter" variant="outline">
                   Read the newsletter
-                </ButtonLink>
+                </BracketLink>
               </div>
             </div>
 
-            <aside className="lg:pt-2">
-              <div className="overflow-hidden rounded-card border border-line bg-surface">
-                <Image
-                  src={site.portrait}
-                  alt={`Portrait of ${site.name}`}
-                  width={640}
-                  height={640}
-                  className="h-full w-full object-cover"
-                />
-              </div>
+            <aside>
+              <Plate
+                src={site.portrait}
+                alt={`Portrait of ${site.name}`}
+                caption="Fig. 1 — R. Wells"
+              />
 
-              <Card className="mt-5">
-                <p className="font-eyebrow mb-4 text-[0.65rem] text-muted">
+              <div className="mt-9">
+                <Label className="border-b-2 border-rule pb-2 text-ink">
                   Track record
-                </p>
-                <ul className="space-y-5">
+                </Label>
+                <div className="mt-1">
                   {about.timeline.map((entry) => (
-                    <li key={`${entry.period}-${entry.org}`}>
-                      <p className="font-eyebrow text-[0.6rem] text-accent">
-                        {entry.period}
-                      </p>
-                      <p className="mt-1.5 text-sm font-semibold text-ink">
+                    <div
+                      key={`${entry.period}-${entry.org}`}
+                      className="border-b border-line py-4"
+                    >
+                      <Label className="text-accent">{entry.period}</Label>
+                      <p className="type-heading mt-2 text-base">
                         {entry.role}
                       </p>
-                      <p className="text-sm text-muted">{entry.org}</p>
-                      <p className="mt-1.5 text-xs leading-relaxed text-muted">
+                      <Label className="mt-1 text-faint">{entry.org}</Label>
+                      <p className="mt-2 text-sm leading-relaxed text-muted">
                         {entry.detail}
                       </p>
-                    </li>
+                    </div>
                   ))}
-                </ul>
-              </Card>
+                </div>
+              </div>
             </aside>
           </div>
         </Container>

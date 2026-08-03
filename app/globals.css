@@ -1,109 +1,49 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Theme tokens
+   Spec Sheet
    ---------------------------------------------------------------------------
-   Every color, font and radius in the site resolves through these variables.
-   Swapping `data-theme` on <html> reskins the whole site with no component
-   changes. Three directions ship by default; pick one and delete the others.
+   Technical documentation, not a product landing page. The rules that keep it
+   from drifting back toward generic SaaS:
+
+     - Zero border radius. Anywhere.
+     - No cards. Structure comes from hairline rules and a real grid.
+     - Monospace carries all structure: labels, refs, metadata, figures.
+     - One accent, used sparingly, on paper rather than on a dark field.
+     - Type contrast is extreme. Display is huge, metadata is 10-11px.
 --------------------------------------------------------------------------- */
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-raised: var(--raised);
-  --color-line: var(--line);
+  --color-paper: var(--paper);
+  --color-panel: var(--panel);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-rule: var(--rule);
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
-  --color-accent-2: var(--accent-2);
-  --color-on-accent-2: var(--on-accent-2);
 
-  --font-sans: var(--font-body);
-  --font-display: var(--font-display-family);
-  --font-mono: var(--font-jetbrains);
-
-  --radius-card: var(--radius);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-plex-condensed);
 }
 
-/* --- Direction 1: Terminal -------------------------------------------------
-   Near-black, monospace signals, one electric accent. Reads as a systems
-   operator who works in the plumbing.
---------------------------------------------------------------------------- */
-:root,
-[data-theme="terminal"] {
-  --bg: #08090a;
-  --surface: #101214;
-  --raised: #171a1d;
-  --line: #23282d;
-  --ink: #e7eaec;
-  --muted: #8d959c;
-  --accent: #c2f24a;
-  --on-accent: #0d1400;
-  --accent-2: #ff7a45;
-  --on-accent-2: #180500;
-
-  --font-display-family: var(--font-jetbrains);
-  --display-weight: 700;
-  --display-tracking: -0.03em;
-  --display-transform: none;
-  --eyebrow-family: var(--font-jetbrains);
-  --radius: 0.25rem;
+:root {
+  --paper: #f2f1ec;
+  --panel: #fbfaf7;
+  --ink: #16150f;
+  --muted: #66635a;
+  --faint: #938f83;
+  --line: #ccc7b9;
+  --rule: #1a1811;
+  --accent: #d6400f;
+  --on-accent: #fdf6f2;
 }
-
-/* --- Direction 2: Editorial ------------------------------------------------
-   Warm paper, large serif display, ink-on-cream. Reads as a writer first,
-   which suits a newsletter-led brand.
---------------------------------------------------------------------------- */
-[data-theme="editorial"] {
-  --bg: #faf6f0;
-  --surface: #ffffff;
-  --raised: #f3ece2;
-  --line: #e2d8c9;
-  --ink: #1b1714;
-  --muted: #6d6359;
-  --accent: #9c3d24;
-  --on-accent: #fff7f2;
-  --accent-2: #1f4d3d;
-  --on-accent-2: #f2fbf7;
-
-  --font-display-family: var(--font-instrument);
-  --display-weight: 400;
-  --display-tracking: -0.02em;
-  --display-transform: none;
-  --eyebrow-family: var(--font-body);
-  --radius: 0.125rem;
-}
-
-/* --- Direction 3: Signal ---------------------------------------------------
-   Deep navy, geometric sans, cool accent. Reads as a polished modern SaaS
-   operator. Closest in temperature to the reference site without copying it.
---------------------------------------------------------------------------- */
-[data-theme="signal"] {
-  --bg: #0a1120;
-  --surface: #111c31;
-  --raised: #16233c;
-  --line: #22314f;
-  --ink: #e9eef7;
-  --muted: #8ea0bd;
-  --accent: #4cc4f5;
-  --on-accent: #04121d;
-  --accent-2: #a98bfa;
-  --on-accent-2: #0f0620;
-
-  --font-display-family: var(--font-space-grotesk);
-  --display-weight: 700;
-  --display-tracking: -0.035em;
-  --display-transform: none;
-  --eyebrow-family: var(--font-space-grotesk);
-  --radius: 0.75rem;
-}
-
-/* --- Base ---------------------------------------------------------------- */
 
 * {
   border-color: var(--line);
+  border-radius: 0;
 }
 
 html {
@@ -111,11 +51,11 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-plex-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  font-feature-settings: "tnum" 1;
 }
 
 ::selection {
@@ -123,35 +63,91 @@ body {
   color: var(--on-accent);
 }
 
-/* Utility classes that read theme tokens the Tailwind scale cannot express. */
+/* --- Typographic roles ---------------------------------------------------- */
 
-.font-display {
-  font-family: var(--font-display-family), Georgia, serif;
-  font-weight: var(--display-weight);
-  letter-spacing: var(--display-tracking);
-  text-transform: var(--display-transform);
-}
-
-.font-eyebrow {
-  font-family: var(--eyebrow-family), system-ui, sans-serif;
-  letter-spacing: 0.14em;
+/* Big industrial display. Condensed, uppercase, tracked tight. */
+.type-display {
+  font-family: var(--font-plex-condensed), Impact, sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
 }
 
-/* Focus ring that stays visible on every theme. */
+/* Section titles inside the document body. */
+.type-heading {
+  font-family: var(--font-plex-condensed), Impact, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+/* Every label, ref, caption, and piece of metadata on the site. */
+.type-label {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+}
+
+/* Section reference numbers. Tabular so columns line up. */
+.type-ref {
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* --- Document furniture --------------------------------------------------- */
+
+/* The heavy rule that opens and closes a document section. */
+.rule-heavy {
+  border-top: 2px solid var(--rule);
+}
+
+.rule-hair {
+  border-top: 1px solid var(--line);
+}
+
+/* Bracketed link, used instead of arrow-and-chevron CTAs. */
+.bracket-link::before {
+  content: "[";
+  margin-right: 0.4em;
+  color: var(--accent);
+}
+
+.bracket-link::after {
+  content: "]";
+  margin-left: 0.4em;
+  color: var(--accent);
+}
+
+/* Photographic plates are flattened to match the printed-document feel. */
+.plate img {
+  filter: grayscale(1) contrast(1.08) brightness(1.02);
+}
+
+/* Registration marks in the corner of the document header. */
+.crop-mark {
+  background-image: linear-gradient(var(--rule), var(--rule));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 2px;
+  outline-offset: 2px;
 }
 
-/* Respect reduced-motion for the entrance transitions. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }

@@ -4,100 +4,97 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { nav, site } from "@/lib/content";
-import { Container } from "./ui";
+import { Container, Label } from "./ui";
 
 export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur-md">
-      <Container>
-        <div className="flex h-16 items-center justify-between sm:h-20">
-          <Link
-            href="/"
-            className="font-display text-xl text-ink transition-colors hover:text-accent"
-            aria-label={`${site.name}, home`}
-            onClick={() => setOpen(false)}
-          >
-            {site.monogram}
-          </Link>
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-          <nav className="hidden items-center gap-8 lg:flex">
-            {nav.map((item) => {
-              const active =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
-              return (
+  return (
+    <header className="sticky top-0 z-40 bg-paper">
+      {/* Document masthead strip. Metadata, not navigation. */}
+      <div className="border-b border-line">
+        <Container>
+          <div className="flex items-center justify-between gap-4 py-1.5">
+            <Label className="text-faint">{site.domain}</Label>
+            <Label className="hidden text-faint sm:block">
+              {site.docClass}
+            </Label>
+            <Label className="text-faint">{site.rev}</Label>
+          </div>
+        </Container>
+      </div>
+
+      <div className="border-b-2 border-rule">
+        <Container>
+          <div className="flex h-14 items-center justify-between sm:h-16">
+            <Link
+              href="/"
+              className="type-display text-2xl transition-colors hover:text-accent"
+              aria-label={`${site.name}, home`}
+              onClick={() => setOpen(false)}
+            >
+              {site.monogram}
+            </Link>
+
+            <nav className="hidden items-center gap-7 lg:flex">
+              {nav.map((item, i) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`font-eyebrow text-xs transition-colors ${
-                    active ? "text-accent" : "text-muted hover:text-ink"
+                  className={`type-label transition-colors ${
+                    isActive(item.href)
+                      ? "text-accent"
+                      : "text-muted hover:text-ink"
                   }`}
                 >
-                  {item.label}
+                  <span className="text-faint">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  &nbsp;&nbsp;{item.label}
                 </Link>
-              );
-            })}
-          </nav>
+              ))}
+            </nav>
 
-          <button
-            type="button"
-            className="lg:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="relative block h-4 w-6">
-              <span
-                className={`absolute left-0 block h-0.5 w-6 bg-ink transition-transform duration-200 ${
-                  open ? "top-2 rotate-45" : "top-0"
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-2 block h-0.5 w-6 bg-ink transition-opacity duration-200 ${
-                  open ? "opacity-0" : "opacity-100"
-                }`}
-              />
-              <span
-                className={`absolute left-0 block h-0.5 w-6 bg-ink transition-transform duration-200 ${
-                  open ? "top-2 -rotate-45" : "top-4"
-                }`}
-              />
-            </span>
-          </button>
-        </div>
-      </Container>
+            <button
+              type="button"
+              className="type-label text-ink lg:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? "Close" : "Menu"}
+            </button>
+          </div>
+        </Container>
+      </div>
 
       {open ? (
         <nav
           id="mobile-nav"
-          className="border-t border-line bg-surface lg:hidden"
+          className="border-b-2 border-rule bg-panel lg:hidden"
         >
           <Container>
-            <ul className="flex flex-col py-3">
-              {nav.map((item) => {
-                const active =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.href);
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className={`font-eyebrow block py-3 text-xs ${
-                        active ? "text-accent" : "text-muted"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
+            <ul>
+              {nav.map((item, i) => (
+                <li key={item.href} className="border-b border-line last:border-0">
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={`type-label block py-3.5 ${
+                      isActive(item.href) ? "text-accent" : "text-muted"
+                    }`}
+                  >
+                    <span className="text-faint">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    &nbsp;&nbsp;{item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </Container>
         </nav>

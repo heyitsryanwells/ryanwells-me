@@ -8,16 +8,15 @@ import { newsletter } from "@/lib/content";
  * in lib/content.ts and this posts straight to the provider. Until then it
  * runs in demo mode so the layout is reviewable.
  */
-export function NewsletterForm({ compact = false }: { compact?: boolean }) {
+export function NewsletterForm({ className = "" }: { className?: string }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "done">("idle");
   const live = Boolean(newsletter.formAction);
 
   if (state === "done") {
     return (
-      <p className="rounded-card border border-accent/40 bg-raised px-5 py-4 text-sm text-ink">
-        Thanks. Once a provider is connected this is where the confirmation
-        lands.
+      <p className={`type-label border border-rule bg-panel px-4 py-3.5 text-ink ${className}`}>
+        Received. Connect a provider to make this real.
       </p>
     );
   }
@@ -34,7 +33,7 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
               setState("done");
             }
       }
-      className={`flex w-full flex-col gap-3 sm:flex-row ${compact ? "" : "max-w-md"}`}
+      className={`flex w-full border border-rule bg-panel ${className}`}
     >
       <label htmlFor="email" className="sr-only">
         Email address
@@ -47,11 +46,11 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder={newsletter.placeholder}
-        className="min-w-0 flex-1 rounded-card border border-line bg-bg px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none"
+        className="type-label min-w-0 flex-1 bg-transparent px-4 py-3.5 text-ink placeholder:text-faint focus:outline-none"
       />
       <button
         type="submit"
-        className="rounded-card bg-accent px-6 py-3 text-sm font-semibold text-on-accent transition-all hover:brightness-110"
+        className="type-label shrink-0 bg-accent px-5 py-3.5 text-on-accent transition-colors hover:bg-ink"
       >
         {newsletter.ctaLabel}
       </button>

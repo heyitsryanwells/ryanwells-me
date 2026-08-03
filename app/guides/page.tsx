@@ -1,14 +1,13 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { guides, newsletter } from "@/lib/content";
 import { NewsletterForm } from "@/components/newsletter-form";
 import {
-  ArrowRight,
-  Card,
   Container,
+  Label,
   PageHeader,
   Section,
-  Tag,
+  SectionHead,
+  SpecRow,
 } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -21,53 +20,53 @@ export default function GuidesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Guides"
+        sectionRef="03"
+        label="Guides"
         title="Templates and playbooks"
         lede="Every guide here comes out of a system I actually built and had to defend. Take what's useful."
       />
 
       <Section top="tight">
         <Container>
-          <div className="grid gap-5 sm:grid-cols-2">
+          <SectionHead
+            sectionRef="§ 1"
+            label="Index"
+            note={`${guides.length} entries`}
+          />
+          <div className="border-b border-line">
             {guides.map((guide) => (
-              <Link key={guide.title} href={guide.href} className="group">
-                <Card interactive className="flex h-full flex-col">
-                  <div className="mb-5 flex items-start justify-between gap-4">
-                    <span className="text-3xl" aria-hidden="true">
-                      {guide.emoji}
-                    </span>
-                    <Tag>{guide.format}</Tag>
-                  </div>
-                  <h2 className="font-display text-2xl leading-snug text-ink transition-colors group-hover:text-accent">
-                    {guide.title}
-                  </h2>
-                  <p className="mt-3.5 flex-1 text-sm leading-relaxed text-muted">
-                    {guide.dek}
-                  </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
-                    Get the guide
-                    <ArrowRight className="transition-transform group-hover:translate-x-1" />
-                  </span>
-                </Card>
-              </Link>
+              <SpecRow
+                key={guide.ref}
+                sectionRef={guide.ref}
+                title={guide.title}
+                body={guide.dek}
+                meta={guide.format}
+                href={guide.href}
+              />
             ))}
           </div>
         </Container>
       </Section>
 
-      <Section bordered>
+      <Section top="tight">
         <Container>
-          <div className="rounded-card border border-line bg-surface px-8 py-12 sm:px-14">
-            <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+          <div className="border-2 border-rule bg-panel p-7 sm:p-10">
+            <div className="grid gap-8 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-16">
               <div>
-                <h2 className="font-display text-2xl text-ink sm:text-3xl">
+                <Label className="text-accent">Notification</Label>
+                <h2 className="type-heading mt-3 text-2xl sm:text-3xl">
                   New guides land in the newsletter first
                 </h2>
-                <p className="mt-3 text-base leading-relaxed text-muted">
+                <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
                   {newsletter.pitch}
                 </p>
               </div>
-              <NewsletterForm />
+              <div>
+                <NewsletterForm />
+                <Label className="mt-2.5 text-faint">
+                  {newsletter.disclaimer}
+                </Label>
+              </div>
             </div>
           </div>
         </Container>

@@ -1,5 +1,13 @@
 import Link from "next/link";
-import type { ComponentProps, ReactNode } from "react";
+import type { ReactNode } from "react";
+
+/* ---------------------------------------------------------------------------
+   Spec Sheet primitives.
+
+   There is no Card. Structure comes from rules and a shared column grid, so
+   nothing here should ever grow a border radius, a drop shadow, or a hover
+   lift. Refs (1.0, 2.0, A, B) carry the hierarchy that a card border used to.
+--------------------------------------------------------------------------- */
 
 export function Container({
   children,
@@ -9,40 +17,33 @@ export function Container({
   className?: string;
 }) {
   return (
-    <div className={`mx-auto w-full max-w-6xl px-6 lg:px-8 ${className}`}>
+    <div className={`mx-auto w-full max-w-6xl px-5 sm:px-8 ${className}`}>
       {children}
     </div>
   );
 }
 
-/**
- * Vertical rhythm is set here rather than passed in via className. A
- * responsive utility like `sm:py-28` always beats a plain `pt-12` from a
- * caller, so spacing has to be a prop to stay predictable.
- */
 const sectionTop = {
-  default: "pt-20 sm:pt-28",
-  tight: "pt-10 sm:pt-14",
+  default: "pt-16 sm:pt-24",
+  tight: "pt-8 sm:pt-12",
   none: "pt-0",
 } as const;
 
 const sectionBottom = {
-  default: "pb-20 sm:pb-28",
-  tight: "pb-10 sm:pb-14",
+  default: "pb-16 sm:pb-24",
+  tight: "pb-8 sm:pb-12",
   none: "pb-0",
 } as const;
 
 export function Section({
   children,
   className = "",
-  bordered = false,
   id,
   top = "default",
   bottom = "default",
 }: {
   children: ReactNode;
   className?: string;
-  bordered?: boolean;
   id?: string;
   top?: keyof typeof sectionTop;
   bottom?: keyof typeof sectionBottom;
@@ -50,75 +51,164 @@ export function Section({
   return (
     <section
       id={id}
-      className={`${sectionTop[top]} ${sectionBottom[bottom]} ${
-        bordered ? "border-t border-line" : ""
-      } ${className}`}
+      className={`${sectionTop[top]} ${sectionBottom[bottom]} ${className}`}
     >
       {children}
     </section>
   );
 }
 
-export function Eyebrow({ children }: { children: ReactNode }) {
-  return (
-    <p className="font-eyebrow mb-4 text-xs text-accent">{children}</p>
-  );
+/** Monospace label. Every piece of metadata on the site uses this. */
+export function Label({
+  children,
+  className = "",
+  as: Tag = "p",
+}: {
+  children: ReactNode;
+  className?: string;
+  as?: "p" | "span" | "h2" | "div";
+}) {
+  return <Tag className={`type-label ${className}`}>{children}</Tag>;
 }
 
-export function SectionHeading({
-  eyebrow,
+/** The 2px rule that opens a document section. */
+export function RuleHeavy({ className = "" }: { className?: string }) {
+  return <div className={`rule-heavy ${className}`} aria-hidden="true" />;
+}
+
+/**
+ * Section opener: heavy rule, then a mono ref and label on one line, then the
+ * condensed title. Replaces the eyebrow-over-centered-heading pattern.
+ */
+export function SectionHead({
+  sectionRef,
+  label,
   title,
-  subtitle,
-  align = "left",
+  note,
 }: {
-  eyebrow?: string;
-  title: string;
-  subtitle?: string;
-  align?: "left" | "center";
+  sectionRef?: string;
+  label: string;
+  title?: string;
+  note?: string;
 }) {
   return (
-    <div
-      className={`mb-14 ${align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}`}
-    >
-      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="font-display text-3xl leading-[1.1] text-ink sm:text-4xl lg:text-[2.75rem]">
-        {title}
-      </h2>
-      {subtitle ? (
-        <p className="mt-5 text-lg leading-relaxed text-muted">{subtitle}</p>
+    <div className="mb-8 sm:mb-10">
+      <RuleHeavy />
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-2.5">
+        <Label className="text-ink">
+          {sectionRef ? (
+            <span className="text-accent">{sectionRef}&nbsp;&nbsp;</span>
+          ) : null}
+          {label}
+        </Label>
+        {note ? <Label className="text-faint">{note}</Label> : null}
+      </div>
+      {title ? (
+        <h2 className="type-heading mt-5 max-w-3xl text-3xl sm:text-4xl">
+          {title}
+        </h2>
       ) : null}
     </div>
   );
 }
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
-
-const buttonStyles: Record<ButtonVariant, string> = {
-  primary:
-    "bg-accent text-on-accent hover:brightness-110 border border-transparent",
-  secondary:
-    "bg-accent-2 text-on-accent-2 hover:brightness-110 border border-transparent",
-  ghost:
-    "bg-transparent text-ink border border-line hover:border-accent hover:text-accent",
-};
-
-const buttonBase =
-  "inline-flex items-center justify-center gap-2 rounded-card px-6 py-3 text-sm font-semibold transition-all duration-150";
-
-export function ButtonLink({
+/**
+ * A numbered row in a spec table. Ref sits in its own column so every row
+ * aligns down the page, the way a real reference document reads.
+ */
+export function SpecRow({
+  sectionRef,
+  title,
+  body,
+  meta,
   href,
-  variant = "primary",
-  children,
+}: {
+  sectionRef: string;
+  title: string;
+  body?: string;
+  meta?: string;
+  href?: string;
+}) {
+  const inner = (
+    <div className="grid grid-cols-[3.25rem_1fr] gap-x-4 py-5 sm:grid-cols-[5rem_1fr_auto] sm:gap-x-8 sm:py-6">
+      <span className="type-ref pt-0.5 text-xs text-accent">
+        {sectionRef}
+      </span>
+      <div className="min-w-0">
+        <h3 className="type-heading text-lg sm:text-xl">{title}</h3>
+        {body ? (
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+            {body}
+          </p>
+        ) : null}
+        {meta ? (
+          <Label className="mt-3 text-faint sm:hidden">{meta}</Label>
+        ) : null}
+      </div>
+      {meta ? (
+        <Label className="hidden self-start pt-1 text-faint sm:block">
+          {meta}
+        </Label>
+      ) : null}
+    </div>
+  );
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className="group block border-t border-line transition-colors hover:bg-panel"
+      >
+        <div className="group-hover:[&_h3]:text-accent">{inner}</div>
+      </Link>
+    );
+  }
+
+  return <div className="border-t border-line">{inner}</div>;
+}
+
+/** Label/value pairs. Used for the hero data block and any inline spec. */
+export function SpecList({
+  items,
   className = "",
-  ...rest
+}: {
+  items: { label: string; value: string }[];
+  className?: string;
+}) {
+  return (
+    <dl className={className}>
+      {items.map((item) => (
+        <div
+          key={item.label}
+          className="grid grid-cols-[5.5rem_1fr] gap-4 border-t border-line py-2.5 sm:grid-cols-[7rem_1fr]"
+        >
+          <dt className="type-label text-faint">{item.label}</dt>
+          <dd className="text-sm text-ink">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+/** Primary call to action. Bracketed rather than arrowed. */
+export function BracketLink({
+  href,
+  children,
+  variant = "solid",
+  className = "",
 }: {
   href: string;
-  variant?: ButtonVariant;
   children: ReactNode;
+  variant?: "solid" | "outline";
   className?: string;
-} & Omit<ComponentProps<typeof Link>, "href" | "className">) {
+}) {
+  const styles =
+    variant === "solid"
+      ? "bg-accent text-on-accent hover:bg-ink"
+      : "border border-rule text-ink hover:bg-ink hover:text-paper";
+
+  const classes = `type-label inline-block px-5 py-3 transition-colors ${styles} ${className}`;
   const external = href.startsWith("http") || href.startsWith("mailto:");
-  const classes = `${buttonBase} ${buttonStyles[variant]} ${className}`;
 
   if (external) {
     return (
@@ -129,79 +219,100 @@ export function ButtonLink({
   }
 
   return (
-    <Link href={href} className={classes} {...rest}>
+    <Link href={href} className={classes}>
       {children}
     </Link>
   );
 }
 
-export function Card({
+/** Inline text link, rendered with the bracket marks from globals.css. */
+export function TextLink({
+  href,
   children,
   className = "",
-  interactive = false,
 }: {
+  href: string;
   children: ReactNode;
   className?: string;
-  interactive?: boolean;
+}) {
+  const external = href.startsWith("http") || href.startsWith("mailto:");
+  const classes = `type-label bracket-link inline-block text-ink transition-colors hover:text-accent ${className}`;
+
+  if (external) {
+    return (
+      <a href={href} className={classes} target="_blank" rel="noreferrer">
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={classes}>
+      {children}
+    </Link>
+  );
+}
+
+/** Photographic plate: hard edges, flattened image, mono figure caption. */
+export function Plate({
+  src,
+  alt,
+  caption,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  className?: string;
 }) {
   return (
-    <div
-      className={`rounded-card border border-line bg-surface p-7 transition-all duration-200 ${
-        interactive
-          ? "hover:-translate-y-1 hover:border-accent/60 hover:bg-raised"
-          : ""
-      } ${className}`}
-    >
-      {children}
-    </div>
+    <figure className={className}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <div className="plate border border-rule bg-panel">
+        <img
+          src={src}
+          alt={alt}
+          width={1100}
+          height={1100}
+          className="block h-full w-full object-cover"
+        />
+      </div>
+      {caption ? (
+        <figcaption className="type-label mt-2 text-faint">{caption}</figcaption>
+      ) : null}
+    </figure>
   );
 }
 
-export function Tag({ children }: { children: ReactNode }) {
-  return (
-    <span className="font-eyebrow inline-block rounded-card border border-line bg-raised px-2.5 py-1 text-[0.65rem] text-muted">
-      {children}
-    </span>
-  );
-}
-
-export function ArrowRight({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden="true"
-      className={`h-4 w-4 ${className}`}
-    >
-      <path
-        d="M4 10h12m0 0-4.5-4.5M16 10l-4.5 4.5"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
+/** Document-style page opener used on every interior page. */
 export function PageHeader({
-  eyebrow,
+  sectionRef,
+  label,
   title,
   lede,
 }: {
-  eyebrow?: string;
+  sectionRef?: string;
+  label: string;
   title: string;
   lede?: string;
 }) {
   return (
     <Container>
-      <div className="max-w-3xl pt-20 pb-4 sm:pt-28">
-        {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-        <h1 className="font-display text-4xl leading-[1.05] text-ink sm:text-5xl lg:text-6xl">
+      <div className="pt-10 sm:pt-14">
+        <RuleHeavy />
+        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-2.5">
+          <Label className="text-ink">
+            {sectionRef ? (
+              <span className="text-accent">{sectionRef}&nbsp;&nbsp;</span>
+            ) : null}
+            {label}
+          </Label>
+        </div>
+        <h1 className="type-display mt-6 max-w-4xl text-5xl sm:text-7xl">
           {title}
         </h1>
         {lede ? (
-          <p className="mt-6 text-lg leading-relaxed text-muted sm:text-xl">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
             {lede}
           </p>
         ) : null}
