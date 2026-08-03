@@ -188,6 +188,22 @@ body {
     0 12px 32px -12px rgba(0, 0, 0, 0.8);
 }
 
+/* Glow behind the RW monogram. Two stacked shadows rather than one: a tight
+   inner halo to make the letterforms feel lit, and a wide soft one to spill
+   onto the surrounding ground. */
+.logo-glow {
+  text-shadow:
+    0 0 12px rgba(240, 138, 60, 0.55),
+    0 0 34px rgba(240, 138, 60, 0.3);
+  transition: text-shadow 250ms ease;
+}
+
+.logo-glow:hover {
+  text-shadow:
+    0 0 14px rgba(233, 237, 243, 0.6),
+    0 0 40px rgba(233, 237, 243, 0.3);
+}
+
 /* Shooting star. A 2px head with a hard-offset trail, no blur, so it reads as
    pixel art rather than a glow. steps() makes it advance in discrete jumps.
 

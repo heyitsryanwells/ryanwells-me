@@ -20,7 +20,7 @@ export function Nav() {
           <div className="flex h-14 items-center justify-between sm:h-16">
             <Link
               href="/"
-              className="type-display text-2xl text-accent transition-colors hover:text-ink"
+              className="logo-glow type-display text-2xl text-accent transition-colors hover:text-ink"
               aria-label={`${site.name}, home`}
               onClick={() => setOpen(false)}
             >
