@@ -1,32 +1,47 @@
 import type { Metadata } from "next";
-import {
-  IBM_Plex_Sans,
-  IBM_Plex_Mono,
-  IBM_Plex_Sans_Condensed,
-} from "next/font/google";
+import { Archivo, Archivo_Narrow, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { site } from "@/lib/content";
 
-const plexSans = IBM_Plex_Sans({
+/**
+ * Type system.
+ *
+ * Chosen to stay off the AI-default stack (Inter, Geist, Space Grotesk,
+ * JetBrains Mono, and IBM Plex Mono, which has become the signature face of
+ * this exact spec-sheet genre).
+ *
+ * Archivo and Archivo Narrow are one superfamily covering body and display, so
+ * the two roles relate rather than merely coexist. Narrow keeps page titles on
+ * a single line, which the layout's density depends on.
+ *
+ * Martian Mono carries every label, ref and caption. It is deliberately wide
+ * and engineered, which suits the instrument-panel palette and the space
+ * motif. Because it is already wide, `.type-label` tracking is reduced in
+ * globals.css; the usual 0.11em pushes it past the nav at the lg breakpoint.
+ *
+ * Faces are wired to the neutral --face-* roles, so swapping type never
+ * requires touching the stylesheet.
+ */
+const faceBody = Archivo({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-plex-sans",
+  variable: "--face-body",
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const faceMono = Martian_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-plex-mono",
+  weight: ["400", "500"],
+  variable: "--face-mono",
   display: "swap",
 });
 
-const plexCondensed = IBM_Plex_Sans_Condensed({
+const faceDisplay = Archivo_Narrow({
   subsets: ["latin"],
   weight: ["600", "700"],
-  variable: "--font-plex-condensed",
+  variable: "--face-display",
   display: "swap",
 });
 
@@ -59,7 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plexSans.variable} ${plexMono.variable} ${plexCondensed.variable} h-full`}
+      className={`${faceBody.variable} ${faceMono.variable} ${faceDisplay.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-paper text-ink">
         <a

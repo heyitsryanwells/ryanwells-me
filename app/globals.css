@@ -31,9 +31,9 @@
   --color-on-accent: var(--on-accent);
   --color-tertiary: var(--tertiary);
 
-  --font-sans: var(--font-plex-sans);
-  --font-mono: var(--font-plex-mono);
-  --font-display: var(--font-plex-condensed);
+  --font-sans: var(--face-body);
+  --font-mono: var(--face-mono);
+  --font-display: var(--face-display);
 }
 
 :root {
@@ -88,7 +88,7 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-plex-sans), system-ui, sans-serif;
+  font-family: var(--face-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-feature-settings: "tnum" 1;
 }
@@ -102,7 +102,7 @@ body {
 
 /* Big industrial display. Condensed, uppercase, tracked tight. */
 .type-display {
-  font-family: var(--font-plex-condensed), Impact, sans-serif;
+  font-family: var(--face-display), Impact, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -120,26 +120,29 @@ body {
 
 /* Section titles inside the document body. */
 .type-heading {
-  font-family: var(--font-plex-condensed), Impact, sans-serif;
+  font-family: var(--face-display), Impact, sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1.05;
 }
 
-/* Every label, ref, caption, and piece of metadata on the site. */
+/* Every label, ref, caption, and piece of metadata on the site.
+   Tracking is 0.07em rather than the 0.11em a normal-width mono wants:
+   Martian Mono is already wide by design, and the wider value pushes the
+   nav past its container at the lg breakpoint. */
 .type-label {
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-family: var(--face-mono), ui-monospace, monospace;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.07em;
   font-size: 0.6875rem;
   line-height: 1.4;
 }
 
 /* Section reference numbers. Tabular so columns line up. */
 .type-ref {
-  font-family: var(--font-plex-mono), ui-monospace, monospace;
+  font-family: var(--face-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
   font-weight: 500;
   letter-spacing: 0.02em;
