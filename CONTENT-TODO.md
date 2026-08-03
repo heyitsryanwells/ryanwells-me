@@ -8,8 +8,6 @@ finished, but these are not your real facts. All of it lives in
 
 | Field | What's there now | What I need |
 | --- | --- | --- |
-| `site.email` | `hello@ryanwells.me` | The address you want public |
-| `site.socials` | Guessed LinkedIn URL | Your real LinkedIn URL (the GitHub one is correct) |
 | `about.timeline` | One real row, two "Add your prior role" stubs | Your actual roles, orgs, and one line each |
 | `guides` | 5 invented guides | Real assets, or cut to the ones you'll actually produce |
 
@@ -22,7 +20,6 @@ later. Nothing here covers it.
 | --- | --- |
 | `about.wins` | Four accomplishment lines, currently written from general knowledge of your work rather than your numbers. Real figures here do more for the site than any design decision. |
 | `hero.intro` | Your positioning in three lines. Worth writing yourself. |
-| `proofBar.items` | Currently tool names. Stronger as logos of companies you've worked with, certifications, or places that have published you. |
 
 ## Accurate as written (verify anyway)
 
@@ -32,8 +29,9 @@ later. Nothing here covers it.
 
 ## Resolved
 
-- `site.location` is now Knoxville, TN, in both `site.location` and the `Based`
-  row of `hero.specs`.
+- Location was corrected to Knoxville and now appears only in the footer.
+- `site.email` is hellofromryanwells@gmail.com.
+- `site.socials` carries the real LinkedIn and GitHub URLs.
 
 ## Assets
 

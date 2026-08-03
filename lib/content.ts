@@ -20,11 +20,11 @@ export const site = {
   // on top, so replacing the image requires a NEW FILENAME. Editing in place
   // leaves visitors on the stale copy for hours.
   portrait: "/portrait-pixel.webp",
-  email: "hello@ryanwells.me", // PLACEHOLDER: set the address you want public.
+  email: "hellofromryanwells@gmail.com",
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/ryanwells" }, // PLACEHOLDER: real profile URL.
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/hello-ryanwells/" },
     { label: "GitHub", href: "https://github.com/heyitsryanwells" },
-    { label: "Email", href: "mailto:hello@ryanwells.me" },
+    { label: "Email", href: "mailto:hellofromryanwells@gmail.com" },
   ],
 };
 
@@ -52,13 +52,6 @@ export const hero = {
   secondaryCta: { label: "Get in touch", href: "/contact" },
   portraitAlt:
     "Pixel-art portrait of Ryan Wells standing on the moon, with a starfield behind him",
-};
-
-export const proofBar = {
-  // PLACEHOLDER: replace with logos of tools you're certified in, companies
-  // you've worked with, or publications that have run your writing.
-  heading: "Systems of record",
-  items: ["Salesforce", "HubSpot", "n8n", "Clay", "Gong", "Linear"],
 };
 
 export const expertise = {

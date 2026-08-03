@@ -2,7 +2,6 @@ import {
   expertise,
   guides,
   hero,
-  proofBar,
   site,
 } from "@/lib/content";
 import {
@@ -23,8 +22,17 @@ export default function Home() {
       {/* Hero ---------------------------------------------------------------
           Deliberately looser than the rest of the site: no opening rule, no
           spec table, no figure caption. The document structure starts at § 1.
+
+          Fills the viewport so the portrait is all that shows until you
+          scroll. The subtracted height is the sticky nav: 3.5rem/4rem plus its
+          2px bottom border. svh rather than vh, so mobile browser chrome does
+          not push the section past the fold.
       --------------------------------------------------------------------- */}
-      <Section top="default" bottom="tight" className="starfield">
+      <Section
+        top="none"
+        bottom="none"
+        className="starfield flex min-h-[calc(100svh-3.5rem-2px)] items-center sm:min-h-[calc(100svh-4rem-2px)]"
+      >
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
@@ -60,27 +68,6 @@ export default function Home() {
                   className="block h-auto w-full"
                 />
               </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Systems strip ------------------------------------------------------ */}
-      <Section top="none" bottom="none">
-        <Container>
-          <div className="flex flex-col gap-2 border-t border-line py-3 sm:flex-row sm:items-baseline sm:gap-8">
-            <Label className="shrink-0 text-faint">{proofBar.heading}</Label>
-            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-              {proofBar.items.map((item, i) => (
-                <Label key={item} className="text-muted">
-                  {i > 0 ? (
-                    <span className="mr-4 text-line" aria-hidden="true">
-                      /
-                    </span>
-                  ) : null}
-                  {item}
-                </Label>
-              ))}
             </div>
           </div>
         </Container>
