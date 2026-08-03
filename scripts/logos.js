@@ -2,7 +2,7 @@
  * Normalize the downloaded brand marks into one consistent set.
  *
  * The sources are a mix of real SVG, WebP-named-.svg and PNG-named-.svg, at
- * wildly different sizes, some with transparency and some on a solid白
+ * wildly different sizes, some with transparency and some on a solid
  * background. Everything comes out as a trimmed transparent WebP at a uniform
  * height so the marquee can treat them identically.
  */
@@ -26,6 +26,7 @@ const MAP = [
   ["granola.svg", "granola"],
   ["vector_logo.svg", "vector"],
   ["revenuehero.svg", "revenuehero"],
+  ["slack.svg", "slack"],
 ];
 
 const H = 120; // 2x the ~60px display height

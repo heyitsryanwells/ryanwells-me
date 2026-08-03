@@ -76,7 +76,7 @@ export const stack = {
     { name: "Wiza", logo: "/logos/wiza.webp" },
     { name: "Linear", logo: "/logos/linear.webp" },
     { name: "Granola", logo: "/logos/granola.webp" },
-    { name: "Slack" }, // TODO: no mark downloaded yet
+    { name: "Slack", logo: "/logos/slack.webp" },
     { name: "Vector", logo: "/logos/vector.webp" },
     { name: "RevenueHero", logo: "/logos/revenuehero.webp" },
   ],
@@ -168,43 +168,46 @@ export const guides = [
 ];
 
 /**
- * Tools list. These are real; adjust the notes to match your own take.
+ * Tools list, matching the confirmed stack. Deliberately names only: the
+ * per-tool commentary that used to sit here was written by Claude, not Ryan,
+ * and inventing takes for the newer entries would have put that straight back.
  */
 export const toolCategories = [
   {
     ref: "1.0",
     category: "Core CRM & GTM",
     tools: [
-      { name: "Salesforce", note: "The system of record. Everything else reconciles back to it.", href: "https://salesforce.com" },
-      { name: "HubSpot", note: "Marketing side of the house. Sync direction matters more than people think.", href: "https://hubspot.com" },
-      { name: "Gong", note: "Call data, and increasingly the fastest way to answer a deal question.", href: "https://gong.io" },
+      { name: "Salesforce", href: "https://salesforce.com" },
+      { name: "HubSpot", href: "https://hubspot.com" },
+      { name: "Pylon", href: "https://usepylon.com" },
+      { name: "Gong", href: "https://gong.io" },
+      { name: "Outreach", href: "https://outreach.io" },
+      { name: "RevenueHero", href: "https://revenuehero.io" },
     ],
   },
   {
     ref: "2.0",
     category: "Automation & AI",
     tools: [
-      { name: "Claude Code", note: "Where most of my systems work happens now, wired to the CRM through MCP.", href: "https://claude.com/claude-code" },
-      { name: "n8n", note: "Self-hosted workflow automation for anything that outgrows native tooling.", href: "https://n8n.io" },
-      { name: "Zapier", note: "Still the fastest path for a simple two-system handoff.", href: "https://zapier.com" },
+      { name: "Claude", href: "https://claude.com" },
+      { name: "n8n", href: "https://n8n.io" },
     ],
   },
   {
     ref: "3.0",
-    category: "Data & Enrichment",
+    category: "Data & Signal",
     tools: [
-      { name: "Clay", note: "Enrichment orchestration when a single provider will not cover the list.", href: "https://clay.com" },
-      { name: "Lusha", note: "Email enrichment. Worth gating on the company field before you trust a match.", href: "https://lusha.com" },
-      { name: "Wiza", note: "LinkedIn-sourced contact data with usable export volume.", href: "https://wiza.co" },
+      { name: "Wiza", href: "https://wiza.co" },
+      { name: "Vector", href: "https://vector.co" },
     ],
   },
   {
     ref: "4.0",
     category: "Process & Documentation",
     tools: [
-      { name: "Linear", note: "Every RevOps request becomes an issue. No exceptions, no Slack-only asks.", href: "https://linear.app" },
-      { name: "Granola", note: "Meeting notes that stay searchable months later.", href: "https://granola.ai" },
-      { name: "Slack Canvas", note: "Where self-serve documentation actually gets read.", href: "https://slack.com" },
+      { name: "Linear", href: "https://linear.app" },
+      { name: "Granola", href: "https://granola.ai" },
+      { name: "Slack", href: "https://slack.com" },
     ],
   },
 ];
