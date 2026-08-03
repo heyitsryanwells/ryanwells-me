@@ -25,9 +25,9 @@ export const site = {
 };
 
 export const footer = {
-  madeWith: "Made with",
-  madeWithEmphasis: "love",
-  madeWithPlace: "in Knoxville",
+  // The emphasised word leads and carries the accent colour.
+  noteEmphasis: "Building",
+  noteRest: "from Knoxville",
 };
 
 export const nav = [

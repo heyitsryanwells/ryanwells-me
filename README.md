@@ -50,8 +50,10 @@ components/
 lib/
   content.ts        all site copy
 public/
-  portrait.webp     hero and about plate
+  portrait.webp     background-removed cutout, alpha, bottom fade
   portrait-light.webp  alternate source photo, currently unused
+scripts/
+  cutout.js         regenerates portrait.webp from a raw headshot
 ```
 
 ## Deploy (GitHub Pages)

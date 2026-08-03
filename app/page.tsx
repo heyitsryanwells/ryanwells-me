@@ -47,18 +47,19 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Tilted and unframed so the hero reads softer than the plates
-                used on interior pages. */}
+            {/* Background-removed cutout, in colour and unframed. Interior
+                pages keep the greyscale plate; the hero is the one place the
+                site is warm rather than documentary.
+                No tilt: with the background gone there is no rectangle left to
+                rotate, so a rotation would just tip the subject's head. */}
             <div className="mx-auto w-full max-w-sm lg:max-w-none">
-              <div className="plate rotate-[2deg] transition-transform duration-500 ease-out hover:rotate-0">
-                <img
-                  src={site.portrait}
-                  alt={hero.portraitAlt}
-                  width={1100}
-                  height={1100}
-                  className="block h-full w-full object-cover"
-                />
-              </div>
+              <img
+                src={site.portrait}
+                alt={hero.portraitAlt}
+                width={1100}
+                height={1100}
+                className="block h-auto w-full"
+              />
             </div>
           </div>
         </Container>

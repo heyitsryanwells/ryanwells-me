@@ -37,8 +37,12 @@ later. Nothing here covers it.
 
 ## Assets
 
-- `public/portrait.webp` is your existing headshot, pre-sized to 1100px. It
-  renders through the `.plate` treatment in `app/globals.css`: grayscale, hard
-  edges, slightly dimmed so it does not glare against the dark ground.
-- `public/portrait-light.webp` is the alternate source photo, currently unused.
+- `public/portrait.webp` is your headshot with the navy studio background
+  chroma-keyed out, 1100px, alpha preserved, with an alpha ramp over the bottom
+  18% so the shirt dissolves into the page instead of ending on a hard line.
+  Regenerate it from `scratchpad/cutout.js` if you swap the source photo.
+- The hero shows it in colour and unframed. Interior pages render it through
+  the `.plate` treatment in `app/globals.css` (greyscale, framed, captioned).
+- `public/portrait-light.webp` is the alternate source photo, currently unused
+  and still carrying its background.
 - No favicon or social share image yet. Both worth adding before you promote the site.

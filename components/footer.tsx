@@ -10,9 +10,8 @@ export function Footer() {
       <Container>
         <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
           <Label className="text-muted">
-            {footer.madeWith}{" "}
-            <span className="text-accent">{footer.madeWithEmphasis}</span>{" "}
-            {footer.madeWithPlace}
+            <span className="text-accent">{footer.noteEmphasis}</span>{" "}
+            {footer.noteRest}
           </Label>
 
           <nav aria-label="Footer">
