@@ -146,11 +146,13 @@ body {
   color: var(--accent);
 }
 
-/* Photographic plates are flattened to match the printed-document feel.
-   Pulled down slightly so a bright grayscale photo does not glare against
-   the dark ground. */
+/* Plates keep their hard edge and caption, which is what carries the
+   document feel. The portrait is stylised art now, so no greyscale pass:
+   flattening it would throw away the palette it was drawn with. */
 .plate img {
-  filter: grayscale(1) contrast(1.05) brightness(0.9);
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* Registration marks in the corner of the document header. */

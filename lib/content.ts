@@ -14,11 +14,12 @@ export const site = {
   tagline:
     "I build the revenue systems behind go-to-market teams. Salesforce architecture, GTM automation, and the reporting that executives actually trust.",
   monogram: "RW",
-  // Background-removed cutout, 1100px WebP with alpha.
+  // Pixel-art portrait, 1100px WebP. Brings its own starfield and lunar
+  // horizon, so it is framed rather than cut out.
   // NOTE: GitHub Pages serves assets with max-age=14400 and Cloudflare caches
   // on top, so replacing the image requires a NEW FILENAME. Editing in place
   // leaves visitors on the stale copy for hours.
-  portrait: "/portrait-cutout.webp",
+  portrait: "/portrait-pixel.webp",
   email: "hello@ryanwells.me", // PLACEHOLDER: set the address you want public.
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ryanwells" }, // PLACEHOLDER: real profile URL.
@@ -49,7 +50,8 @@ export const hero = {
     "I run revenue operations at a go-to-market software company, where I own the Salesforce architecture, the bookings model, and the automation that keeps both honest. I write about the parts nobody documents.",
   primaryCta: { label: "Browse the guides", href: "/guides" },
   secondaryCta: { label: "Get in touch", href: "/contact" },
-  portraitAlt: "Portrait of Ryan Wells",
+  portraitAlt:
+    "Pixel-art portrait of Ryan Wells standing on the moon, with a starfield behind him",
 };
 
 export const proofBar = {

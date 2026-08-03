@@ -47,19 +47,19 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Background-removed cutout, in colour and unframed. Interior
-                pages keep the greyscale plate; the hero is the one place the
-                site is warm rather than documentary.
-                No tilt: with the background gone there is no rectangle left to
-                rotate, so a rotation would just tip the subject's head. */}
+            {/* The pixel portrait carries its own starfield and lunar horizon,
+                so it is framed as a plate rather than cut out. A hairline
+                border keeps the square edge reading as deliberate. */}
             <div className="mx-auto w-full max-w-sm lg:max-w-none">
-              <img
-                src={site.portrait}
-                alt={hero.portraitAlt}
-                width={1100}
-                height={1100}
-                className="block h-auto w-full"
-              />
+              <div className="border border-line">
+                <img
+                  src={site.portrait}
+                  alt={hero.portraitAlt}
+                  width={1100}
+                  height={1100}
+                  className="block h-auto w-full"
+                />
+              </div>
             </div>
           </div>
         </Container>
