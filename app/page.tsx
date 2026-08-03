@@ -36,14 +36,14 @@ export default function Home() {
           className="starfield flex flex-1 items-center py-6 sm:py-12"
         >
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <div className="grid items-center gap-12 lg:grid-cols-[1fr_30rem] lg:gap-20">
             <div>
-              <h1 className="type-display is-mixed text-[3.25rem] sm:text-[4.5rem] lg:text-[5.5rem]">
+              <h1 className="type-display is-mixed text-[3.25rem] sm:text-[4.5rem] lg:text-[6rem]">
                 {hero.greeting}{" "}
                 <span className="text-accent">{hero.firstName}</span>
               </h1>
 
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted sm:text-xl lg:max-w-2xl">
                 {hero.intro}
               </p>
 

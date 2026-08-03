@@ -17,7 +17,9 @@ export function Container({
   className?: string;
 }) {
   return (
-    <div className={`mx-auto w-full max-w-6xl px-5 sm:px-8 ${className}`}>
+    <div
+      className={`mx-auto w-full max-w-[100rem] px-5 sm:px-8 lg:px-14 ${className}`}
+    >
       {children}
     </div>
   );
@@ -302,7 +304,7 @@ export function PageHeader({
           {title}
         </h1>
         {lede ? (
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg lg:max-w-3xl">
             {lede}
           </p>
         ) : null}
