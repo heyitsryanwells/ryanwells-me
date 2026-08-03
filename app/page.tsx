@@ -47,11 +47,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* The pixel portrait carries its own starfield and lunar horizon,
-                so it is framed as a plate rather than cut out. A hairline
-                border keeps the square edge reading as deliberate. */}
+            {/* The portrait's sky is the same colour as the page, so the top of
+                the plate dissolves while the moon and subject stay lifted by
+                the shadow. Tilted, straightening on hover. */}
             <div className="mx-auto w-full max-w-sm lg:max-w-none">
-              <div className="border border-line">
+              <div className="plate-lift rotate-[2deg] border border-line transition-transform duration-500 ease-out hover:rotate-0">
                 <img
                   src={site.portrait}
                   alt={hero.portraitAlt}
