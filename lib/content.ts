@@ -31,7 +31,7 @@ export const site = {
 export const footer = {
   // The emphasised word leads and carries the accent colour.
   noteEmphasis: "Building",
-  noteRest: "in Knoxville",
+  noteRest: "Things in Knoxville",
 };
 
 export const nav = [

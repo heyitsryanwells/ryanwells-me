@@ -9,9 +9,21 @@ export function Footer() {
     <footer className="mt-16">
       <Container>
         <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
-          <Label className="text-muted">
-            <span className="text-accent">{footer.noteEmphasis}</span>{" "}
-            {footer.noteRest}
+          <Label className="flex items-center gap-2 text-muted">
+            <span>
+              <span className="text-accent">{footer.noteEmphasis}</span>{" "}
+              {footer.noteRest}
+            </span>
+            {/* Real Tennessee mark, background-removed and trimmed from the
+                source artwork. Kept in its own orange rather than tinted to
+                the accent: it is a trademark, not a UI element. */}
+            <img
+              src="/power-t.webp"
+              alt="Tennessee"
+              width={160}
+              height={160}
+              className="h-[1.15rem] w-[1.15rem] shrink-0"
+            />
           </Label>
 
           <nav aria-label="Footer">
