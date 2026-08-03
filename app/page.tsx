@@ -29,11 +29,12 @@ export default function Home() {
           now carries no border. svh rather than vh, so mobile browser chrome
           does not push the section past the fold.
       --------------------------------------------------------------------- */}
-      <Section
-        top="none"
-        bottom="none"
-        className="starfield flex min-h-[calc(100svh-3.5rem)] items-center sm:min-h-[calc(100svh-4rem)]"
-      >
+      <div className="flex min-h-[calc(100svh-3.5rem)] flex-col sm:min-h-[calc(100svh-4rem)]">
+        <Section
+          top="none"
+          bottom="none"
+          className="starfield flex flex-1 items-center py-6 sm:py-12"
+        >
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
@@ -59,7 +60,7 @@ export default function Home() {
             {/* The portrait's sky is the same colour as the page, so the top of
                 the plate dissolves while the moon and subject stay lifted by
                 the shadow. Tilted, straightening on hover. */}
-            <div className="mx-auto w-full max-w-sm lg:max-w-none">
+            <div className="mx-auto w-full max-w-[15rem] sm:max-w-sm lg:max-w-none">
               <div className="plate-lift rotate-[2deg] transition-transform duration-500 ease-out hover:rotate-0">
                 <img
                   src={site.portrait}
@@ -72,10 +73,11 @@ export default function Home() {
             </div>
           </div>
         </Container>
-      </Section>
+        </Section>
 
-      {/* Stack strip: black band between the hero and the navy body. */}
-      <StackMarquee />
+        {/* Stack strip: black band closing out the first screen. */}
+        <StackMarquee />
+      </div>
 
       {/* Areas of work ------------------------------------------------------ */}
       <Section top="default">

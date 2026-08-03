@@ -12,8 +12,8 @@ import { Label } from "./ui";
  */
 export function StackMarquee() {
   return (
-    <section className="bg-black py-14 sm:py-16" aria-label={stack.heading}>
-      <Label className="mb-9 text-center text-faint">{stack.heading}</Label>
+    <section className="bg-black py-10 sm:py-16" aria-label={stack.heading}>
+      <Label className="mb-7 text-center text-faint sm:mb-9">{stack.heading}</Label>
 
       <div className="marquee">
         <div className="marquee__track">
