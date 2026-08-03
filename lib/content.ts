@@ -56,22 +56,29 @@ export const hero = {
 
 export const stack = {
   heading: "The stack I run",
-  // Final list confirmed by Ryan 2026-08-03. Wordmarks for now; see
-  // CONTENT-TODO for which of these have real marks available.
+  /**
+   * Marks are normalized to trimmed transparent WebP at 120px tall by
+   * scripts/logos.js. They are rendered as white silhouettes rather than in
+   * brand colour: 7 of the 12 measured below 90 mean luminance and would have
+   * disappeared against the black band. Whitening also makes 12 different
+   * brand systems read as one set.
+   *
+   * An entry without `logo` falls back to its wordmark.
+   */
   items: [
-    "Salesforce",
-    "HubSpot",
-    "Pylon",
-    "Gong",
-    "Outreach",
-    "Claude",
-    "n8n",
-    "Wiza",
-    "Linear",
-    "Granola",
-    "Slack",
-    "Vector",
-    "RevenueHero",
+    { name: "Salesforce", logo: "/logos/salesforce.webp" },
+    { name: "HubSpot", logo: "/logos/hubspot.webp" },
+    { name: "Pylon", logo: "/logos/pylon.webp" },
+    { name: "Gong", logo: "/logos/gong.webp" },
+    { name: "Outreach", logo: "/logos/outreach.webp" },
+    { name: "Claude", logo: "/logos/claude.webp" },
+    { name: "n8n", logo: "/logos/n8n.webp" },
+    { name: "Wiza", logo: "/logos/wiza.webp" },
+    { name: "Linear", logo: "/logos/linear.webp" },
+    { name: "Granola", logo: "/logos/granola.webp" },
+    { name: "Slack" }, // TODO: no mark downloaded yet
+    { name: "Vector", logo: "/logos/vector.webp" },
+    { name: "RevenueHero", logo: "/logos/revenuehero.webp" },
   ],
 };
 

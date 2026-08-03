@@ -188,6 +188,19 @@ body {
     0 12px 32px -12px rgba(0, 0, 0, 0.8);
 }
 
+/* Brand marks in the stack strip. brightness(0) flattens every colour to
+   black while preserving alpha, then invert(1) lifts it to white, so any
+   mark becomes a clean silhouette no matter what it started as. */
+.logo-mark {
+  filter: brightness(0) invert(1);
+  opacity: 0.62;
+  transition: opacity 200ms ease;
+}
+
+.logo-mark:hover {
+  opacity: 1;
+}
+
 /* Scrolling stack strip. The track holds two identical copies of the list and
    translates exactly -50%, so the loop point is invisible. Edges are masked so
    items fade out rather than clipping against the band. */
