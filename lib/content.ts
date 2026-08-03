@@ -55,7 +55,7 @@ export const hero = {
 };
 
 export const stack = {
-  heading: "The stack I run",
+  heading: "My current GTM stack",
   /**
    * Marks are normalized to trimmed transparent WebP at 120px tall by
    * scripts/logos.js. They are rendered as white silhouettes rather than in
