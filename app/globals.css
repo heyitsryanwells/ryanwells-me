@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ---------------------------------------------------------------------------
+   Theme tokens
+   ---------------------------------------------------------------------------
+   Every color, font and radius in the site resolves through these variables.
+   Swapping `data-theme` on <html> reskins the whole site with no component
+   changes. Three directions ship by default; pick one and delete the others.
+--------------------------------------------------------------------------- */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-2: var(--accent-2);
+  --color-on-accent-2: var(--on-accent-2);
+
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display-family);
+  --font-mono: var(--font-jetbrains);
+
+  --radius-card: var(--radius);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* --- Direction 1: Terminal -------------------------------------------------
+   Near-black, monospace signals, one electric accent. Reads as a systems
+   operator who works in the plumbing.
+--------------------------------------------------------------------------- */
+:root,
+[data-theme="terminal"] {
+  --bg: #08090a;
+  --surface: #101214;
+  --raised: #171a1d;
+  --line: #23282d;
+  --ink: #e7eaec;
+  --muted: #8d959c;
+  --accent: #c2f24a;
+  --on-accent: #0d1400;
+  --accent-2: #ff7a45;
+  --on-accent-2: #180500;
+
+  --font-display-family: var(--font-jetbrains);
+  --display-weight: 700;
+  --display-tracking: -0.03em;
+  --display-transform: none;
+  --eyebrow-family: var(--font-jetbrains);
+  --radius: 0.25rem;
+}
+
+/* --- Direction 2: Editorial ------------------------------------------------
+   Warm paper, large serif display, ink-on-cream. Reads as a writer first,
+   which suits a newsletter-led brand.
+--------------------------------------------------------------------------- */
+[data-theme="editorial"] {
+  --bg: #faf6f0;
+  --surface: #ffffff;
+  --raised: #f3ece2;
+  --line: #e2d8c9;
+  --ink: #1b1714;
+  --muted: #6d6359;
+  --accent: #9c3d24;
+  --on-accent: #fff7f2;
+  --accent-2: #1f4d3d;
+  --on-accent-2: #f2fbf7;
+
+  --font-display-family: var(--font-instrument);
+  --display-weight: 400;
+  --display-tracking: -0.02em;
+  --display-transform: none;
+  --eyebrow-family: var(--font-body);
+  --radius: 0.125rem;
+}
+
+/* --- Direction 3: Signal ---------------------------------------------------
+   Deep navy, geometric sans, cool accent. Reads as a polished modern SaaS
+   operator. Closest in temperature to the reference site without copying it.
+--------------------------------------------------------------------------- */
+[data-theme="signal"] {
+  --bg: #0a1120;
+  --surface: #111c31;
+  --raised: #16233c;
+  --line: #22314f;
+  --ink: #e9eef7;
+  --muted: #8ea0bd;
+  --accent: #4cc4f5;
+  --on-accent: #04121d;
+  --accent-2: #a98bfa;
+  --on-accent-2: #0f0620;
+
+  --font-display-family: var(--font-space-grotesk);
+  --display-weight: 700;
+  --display-tracking: -0.035em;
+  --display-transform: none;
+  --eyebrow-family: var(--font-space-grotesk);
+  --radius: 0.75rem;
+}
+
+/* --- Base ---------------------------------------------------------------- */
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* Utility classes that read theme tokens the Tailwind scale cannot express. */
+
+.font-display {
+  font-family: var(--font-display-family), Georgia, serif;
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  text-transform: var(--display-transform);
+}
+
+.font-eyebrow {
+  font-family: var(--eyebrow-family), system-ui, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Focus ring that stays visible on every theme. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Respect reduced-motion for the entrance transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
