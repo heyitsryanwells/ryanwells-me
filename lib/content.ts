@@ -11,7 +11,7 @@ export const site = {
   url: "https://ryanwells.me",
   role: "Revenue Operations",
   tagline:
-    "Fifteen years in customer experience, applied to the art and science of revenue operations. Salesforce architecture, GTM automation, and reporting that holds up.",
+    "Fifteen years in CX, now applied to the art and science of revenue operations.",
   monogram: "RW",
   // Pixel-art portrait, 1100px WebP. Brings its own starfield and lunar
   // horizon, so it is framed rather than cut out.
@@ -45,7 +45,7 @@ export const hero = {
   greeting: "Hi, I'm",
   firstName: "Ryan",
   intro:
-    "Fifteen years in customer experience, now applied to revenue operations. The science is the part that has to reconcile: contracts, bookings, and the data model underneath. The art is knowing which problems are worth solving and which reports will actually get read.",
+    "Fifteen years in CX, now applied to the art and science of revenue operations.",
   primaryCta: { label: "Browse the guides", href: "/guides" },
   secondaryCta: { label: "Get in touch", href: "/contact" },
   portraitAlt:
