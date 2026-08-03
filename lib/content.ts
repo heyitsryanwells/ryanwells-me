@@ -10,9 +10,8 @@ export const site = {
   name: "Ryan Wells",
   url: "https://ryanwells.me",
   role: "Revenue Operations",
-  // PLACEHOLDER: confirm how you want to describe your years in the field.
   tagline:
-    "I build the revenue systems behind go-to-market teams. Salesforce architecture, GTM automation, and the reporting that executives actually trust.",
+    "Fifteen years in customer experience, applied to the art and science of revenue operations. Salesforce architecture, GTM automation, and reporting that holds up.",
   monogram: "RW",
   // Pixel-art portrait, 1100px WebP. Brings its own starfield and lunar
   // horizon, so it is framed rather than cut out.
@@ -45,9 +44,8 @@ export const nav = [
 export const hero = {
   greeting: "Hi, I'm",
   firstName: "Ryan",
-  // PLACEHOLDER: swap in your own framing.
   intro:
-    "I run revenue operations at a go-to-market software company, where I own the Salesforce architecture, the bookings model, and the automation that keeps both honest. I write about the parts nobody documents.",
+    "Fifteen years in customer experience, now applied to revenue operations. The science is the part that has to reconcile: contracts, bookings, and the data model underneath. The art is knowing which problems are worth solving and which reports will actually get read.",
   primaryCta: { label: "Browse the guides", href: "/guides" },
   secondaryCta: { label: "Get in touch", href: "/contact" },
   portraitAlt:
