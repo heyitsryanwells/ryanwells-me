@@ -4,6 +4,7 @@ import {
   hero,
   site,
 } from "@/lib/content";
+import { SpaceBackdrop } from "@/components/space-backdrop";
 import { StackMarquee } from "@/components/stack-marquee";
 import {
   BracketLink,
@@ -35,7 +36,8 @@ export default function Home() {
           bottom="none"
           className="starfield flex flex-1 items-center py-6 sm:py-12"
         >
-        <Container>
+          <SpaceBackdrop />
+          <Container className="relative z-10">
           <div className="grid items-center gap-12 lg:grid-cols-[1fr_30rem] lg:gap-20">
             <div>
               <h1 className="type-display is-mixed text-[3.25rem] sm:text-[4.5rem] lg:text-[6rem]">

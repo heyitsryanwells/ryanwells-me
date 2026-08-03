@@ -188,6 +188,49 @@ body {
     0 12px 32px -12px rgba(0, 0, 0, 0.8);
 }
 
+/* Shooting star. A 2px head with a hard-offset trail, no blur, so it reads as
+   pixel art rather than a glow. steps() makes it advance in discrete jumps.
+
+   The streak occupies only the first ~9% of the timeline and the element is
+   invisible for the rest, so a long duration produces a long quiet gap
+   between passes instead of a constant stream. */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--ink);
+  opacity: 0;
+  box-shadow:
+    -3px -3px 0 0 rgba(233, 237, 243, 0.7),
+    -6px -6px 0 0 rgba(233, 237, 243, 0.45),
+    -9px -9px 0 0 rgba(233, 237, 243, 0.25),
+    -12px -12px 0 0 rgba(233, 237, 243, 0.12);
+  animation-name: shoot;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(22, end);
+}
+
+@keyframes shoot {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  1% {
+    opacity: 0.85;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  9% {
+    opacity: 0;
+    transform: translate(230px, 160px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(230px, 160px);
+  }
+}
+
 /* Brand marks in the stack strip. brightness(0) flattens every colour to
    black while preserving alpha, then invert(1) lifts it to white, so any
    mark becomes a clean silhouette no matter what it started as. */
@@ -271,11 +314,10 @@ body {
   z-index: 0;
 }
 
-/* Keep hero content above the field. */
-.starfield > * {
-  position: relative;
-  z-index: 1;
-}
+/* The field paints at z-0; hero content is lifted explicitly with a z-10
+   utility instead. An earlier version forced `position: relative` on every
+   direct child, which silently overrode `absolute` on the space backdrop and
+   collapsed it to a zero-width flow element. */
 
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);
@@ -291,9 +333,14 @@ body {
     scroll-behavior: auto !important;
   }
 
-  /* An infinite animation crushed to 0.01ms strobes. Stop it instead, leaving
-     the strip as a static row. */
+  /* Infinite animations crushed to 0.01ms strobe. Stop them instead: the
+     strip becomes a static row and the shooting stars simply never fire. */
   .marquee__track {
     animation: none !important;
+  }
+
+  .shooting-star {
+    animation: none !important;
+    opacity: 0 !important;
   }
 }
