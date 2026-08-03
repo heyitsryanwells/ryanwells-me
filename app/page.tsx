@@ -24,7 +24,7 @@ export default function Home() {
           Deliberately looser than the rest of the site: no opening rule, no
           spec table, no figure caption. The document structure starts at § 1.
       --------------------------------------------------------------------- */}
-      <Section top="default" bottom="tight">
+      <Section top="default" bottom="tight" className="starfield">
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
