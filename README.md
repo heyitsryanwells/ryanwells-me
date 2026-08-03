@@ -1,7 +1,7 @@
 # ryanwells.me
 
-Personal site and newsletter hub. Next.js 16 (App Router) + Tailwind 4, fully
-static, built to deploy on Vercel.
+Personal site. Next.js 16 (App Router) + Tailwind 4, exported as a fully
+static build and served from GitHub Pages behind Cloudflare.
 
 ## Run it
 
@@ -35,12 +35,6 @@ All copy lives in `lib/content.ts`. Components never hardcode text, so changing
 a headline, adding a guide, or reordering the capability index is a one-file
 edit. See `CONTENT-TODO.md` for everything still carrying placeholder text.
 
-## Connecting the newsletter
-
-Put your Beehiiv / Kit / Substack form endpoint in `newsletter.formAction` in
-`lib/content.ts`. Until it is set, the form runs in demo mode so the layout
-stays reviewable.
-
 ## Structure
 
 ```
@@ -48,12 +42,11 @@ app/
   layout.tsx        root shell, IBM Plex fonts, metadata
   globals.css       Spec Sheet tokens and typographic roles
   page.tsx          home
-  about|guides|newsletter|tools|contact/
+  about|guides|tools|contact/
 components/
   ui.tsx            Container, Section, SpecRow, SpecList, BracketLink, Plate
   nav.tsx           sticky nav with mobile menu
   footer.tsx
-  newsletter-form.tsx
 lib/
   content.ts        all site copy
 public/

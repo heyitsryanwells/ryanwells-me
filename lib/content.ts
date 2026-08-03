@@ -34,7 +34,6 @@ export const nav = [
   { label: "Index", href: "/" },
   { label: "About", href: "/about" },
   { label: "Guides", href: "/guides" },
-  { label: "Newsletter", href: "/newsletter" },
   { label: "Tools", href: "/tools" },
   { label: "Contact", href: "/contact" },
 ];
@@ -45,8 +44,8 @@ export const hero = {
   // PLACEHOLDER: swap in your own framing.
   intro:
     "I run revenue operations at a go-to-market software company, where I own the Salesforce architecture, the bookings model, and the automation that keeps both honest. I write about the parts nobody documents.",
-  primaryCta: { label: "Read the newsletter", href: "/newsletter" },
-  secondaryCta: { label: "Browse the guides", href: "/guides" },
+  primaryCta: { label: "Browse the guides", href: "/guides" },
+  secondaryCta: { label: "Get in touch", href: "/contact" },
   portraitAlt: "Portrait of Ryan Wells",
 };
 
@@ -92,57 +91,6 @@ export const expertise = {
       title: "Systems Governance",
       body: "Role hierarchy, access reviews, change management, and documentation that outlives the person who wrote it. The unglamorous work that keeps an org from calcifying.",
     },
-  ],
-};
-
-/**
- * PLACEHOLDER: every entry below is invented to show the layout.
- * Replace with real issues as you publish them, or delete the section until
- * you have three.
- */
-export const newsletterIssues = [
-  {
-    no: "012",
-    title: "Your bookings number is wrong and here's where it breaks",
-    dek: "Most CRMs compute ACV at the opportunity header. That quietly misstates every multi-year and partial-term deal. Here's the line-item model that fixes it.",
-    date: "2026-07-28",
-    href: "/newsletter",
-    tag: "Reporting",
-  },
-  {
-    no: "011",
-    title: "Stop asking for a new field. Ask what decision it changes.",
-    dek: "A framework for triaging field requests that kills 80% of them before they reach the object, and makes the survivors much easier to defend.",
-    date: "2026-07-14",
-    href: "/newsletter",
-    tag: "Governance",
-  },
-  {
-    no: "010",
-    title: "I wired Claude directly into Salesforce. Here's what broke.",
-    dek: "Running an AI agent against a production CRM through MCP, what it handled well, and the three guardrails I'd put in before you try it.",
-    date: "2026-06-30",
-    href: "/newsletter",
-    tag: "AI & Automation",
-  },
-];
-
-export const newsletter = {
-  name: "The Operating Layer", // PLACEHOLDER: name it.
-  pitch:
-    "A twice-monthly letter on revenue operations. Real systems, real failures, and the fixes that held up.",
-  // PLACEHOLDER: real subscriber count once you have one.
-  socialProof: "Written for operators who own the system, not just the report.",
-  cadence: "Twice monthly",
-  ctaLabel: "Subscribe",
-  placeholder: "you@company.com",
-  // Drop your Beehiiv / Kit / Substack embed URL here to make the form live.
-  formAction: "",
-  disclaimer: "No spam. Unsubscribe in one click.",
-  promises: [
-    "A real system I built or broke, with the reasoning behind the decisions.",
-    "Queries, field specs, and report definitions you can lift directly.",
-    "The failure modes I hit, so you can skip that part.",
   ],
 };
 
@@ -243,7 +191,7 @@ export const about = {
     "My work sits where deal structure, data architecture, and reporting meet. That means owning the Salesforce data model end to end: how a signed order form becomes a contract, how a contract becomes recognized bookings, and how all of it rolls into a number an executive can defend in a board meeting.",
     "I came to operations through the practical route. I learned the systems because reports kept disagreeing with each other and someone had to go find out why. That habit stuck, and it still shapes how I work: start from the source record, follow the data to wherever it breaks, then fix the process rather than the symptom.",
     "Lately most of my leverage comes from AI. I run agents directly against production systems through MCP for auditing, migration, and reporting work that used to take days. It is genuinely different from the last automation wave, and I write about what actually holds up versus what demos well.",
-    "I write this newsletter because revenue operations is full of hard-won knowledge that never gets documented. People solve the same problems in isolation, badly, over and over. Publishing what worked is the cheapest way to shorten that loop for someone else.",
+    "I publish what I learn because revenue operations is full of hard-won knowledge that never gets documented. People solve the same problems in isolation, badly, over and over. Writing it down is the cheapest way to shorten that loop for someone else.",
   ],
   // PLACEHOLDER: replace with your real timeline.
   timeline: [
@@ -270,19 +218,3 @@ export const contact = {
     { ref: "3.0", title: "You want me to write or speak", body: "Send the audience, the topic, and the date." },
   ],
 };
-
-export function formatDate(iso: string) {
-  return new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", {
-    month: "short",
-    day: "2-digit",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
-
-export function formatDateShort(iso: string) {
-  return new Date(`${iso}T12:00:00Z`)
-    .toISOString()
-    .slice(0, 10)
-    .replace(/-/g, ".");
-}

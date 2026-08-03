@@ -1,14 +1,10 @@
 import {
   expertise,
-  formatDateShort,
   guides,
   hero,
-  newsletter,
-  newsletterIssues,
   proofBar,
   site,
 } from "@/lib/content";
-import { NewsletterForm } from "@/components/newsletter-form";
 import {
   BracketLink,
   Container,
@@ -114,41 +110,11 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* Newsletter index --------------------------------------------------- */}
-      <Section top="tight">
-        <Container>
-          <SectionHead
-            sectionRef="§ 2"
-            label="Newsletter"
-            title={newsletter.name}
-            note={newsletter.cadence}
-          />
-          <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted">
-            {newsletter.pitch}
-          </p>
-          <div className="border-b border-line">
-            {newsletterIssues.map((issue) => (
-              <SpecRow
-                key={issue.no}
-                sectionRef={issue.no}
-                title={issue.title}
-                body={issue.dek}
-                meta={formatDateShort(issue.date)}
-                href={issue.href}
-              />
-            ))}
-          </div>
-          <div className="mt-6">
-            <TextLink href="/newsletter">All issues</TextLink>
-          </div>
-        </Container>
-      </Section>
-
       {/* Guides index -------------------------------------------------------- */}
       <Section top="tight">
         <Container>
           <SectionHead
-            sectionRef="§ 3"
+            sectionRef="§ 2"
             label="Guides"
             title="Templates and playbooks"
             note={`${guides.length} available`}
@@ -175,30 +141,6 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* Subscribe ----------------------------------------------------------- */}
-      <Section top="tight">
-        <Container>
-          <div className="border-2 border-rule bg-panel p-7 sm:p-10">
-            <div className="grid gap-8 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-16">
-              <div>
-                <Label className="text-accent">{newsletter.cadence}</Label>
-                <h2 className="type-heading mt-3 text-3xl sm:text-4xl">
-                  {newsletter.name}
-                </h2>
-                <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-                  {newsletter.socialProof}
-                </p>
-              </div>
-              <div>
-                <NewsletterForm />
-                <Label className="mt-2.5 text-faint">
-                  {newsletter.disclaimer}
-                </Label>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
     </>
   );
 }

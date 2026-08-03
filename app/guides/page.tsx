@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { guides, newsletter } from "@/lib/content";
-import { NewsletterForm } from "@/components/newsletter-form";
+import { guides } from "@/lib/content";
 import {
   Container,
-  Label,
   PageHeader,
   Section,
   SectionHead,
@@ -48,29 +46,6 @@ export default function GuidesPage() {
         </Container>
       </Section>
 
-      <Section top="tight">
-        <Container>
-          <div className="border-2 border-rule bg-panel p-7 sm:p-10">
-            <div className="grid gap-8 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-16">
-              <div>
-                <Label className="text-accent">Notification</Label>
-                <h2 className="type-heading mt-3 text-2xl sm:text-3xl">
-                  New guides land in the newsletter first
-                </h2>
-                <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-                  {newsletter.pitch}
-                </p>
-              </div>
-              <div>
-                <NewsletterForm />
-                <Label className="mt-2.5 text-faint">
-                  {newsletter.disclaimer}
-                </Label>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
     </>
   );
 }

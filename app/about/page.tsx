@@ -58,8 +58,8 @@ export default function AboutPage() {
 
               <div className="mt-10 flex flex-wrap gap-3">
                 <BracketLink href="/contact">Get in touch</BracketLink>
-                <BracketLink href="/newsletter" variant="outline">
-                  Read the newsletter
+                <BracketLink href="/guides" variant="outline">
+                  Browse the guides
                 </BracketLink>
               </div>
             </div>
