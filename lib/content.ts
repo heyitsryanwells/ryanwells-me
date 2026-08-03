@@ -56,23 +56,22 @@ export const hero = {
 
 export const stack = {
   heading: "The stack I run",
-  // Real tools. Wordmarks rather than logo images: Simple Icons no longer
-  // carries Salesforce, Slack, Gong, Clay, Lusha, Wiza or Granola, so a mixed
-  // strip would show marks for some and text for others. Drop SVGs into
-  // public/logos/ and swap the marquee to images if you want the real marks.
+  // Final list confirmed by Ryan 2026-08-03. Wordmarks for now; see
+  // CONTENT-TODO for which of these have real marks available.
   items: [
     "Salesforce",
     "HubSpot",
+    "Pylon",
     "Gong",
-    "Claude Code",
+    "Outreach",
+    "Claude",
     "n8n",
-    "Zapier",
-    "Clay",
-    "Lusha",
     "Wiza",
     "Linear",
     "Granola",
     "Slack",
+    "Vector",
+    "RevenueHero",
   ],
 };
 
