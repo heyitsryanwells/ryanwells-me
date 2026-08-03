@@ -61,7 +61,6 @@ export default function ContactPage() {
                 className="mt-1"
                 items={[
                   { label: "Email", value: site.email },
-                  { label: "Based", value: site.location },
                   { label: "Reply", value: "Usually within a few days" },
                 ]}
               />

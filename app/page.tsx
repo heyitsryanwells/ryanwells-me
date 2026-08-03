@@ -13,11 +13,8 @@ import {
   BracketLink,
   Container,
   Label,
-  Plate,
-  RuleHeavy,
   Section,
   SectionHead,
-  SpecList,
   SpecRow,
   TextLink,
 } from "@/components/ui";
@@ -27,26 +24,22 @@ export default function Home() {
 
   return (
     <>
-      {/* Masthead ---------------------------------------------------------- */}
-      <Section top="tight" bottom="tight">
+      {/* Hero ---------------------------------------------------------------
+          Deliberately looser than the rest of the site: no opening rule, no
+          spec table, no figure caption. The document structure starts at § 1.
+      --------------------------------------------------------------------- */}
+      <Section top="default" bottom="tight">
         <Container>
-          <RuleHeavy />
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 pt-2.5">
-            <Label className="text-accent">{hero.role}</Label>
-            <Label className="text-faint">{site.location}</Label>
-          </div>
-
-          <h1 className="type-display mt-5 text-[3.5rem] leading-[0.88] sm:text-[7rem] lg:text-[9rem]">
-            {hero.name}
-          </h1>
-
-          <div className="mt-10 grid gap-10 border-t-2 border-rule pt-8 lg:grid-cols-[1fr_22rem] lg:gap-16">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
-              <p className="max-w-2xl text-lg leading-relaxed text-ink sm:text-xl">
+              <h1 className="type-display is-mixed text-[3.25rem] sm:text-[4.5rem] lg:text-[5.5rem]">
+                {hero.greeting}{" "}
+                <span className="text-accent">{hero.firstName}</span>
+              </h1>
+
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
                 {hero.intro}
               </p>
-
-              <SpecList items={hero.specs} className="mt-9 max-w-xl" />
 
               <div className="mt-9 flex flex-wrap gap-3">
                 <BracketLink href={hero.primaryCta.href}>
@@ -58,11 +51,19 @@ export default function Home() {
               </div>
             </div>
 
-            <Plate
-              src={site.portrait}
-              alt={`Portrait of ${site.name}`}
-              caption={hero.plateCaption}
-            />
+            {/* Tilted and unframed so the hero reads softer than the plates
+                used on interior pages. */}
+            <div className="mx-auto w-full max-w-sm lg:max-w-none">
+              <div className="plate rotate-[2deg] transition-transform duration-500 ease-out hover:rotate-0">
+                <img
+                  src={site.portrait}
+                  alt={hero.portraitAlt}
+                  width={1100}
+                  height={1100}
+                  className="block h-full w-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </Container>
       </Section>

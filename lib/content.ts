@@ -17,7 +17,6 @@ export const site = {
   // Pre-sized WebP (1100px). Rendered grayscale to match the printed feel.
   portrait: "/portrait.webp",
   email: "hello@ryanwells.me", // PLACEHOLDER: set the address you want public.
-  location: "Knoxville, TN",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ryanwells" }, // PLACEHOLDER: real profile URL.
     { label: "GitHub", href: "https://github.com/heyitsryanwells" },
@@ -41,21 +40,14 @@ export const nav = [
 ];
 
 export const hero = {
-  name: "Ryan Wells",
-  role: "Revenue Operations",
+  greeting: "Hi, I'm",
+  firstName: "Ryan",
   // PLACEHOLDER: swap in your own framing.
   intro:
     "I run revenue operations at a go-to-market software company, where I own the Salesforce architecture, the bookings model, and the automation that keeps both honest. I write about the parts nobody documents.",
-  // The hero data block. Dense on purpose.
-  specs: [
-    { label: "Role", value: "Revenue Operations, Ambition" },
-    { label: "Focus", value: "CRM architecture / bookings / GTM automation" },
-    { label: "Writes", value: "The Operating Layer, twice monthly" },
-    { label: "Based", value: "Knoxville, TN" },
-  ],
   primaryCta: { label: "Read the newsletter", href: "/newsletter" },
   secondaryCta: { label: "Browse the guides", href: "/guides" },
-  plateCaption: "Fig. 1 — R. Wells",
+  portraitAlt: "Portrait of Ryan Wells",
 };
 
 export const proofBar = {

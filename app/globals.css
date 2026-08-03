@@ -86,6 +86,15 @@ body {
   line-height: 0.92;
 }
 
+/* Softer display for the hero. Same face, mixed case, more air. Keeps the
+   greeting conversational instead of shouting a document title. */
+.type-display.is-mixed {
+  text-transform: none;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
 /* Section titles inside the document body. */
 .type-heading {
   font-family: var(--font-plex-condensed), Impact, sans-serif;
