@@ -101,7 +101,7 @@ export function SectionHead({
           ) : null}
           {label}
         </Label>
-        {note ? <Label className="text-faint">{note}</Label> : null}
+        {note ? <Label className="text-tertiary">{note}</Label> : null}
       </div>
       {title ? (
         <h2 className="type-heading mt-5 max-w-3xl text-3xl sm:text-4xl">

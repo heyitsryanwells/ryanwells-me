@@ -20,7 +20,7 @@ export function Nav() {
           <div className="flex h-14 items-center justify-between sm:h-16">
             <Link
               href="/"
-              className="type-display text-2xl transition-colors hover:text-accent"
+              className="type-display text-2xl text-accent transition-colors hover:text-ink"
               aria-label={`${site.name}, home`}
               onClick={() => setOpen(false)}
             >
@@ -38,7 +38,7 @@ export function Nav() {
                       : "text-muted hover:text-ink"
                   }`}
                 >
-                  <span className="text-faint">
+                  <span className="text-tertiary">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   &nbsp;&nbsp;{item.label}
@@ -75,7 +75,7 @@ export function Nav() {
                       isActive(item.href) ? "text-accent" : "text-muted"
                     }`}
                   >
-                    <span className="text-faint">
+                    <span className="text-tertiary">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     &nbsp;&nbsp;{item.label}

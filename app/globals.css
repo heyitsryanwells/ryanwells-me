@@ -9,7 +9,9 @@
      - Zero border radius. Anywhere.
      - No cards. Structure comes from hairline rules and a real grid.
      - Monospace carries all structure: labels, refs, metadata, figures.
-     - One accent, used sparingly.
+     - One accent, used sparingly, plus a quieter tertiary reserved for small
+       structural metadata (nav indices, entry counts). The tertiary never
+       carries meaning on its own and never outranks the accent.
      - Type contrast is extreme. Display is huge, metadata is 10-11px.
 
    Every foreground/background pairing below, including the 11px mono labels,
@@ -27,6 +29,7 @@
   --color-rule: var(--rule);
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
+  --color-tertiary: var(--tertiary);
 
   --font-sans: var(--font-plex-sans);
   --font-mono: var(--font-plex-mono);
@@ -59,6 +62,13 @@
           compromise. */
   --accent: #f08a3c;
   --on-accent: #100400;
+  /* Tertiary. Instrument-panel logic: amber reads caution, green reads
+     nominal, both on a dark panel. Deliberately sits just BELOW `muted`
+     (7.74:1) in contrast so it annotates small elements without competing
+     with the accent. Must keep >=40 degrees of hue separation from `muted`
+     (214) or it collapses into another grey, which is why the portrait's
+     lavender shirt was rejected for this slot at 29 degrees. */
+  --tertiary: #6faa8b;
 }
 
 /* Browser UI (form controls, scrollbars) should follow the dark ground. */
@@ -174,6 +184,11 @@ body {
    body and horizon gain depth. */
 .plate-lift {
   box-shadow:
+    /* Amber halo, as if the plate were lit rather than pasted on. Sits first
+       so it reads as spill light around the edge. */
+    0 0 90px -24px rgba(240, 138, 60, 0.45),
+    0 0 36px -14px rgba(240, 138, 60, 0.28),
+    /* Dark shadow underneath still does the lifting. */
     0 30px 70px -20px rgba(0, 0, 0, 0.95),
     0 12px 32px -12px rgba(0, 0, 0, 0.8);
 }
