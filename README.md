@@ -50,10 +50,10 @@ components/
 lib/
   content.ts        all site copy
 public/
-  portrait.webp     background-removed cutout, alpha, bottom fade
+  portrait-cutout.webp  background-removed cutout, alpha, bottom fade
   portrait-light.webp  alternate source photo, currently unused
 scripts/
-  cutout.js         regenerates portrait.webp from a raw headshot
+  cutout.js         regenerates the portrait cutout from a raw headshot
 ```
 
 ## Deploy (GitHub Pages)
@@ -95,9 +95,14 @@ npm run build && npx serve out
 ## Images
 
 Pages has no image optimizer, so portraits are pre-sized to 1100px and
-converted to WebP (24KB, down from 411KB). `images.unoptimized` is on in
+converted to WebP with alpha (64KB, down from 411KB). `images.unoptimized` is on in
 `next.config.ts`. To regenerate after swapping a photo:
 
 ```bash
-node -e "require('sharp')('public/source.png').resize(1100,1100,{fit:'cover'}).webp({quality:82}).toFile('public/portrait.webp')"
+node scripts/cutout.js
 ```
+
+Assets are served with `max-age=14400` and cached again at Cloudflare's edge,
+so **give the output a new filename** whenever the photo changes and update
+`site.portrait`. Overwriting in place leaves visitors on the stale image for
+hours.

@@ -14,8 +14,11 @@ export const site = {
   tagline:
     "I build the revenue systems behind go-to-market teams. Salesforce architecture, GTM automation, and the reporting that executives actually trust.",
   monogram: "RW",
-  // Pre-sized WebP (1100px). Rendered grayscale to match the printed feel.
-  portrait: "/portrait.webp",
+  // Background-removed cutout, 1100px WebP with alpha.
+  // NOTE: GitHub Pages serves assets with max-age=14400 and Cloudflare caches
+  // on top, so replacing the image requires a NEW FILENAME. Editing in place
+  // leaves visitors on the stale copy for hours.
+  portrait: "/portrait-cutout.webp",
   email: "hello@ryanwells.me", // PLACEHOLDER: set the address you want public.
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/ryanwells" }, // PLACEHOLDER: real profile URL.
@@ -27,7 +30,7 @@ export const site = {
 export const footer = {
   // The emphasised word leads and carries the accent colour.
   noteEmphasis: "Building",
-  noteRest: "from Knoxville",
+  noteRest: "in Knoxville",
 };
 
 export const nav = [
