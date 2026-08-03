@@ -15,7 +15,7 @@ export function Nav() {
 
   return (
     <header className="sticky top-0 z-40 bg-paper">
-      <div className="border-b-2 border-rule">
+      <div>
         <Container>
           <div className="flex h-14 items-center justify-between sm:h-16">
             <Link
@@ -62,12 +62,12 @@ export function Nav() {
       {open ? (
         <nav
           id="mobile-nav"
-          className="border-b-2 border-rule bg-panel lg:hidden"
+          className="bg-panel lg:hidden"
         >
           <Container>
             <ul>
               {nav.map((item, i) => (
-                <li key={item.href} className="border-b border-line last:border-0">
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}

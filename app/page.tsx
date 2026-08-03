@@ -4,6 +4,7 @@ import {
   hero,
   site,
 } from "@/lib/content";
+import { StackMarquee } from "@/components/stack-marquee";
 import {
   BracketLink,
   Container,
@@ -24,14 +25,14 @@ export default function Home() {
           spec table, no figure caption. The document structure starts at § 1.
 
           Fills the viewport so the portrait is all that shows until you
-          scroll. The subtracted height is the sticky nav: 3.5rem/4rem plus its
-          2px bottom border. svh rather than vh, so mobile browser chrome does
-          not push the section past the fold.
+          scroll. The subtracted height is the sticky nav, 3.5rem/4rem, which
+          now carries no border. svh rather than vh, so mobile browser chrome
+          does not push the section past the fold.
       --------------------------------------------------------------------- */}
       <Section
         top="none"
         bottom="none"
-        className="starfield flex min-h-[calc(100svh-3.5rem-2px)] items-center sm:min-h-[calc(100svh-4rem-2px)]"
+        className="starfield flex min-h-[calc(100svh-3.5rem)] items-center sm:min-h-[calc(100svh-4rem)]"
       >
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
@@ -59,7 +60,7 @@ export default function Home() {
                 the plate dissolves while the moon and subject stay lifted by
                 the shadow. Tilted, straightening on hover. */}
             <div className="mx-auto w-full max-w-sm lg:max-w-none">
-              <div className="plate-lift rotate-[2deg] border border-line transition-transform duration-500 ease-out hover:rotate-0">
+              <div className="plate-lift rotate-[2deg] transition-transform duration-500 ease-out hover:rotate-0">
                 <img
                   src={site.portrait}
                   alt={hero.portraitAlt}
@@ -73,6 +74,9 @@ export default function Home() {
         </Container>
       </Section>
 
+      {/* Stack strip: black band between the hero and the navy body. */}
+      <StackMarquee />
+
       {/* Areas of work ------------------------------------------------------ */}
       <Section top="default">
         <Container>
@@ -85,7 +89,7 @@ export default function Home() {
           <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted">
             {expertise.subheading}
           </p>
-          <div className="border-b border-line">
+          <div>
             {expertise.areas.map((area) => (
               <SpecRow
                 key={area.ref}
@@ -111,7 +115,7 @@ export default function Home() {
             The documents I wish someone had handed me before I rebuilt these
             systems the hard way.
           </p>
-          <div className="border-b border-line">
+          <div>
             {featured.map((guide) => (
               <SpecRow
                 key={guide.ref}

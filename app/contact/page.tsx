@@ -35,7 +35,7 @@ export default function ContactPage() {
                 label="Reasons to write"
                 note={`${contact.reasons.length} entries`}
               />
-              <div className="border-b border-line">
+              <div>
                 {contact.reasons.map((reason) => (
                   <SpecRow
                     key={reason.ref}
@@ -54,7 +54,7 @@ export default function ContactPage() {
             </div>
 
             <aside>
-              <Label className="border-b-2 border-rule pb-2 text-ink">
+              <Label className="pb-2 text-ink">
                 Details
               </Label>
               <SpecList
@@ -65,12 +65,12 @@ export default function ContactPage() {
                 ]}
               />
 
-              <Label className="mt-9 block border-b-2 border-rule pb-2 text-ink">
+              <Label className="mt-9 block pb-2 text-ink">
                 Elsewhere
               </Label>
               <ul className="mt-1">
                 {site.socials.map((social) => (
-                  <li key={social.label} className="border-b border-line">
+                  <li key={social.label}>
                     <a
                       href={social.href}
                       target={

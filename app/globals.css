@@ -7,7 +7,8 @@
    from drifting back toward generic SaaS:
 
      - Zero border radius. Anywhere.
-     - No cards. Structure comes from hairline rules and a real grid.
+     - No cards and no dividing rules. Structure comes from a shared column
+       grid, section refs, and generous vertical space.
      - Monospace carries all structure: labels, refs, metadata, figures.
      - One accent, used sparingly, plus a quieter tertiary reserved for small
        structural metadata (nav indices, entry counts). The tertiary never
@@ -150,15 +151,6 @@ body {
 
 /* --- Document furniture --------------------------------------------------- */
 
-/* The heavy rule that opens and closes a document section. */
-.rule-heavy {
-  border-top: 2px solid var(--rule);
-}
-
-.rule-hair {
-  border-top: 1px solid var(--line);
-}
-
 /* Bracketed link, used instead of arrow-and-chevron CTAs. */
 .bracket-link::before {
   content: "[";
@@ -194,6 +186,53 @@ body {
     /* Dark shadow underneath still does the lifting. */
     0 30px 70px -20px rgba(0, 0, 0, 0.95),
     0 12px 32px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* Scrolling stack strip. The track holds two identical copies of the list and
+   translates exactly -50%, so the loop point is invisible. Edges are masked so
+   items fade out rather than clipping against the band. */
+.marquee {
+  overflow: hidden;
+  /* Wide fade so wordmarks dissolve rather than clipping mid-letter at the
+     boundary. repeat and size are declared explicitly rather than left to
+     defaults, which differ between the prefixed and standard properties. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 18%,
+    #000 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 18%,
+    #000 82%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 45s linear infinite;
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding-right: 4rem;
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* Starfield behind the hero, echoing the portrait's own sky.
@@ -237,5 +276,11 @@ body {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* An infinite animation crushed to 0.01ms strobes. Stop it instead, leaving
+     the strip as a static row. */
+  .marquee__track {
+    animation: none !important;
   }
 }

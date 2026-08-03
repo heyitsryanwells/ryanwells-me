@@ -31,7 +31,7 @@ export default function GuidesPage() {
             label="Index"
             note={`${guides.length} entries`}
           />
-          <div className="border-b border-line">
+          <div>
             {guides.map((guide) => (
               <SpecRow
                 key={guide.ref}

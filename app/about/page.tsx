@@ -45,7 +45,7 @@ export default function AboutPage() {
                   label="Selected work"
                   note={`${about.wins.length} entries`}
                 />
-                <div className="border-b border-line">
+                <div>
                   {about.wins.map((win, i) => (
                     <SpecRow
                       key={win.slice(0, 30)}
@@ -72,14 +72,14 @@ export default function AboutPage() {
               />
 
               <div className="mt-9">
-                <Label className="border-b-2 border-rule pb-2 text-ink">
+                <Label className="pb-2 text-ink">
                   Track record
                 </Label>
                 <div className="mt-1">
                   {about.timeline.map((entry) => (
                     <div
                       key={`${entry.period}-${entry.org}`}
-                      className="border-b border-line py-4"
+                      className="py-4"
                     >
                       <Label className="text-accent">{entry.period}</Label>
                       <p className="type-heading mt-2 text-base">

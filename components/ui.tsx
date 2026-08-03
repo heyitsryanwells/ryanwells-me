@@ -71,11 +71,6 @@ export function Label({
   return <Tag className={`type-label ${className}`}>{children}</Tag>;
 }
 
-/** The 2px rule that opens a document section. */
-export function RuleHeavy({ className = "" }: { className?: string }) {
-  return <div className={`rule-heavy ${className}`} aria-hidden="true" />;
-}
-
 /**
  * Section opener: heavy rule, then a mono ref and label on one line, then the
  * condensed title. Replaces the eyebrow-over-centered-heading pattern.
@@ -92,9 +87,8 @@ export function SectionHead({
   note?: string;
 }) {
   return (
-    <div className="mb-8 sm:mb-10">
-      <RuleHeavy />
-      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-2.5">
+    <div className="mb-10 sm:mb-12">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
         <Label className="text-ink">
           {sectionRef ? (
             <span className="text-accent">{sectionRef}&nbsp;&nbsp;</span>
@@ -130,7 +124,7 @@ export function SpecRow({
   href?: string;
 }) {
   const inner = (
-    <div className="grid grid-cols-[3.25rem_1fr] gap-x-4 py-5 sm:grid-cols-[5rem_1fr_auto] sm:gap-x-8 sm:py-6">
+    <div className="grid grid-cols-[3.25rem_1fr] gap-x-4 py-7 sm:grid-cols-[5rem_1fr_auto] sm:gap-x-8 sm:py-8">
       <span className="type-ref pt-0.5 text-xs text-accent">
         {sectionRef}
       </span>
@@ -155,16 +149,13 @@ export function SpecRow({
 
   if (href) {
     return (
-      <Link
-        href={href}
-        className="group block border-t border-line transition-colors hover:bg-panel"
-      >
+      <Link href={href} className="group block transition-colors hover:bg-panel">
         <div className="group-hover:[&_h3]:text-accent">{inner}</div>
       </Link>
     );
   }
 
-  return <div className="border-t border-line">{inner}</div>;
+  return <div>{inner}</div>;
 }
 
 /** Label/value pairs. Used for the hero data block and any inline spec. */
@@ -180,7 +171,7 @@ export function SpecList({
       {items.map((item) => (
         <div
           key={item.label}
-          className="grid grid-cols-[5.5rem_1fr] gap-4 border-t border-line py-2.5 sm:grid-cols-[7rem_1fr]"
+          className="grid grid-cols-[5.5rem_1fr] gap-4 py-2 sm:grid-cols-[7rem_1fr]"
         >
           <dt className="type-label text-faint">{item.label}</dt>
           <dd className="text-sm text-ink">{item.value}</dd>
@@ -268,7 +259,7 @@ export function Plate({
   return (
     <figure className={className}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <div className="plate border border-rule bg-panel">
+      <div className="plate">
         <img
           src={src}
           alt={alt}
@@ -299,8 +290,7 @@ export function PageHeader({
   return (
     <Container>
       <div className="pt-10 sm:pt-14">
-        <RuleHeavy />
-        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-2.5">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
           <Label className="text-ink">
             {sectionRef ? (
               <span className="text-accent">{sectionRef}&nbsp;&nbsp;</span>

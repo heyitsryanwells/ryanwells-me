@@ -33,14 +33,14 @@ export default function ToolsPage() {
                 label={group.category}
                 note={`${group.tools.length} entries`}
               />
-              <div className="border-b border-line">
+              <div>
                 {group.tools.map((tool) => (
                   <a
                     key={tool.name}
                     href={tool.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group block border-t border-line transition-colors hover:bg-panel"
+                    className="group block transition-colors hover:bg-panel"
                   >
                     <div className="grid grid-cols-1 gap-x-8 gap-y-1.5 py-5 sm:grid-cols-[13rem_1fr]">
                       <h3 className="type-heading text-lg transition-colors group-hover:text-accent">

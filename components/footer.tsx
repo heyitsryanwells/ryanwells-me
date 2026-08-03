@@ -6,7 +6,7 @@ export function Footer() {
   const linkedIn = site.socials.find((s) => s.label === "LinkedIn");
 
   return (
-    <footer className="mt-8 border-t-2 border-rule">
+    <footer className="mt-16">
       <Container>
         <div className="flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
           <Label className="text-muted">
