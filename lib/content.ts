@@ -220,13 +220,13 @@ export const toolCategories = [
 
 export const about = {
   heading: "About",
-  // PLACEHOLDER: this is a sketch. Replace with your real history.
-  lede: "I'm a revenue operations leader who spends most of his time in the layer between the go-to-market team and the systems they depend on.",
+  lede: "I got to revenue operations the long way around, through fifteen years of customer-facing work. It shows in what I build.",
   paragraphs: [
-    "My work sits where deal structure, data architecture, and reporting meet. That means owning the Salesforce data model end to end: how a signed order form becomes a contract, how a contract becomes recognized bookings, and how all of it rolls into a number an executive can defend in a board meeting.",
-    "I came to operations through the practical route. I learned the systems because reports kept disagreeing with each other and someone had to go find out why. That habit stuck, and it still shapes how I work: start from the source record, follow the data to wherever it breaks, then fix the process rather than the symptom.",
-    "Lately most of my leverage comes from AI. I run agents directly against production systems through MCP for auditing, migration, and reporting work that used to take days. It is genuinely different from the last automation wave, and I write about what actually holds up versus what demos well.",
-    "I publish what I learn because revenue operations is full of hard-won knowledge that never gets documented. People solve the same problems in isolation, badly, over and over. Writing it down is the cheapest way to shorten that loop for someone else.",
+    "It started behind a counter at a Chick-fil-A in Alcoa, leading a team of sixty. Blackberry Farm came next, where a five-star welcome is the entire job description. Then an IT service desk at Clayton Homes: eleven thousand tickets in two years, plus the walk-up channel I built from scratch. Each one taught the same thing. You learn a system fastest standing at the point where it fails on somebody.",
+    "Ambition hired me into support in 2019. I answered for the product when it broke, then ran the team that did, then took over the CRM underneath all of it. The work kept moving upstream: from the ticket, to the process, to the data model generating both.",
+    "These days I own the Salesforce architecture, the bookings model, and the automation holding them together. A signed order form becomes a contract. A contract becomes recognized revenue. Every step has to reconcile when finance comes asking, and most of my job is making sure it does.",
+    "A lot of my leverage now comes from AI agents wired straight into production systems through MCP. Audits and migrations that used to eat days finish in an afternoon. I write about which parts of that hold up once real data is involved.",
+    "Revenue operations runs on knowledge nobody writes down. Teams solve identical problems in isolation, badly, over and over, and the answers stay locked in somebody's head. Publishing what worked shortens that loop for whoever hits it next.",
   ],
   // Real history, pulled from LinkedIn 2026-08-03.
   timeline: [
