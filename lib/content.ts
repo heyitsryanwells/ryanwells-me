@@ -204,93 +204,77 @@ export const expertise = {
 };
 
 /**
- * PLACEHOLDER: invented guides to show the layout and the gated-download
- * pattern. Replace with real assets or trim the list.
- */
-export const guides = [
-  {
-    ref: "01",
-    title: "The Salesforce Contract & Order Data Model",
-    dek: "How to structure contracts, orders, and line items so renewals, expansions, and mid-term changes all reconcile without manual patching.",
-    href: "/guides",
-    format: "PDF + template",
-    featured: true,
-  },
-  {
-    ref: "02",
-    title: "Bookings Reporting That Survives an Audit",
-    dek: "A reporting model for ACV, TCV, and net retention that ties every number back to a signed line item. Includes report definitions you can deploy.",
-    href: "/guides",
-    format: "PDF + report pack",
-    featured: true,
-  },
-  {
-    ref: "03",
-    title: "The RevOps Guide to AI Agents in Production",
-    dek: "Where AI agents earn their keep inside a revenue stack, which tasks to keep human-gated, and how to wire them in without handing over write access to everything.",
-    href: "/guides",
-    format: "PDF",
-    featured: true,
-  },
-  {
-    ref: "04",
-    title: "Contact Hygiene Field Guide",
-    dek: "The lifecycle model, the departure flags, and the enrichment sequence that keeps a contact database usable past year three.",
-    href: "/guides",
-    format: "PDF + field spec",
-    featured: false,
-  },
-  {
-    ref: "05",
-    title: "Permission Sets Over Profiles",
-    dek: "A migration path from profile sprawl to a permission-set-led access model, with the audit queries to prove nothing broke.",
-    href: "/guides",
-    format: "PDF",
-    featured: false,
-  },
-];
-
-/**
  * Tools list, matching the confirmed stack. Deliberately names only: the
  * per-tool commentary that used to sit here was written by Claude, not Ryan,
  * and inventing takes for the newer entries would have put that straight back.
+ *
+ * One category per job the stack does, which leaves six of the nine holding a
+ * single tool. That is the signal: the function is covered by exactly one
+ * thing. The page renders these as table rows, so a one-entry category costs a
+ * line, and the old four-wide grid of near-empty rows is gone.
+ *
+ * Order is Ryan's. Refs are sequential and zero-padded to match the rest of
+ * the document, so inserting a category means renumbering everything below it.
  */
 export const toolCategories = [
   {
     ref: "01",
-    category: "Core CRM & GTM",
-    tools: [
-      { name: "Salesforce", href: "https://salesforce.com" },
-      { name: "HubSpot", href: "https://hubspot.com" },
-      { name: "Pylon", href: "https://usepylon.com" },
-      { name: "Gong", href: "https://gong.io" },
-      { name: "Outreach", href: "https://outreach.io" },
-      { name: "RevenueHero", href: "https://revenuehero.io" },
-    ],
+    category: "CRM",
+    tools: [{ name: "Salesforce", href: "https://salesforce.com" }],
   },
   {
     ref: "02",
-    category: "Automation & AI",
+    category: "Marketing Automation",
+    tools: [{ name: "HubSpot", href: "https://hubspot.com" }],
+  },
+  {
+    ref: "03",
+    category: "Support & Customer Lifecycle",
+    tools: [{ name: "Pylon", href: "https://usepylon.com" }],
+  },
+  {
+    ref: "04",
+    category: "Call Intelligence",
+    tools: [{ name: "Gong", href: "https://gong.io" }],
+  },
+  {
+    ref: "05",
+    category: "Sales Engagement",
+    tools: [{ name: "Outreach", href: "https://outreach.io" }],
+  },
+  {
+    ref: "06",
+    category: "Inbound Routing",
+    tools: [{ name: "RevenueHero", href: "https://revenuehero.io" }],
+  },
+  {
+    ref: "07",
+    category: "AI & Orchestration",
     tools: [
       { name: "Claude", href: "https://claude.com" },
       { name: "n8n", href: "https://n8n.io" },
     ],
   },
   {
-    ref: "03",
-    category: "Data & Signal",
+    ref: "08",
+    category: "Data Enrichment & Signals",
     tools: [
       { name: "Wiza", href: "https://wiza.co" },
       { name: "Vector", href: "https://vector.co" },
     ],
   },
   {
-    ref: "04",
-    category: "Process & Documentation",
+    ref: "09",
+    category: "Where Work Happens",
     tools: [
       { name: "Linear", href: "https://linear.app" },
       { name: "Granola", href: "https://granola.ai" },
       { name: "Slack", href: "https://slack.com" },
+      // No mark yet. The logo lookup reads `stack`, which Wispr Flow is not on,
+      // so this entry shows its name over an empty mark slot until an asset
+      // goes through scripts/logos.js. Adding it to `stack` also puts it in the
+      // home page strip, so the two stay in step.
+      { name: "Wispr Flow", href: "https://wisprflow.ai" },
     ],
   },
 ];
