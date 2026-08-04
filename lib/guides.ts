@@ -511,7 +511,7 @@ Call two, schedule:
   {
     slug: "wispr-flow-voice-dictation",
     ref: "02",
-    title: "Wispr Flow: put the dictation button on your mouse",
+    title: "Wispr Flow: middle mouse button changes the game",
     dek: "Middle click plus a headset microphone gets me up to 170 words per minute. Where the trigger lives, why the obvious microphone upgrade is a trap, and what Wispr worked out about the way I talk.",
     format: "playbook",
     published: "August 2026",
@@ -541,7 +541,7 @@ Call two, schedule:
           },
           {
             type: "p",
-            text: "My day does not look like that. I am clicking into a Slack thread, then a Linear description, then a terminal, then the prompt box of whatever agent is running. The mouse is how I get to every one of those boxes. With the trigger on middle click, the click that puts my cursor where I want it and the button that starts dictation are the same hand in the same place, and I start talking without moving.",
+            text: "My day does not look like that. I am clicking into a Slack thread, then a Linear description, then a terminal, then the prompt box of whatever agent is running. The mouse is how I get to every one of those boxes. With the trigger on middle click, pressing the scroll wheel down, the click that puts my cursor where I want it and the button that starts dictation are the same hand in the same place, and I start talking without moving.",
           },
           {
             type: "p",
