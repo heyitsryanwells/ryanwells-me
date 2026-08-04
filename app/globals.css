@@ -283,7 +283,12 @@ body {
   background: var(--panel);
   border: 1px solid var(--line);
   padding: 1rem 1.125rem;
-  overflow-x: auto;
+  overflow: auto;
+  /* A 123-line prompt renders 2,671px tall, which is nearly three screens of
+     one block. Capped so it stays present and readable while the page keeps
+     moving. Everything shorter than this is unaffected. */
+  max-height: 30rem;
+  overscroll-behavior: contain;
   font-family: var(--face-mono), ui-monospace, monospace;
   font-size: 0.8125rem;
   line-height: 1.65;

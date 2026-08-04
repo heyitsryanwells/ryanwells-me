@@ -31,6 +31,7 @@ export type Guide = {
   dek: string;
   format: GuideFormat;
   published: string;
+  cover?: { src: string; alt: string };
   featured: boolean;
   metaDescription: string;
   sections: { heading: string; blocks: Block[] }[];
@@ -44,6 +45,10 @@ export const guides: Guide[] = [
     dek: "One slash command, a modal, and a scheduled, fully assigned customer implementation plan in the channel a minute later. The architecture, the access you have to line up first, and a prompt you can paste into Claude to start building your own.",
     format: "playbook",
     published: "August 2026",
+    cover: {
+      src: "/launchpad-cover.webp",
+      alt: "LaunchPad's Slack app icon: a pixel-art rocket lifting off under a moon",
+    },
     featured: true,
     metaDescription:
       "A playbook for building a Slack app that turns one slash command into a scheduled, assigned customer implementation plan. Architecture, credentials, Slack scopes, and a copy-paste build prompt.",
@@ -145,7 +150,7 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "auth.test, views.open and views.update need no scope of their own. One honest caveat: the Lists API is the newest surface in this stack and the one I would check against current Slack docs before filing a scope request. lists:read and lists:write are what my code documents and what the slackLists calls run on. Whether copying a list and setting its channel access want anything beyond those two is something I cannot confirm from the code alone.",
+            text: "auth.test, views.open and views.update need no scope of their own. Check the Lists scopes against current Slack docs before you file a request. lists:read and lists:write are what my code documents and what the calls run on, and whether copying a list or setting its channel access wants anything beyond those two is something I cannot confirm from the code alone.",
           },
           {
             type: "p",
@@ -157,7 +162,7 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "The Anthropic SDK reads its key straight out of the environment, so the client constructor takes no arguments. The same is true of the S3 client, which is built with no options and picks up its region and credentials from the standard environment variables or an attached role.",
+            text: "The Anthropic and S3 clients both read from the environment, so both constructors take no arguments. S3 picks up its region and credentials from the standard variables or an attached role.",
           },
           {
             type: "code",
@@ -178,7 +183,7 @@ PORT`,
           },
           {
             type: "p",
-            text: "Hosting is a process that stays up. Socket Mode means there is no inbound URL to terminate TLS on, so anything that runs Node will do. I used Railway, picked because it turns a repo into a running service with almost no ceremony. When the thing you are testing is whether anyone types the command twice, the hosting decision should cost an afternoon at most.",
+            text: "Hosting is a process that stays up. Socket Mode means there is no inbound URL to terminate TLS on, so anything that runs Node will do. I used Railway, which turns a repo into a running service with almost no ceremony.",
           },
         ],
       },
@@ -237,10 +242,6 @@ Call two, schedule:
             text: "Anything that creates work has to answer for it.",
           },
           {
-            type: "p",
-            text: "This part is knowable before you write a line. A command that creates an object implies a command to read it, one to change it, and one to close it out, plus something to find things with. Sketch the whole lifecycle first, then build in whatever order suits you.",
-          },
-          {
             type: "list",
             items: [
               "/launch [account] [date] creates the plan.",
@@ -254,7 +255,7 @@ Call two, schedule:
           },
           {
             type: "p",
-            text: "Create, read, update, close, find. That is the shape of any object in any system. Sketching it costs an afternoon and saves a month of small releases.",
+            text: "A command that creates an object implies one to read it, one to change it, one to close it out, and something to find things with. Create, read, update, close, find is the shape of any object in any system, and sketching it first costs an afternoon and saves a month of small releases.",
           },
           {
             type: "p",

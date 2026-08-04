@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { guideFormats, guides, type Block } from "@/lib/guides";
+import { SectionNav } from "@/components/section-nav";
 import { Container, Label, PageHeader, Section } from "@/components/ui";
 
 export function generateStaticParams() {
@@ -67,6 +68,13 @@ function Blocks({ blocks }: { blocks: readonly Block[] }) {
   );
 }
 
+const sectionId = (heading: string) =>
+  heading
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
 export default async function GuidePage({
   params,
 }: {
@@ -75,6 +83,11 @@ export default async function GuidePage({
   const { slug } = await params;
   const guide = guides.find((g) => g.slug === slug);
   if (!guide) notFound();
+
+  const navItems = guide.sections.map((section, i) => ({
+    id: sectionId(section.heading),
+    label: `${String(i + 1).padStart(2, "0")}  ${section.heading}`,
+  }));
 
   return (
     <>
@@ -96,22 +109,49 @@ export default async function GuidePage({
             <Label className="text-tertiary">{guide.published}</Label>
           </div>
 
-          {/* The one place a heading still carries a ref. A guide runs eight
-              sections, which is long enough that the number marks progress and
-              gives a reader something to cite. It is also now the only counter
-              on the page. */}
-          <div className="mt-12 max-w-2xl">
-            {guide.sections.map((section, i) => (
-              <section key={section.heading} className="mb-14">
-                <Label className="mb-4 text-ink">
-                  <span className="text-accent">
-                    {String(i + 1).padStart(2, "0")}/&nbsp;&nbsp;
-                  </span>
-                  {section.heading}
-                </Label>
-                <Blocks blocks={section.blocks} />
-              </section>
-            ))}
+          {/*
+            Two columns. The measure stays at a readable 42rem, and the index
+            fills the 688px of empty page that sat beside it. A ten-section
+            piece runs thirteen screens, so a reader needs a way back to a
+            section they have already passed.
+          */}
+          <div className="mt-12 grid gap-x-16 lg:grid-cols-[14rem_minmax(0,44rem)]">
+            <div className="lg:col-start-2 lg:row-start-1">
+              {guide.cover ? (
+                <img
+                  src={guide.cover.src}
+                  alt={guide.cover.alt}
+                  width={768}
+                  height={768}
+                  className="plate-lift mb-14 block aspect-square w-full max-w-[20rem] object-cover"
+                />
+              ) : null}
+
+              {guide.sections.map((section, i) => (
+                <section
+                  key={section.heading}
+                  id={sectionId(section.heading)}
+                  className="mb-14 scroll-mt-24"
+                >
+                  <Label className="mb-4 text-ink">
+                    {/* The one place a heading still carries a ref: ten
+                        sections is long enough that the number marks progress
+                        and gives a reader something to cite. */}
+                    <span className="text-accent">
+                      {String(i + 1).padStart(2, "0")}/&nbsp;&nbsp;
+                    </span>
+                    {section.heading}
+                  </Label>
+                  <Blocks blocks={section.blocks} />
+                </section>
+              ))}
+            </div>
+
+            {/* Index second in the DOM so a screen reader and a phone both get
+                the article first. Ordered back to the left visually at lg. */}
+            <div className="hidden lg:sticky lg:top-24 lg:col-start-1 lg:row-start-1 lg:block lg:self-start">
+              <SectionNav items={navItems} />
+            </div>
           </div>
 
           <div className="mt-4">
