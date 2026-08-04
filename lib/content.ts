@@ -96,12 +96,12 @@ export const expertise = {
     {
       ref: "01",
       title: "Salesforce Architecture",
-      body: "Data models that hold up under real deal structures. Contracts and orders, line-item economics, validation rules, and a permission model built on permission sets rather than a sprawl of profiles.",
+      body: "Data models that hold up under real deal structures. Contracts and orders, line-item economics, validation rules, and a permission model built on permission sets that stays legible as the org grows.",
     },
     {
       ref: "02",
-      title: "Bookings & Revenue Reporting",
-      body: "ACV, TCV, and retention modeled from line items rather than guessed at the header. Reporting that reconciles to the signed paper, so finance and sales stop arguing about whose number is right.",
+      title: "Deal Desk & Revenue Reporting",
+      body: "Deal structure reviewed before it reaches the paper, and modeled off line items so the numbers hold. Reporting reconciles back to what was signed, which ends the argument about whose figure is right.",
     },
     {
       ref: "03",
@@ -111,7 +111,7 @@ export const expertise = {
     {
       ref: "04",
       title: "Data Quality & Enrichment",
-      body: "Contact lifecycle design, deduplication, departure detection, and enrichment pipelines that fill gaps without spending credits twice. Clean data is a process, not a cleanup project.",
+      body: "Contact lifecycle design, deduplication, departure detection, and enrichment pipelines that fill gaps without spending credits twice. Clean data stays clean through process, run continuously.",
     },
     {
       ref: "05",
@@ -224,7 +224,7 @@ export const about = {
   paragraphs: [
     "It started behind a counter at a Chick-fil-A in Alcoa, leading a team of sixty. Blackberry Farm came next, where a five-star welcome is the entire job description. Then an IT service desk at Clayton Homes: eleven thousand tickets in two years, plus the walk-up channel I built from scratch. Each one taught the same thing. You learn a system fastest standing at the point where it fails on somebody.",
     "Ambition hired me into support in 2019. I answered for the product when it broke, then ran the team that did, then took over the CRM underneath all of it. The work kept moving upstream: from the ticket, to the process, to the data model generating both.",
-    "These days I own the Salesforce architecture, the bookings model, and the automation holding them together. A signed order form becomes a contract. A contract becomes recognized revenue. Every step has to reconcile when finance comes asking, and most of my job is making sure it does.",
+    "Today I am the only revenue operator at Ambition. Sales, Marketing, Finance and CX all route through one person, so a week can run from the deal desk, to onboarding a vendor, to standing up a campaign, to scrubbing records across Salesforce and HubSpot. Breadth is the job.",
     "A lot of my leverage now comes from AI agents wired straight into production systems through MCP. Audits and migrations that used to eat days finish in an afternoon. I write about which parts of that hold up once real data is involved.",
     "Revenue operations runs on knowledge nobody writes down. Teams solve identical problems in isolation, badly, over and over, and the answers stay locked in somebody's head. Publishing what worked shortens that loop for whoever hits it next.",
   ],
@@ -235,7 +235,7 @@ export const about = {
       role: "Senior Revenue Operations Manager",
       org: "Ambition",
       detail:
-        "Own the Salesforce data model end to end: contracts, orders, and the bookings that come off them. Build the GTM automation, and the reporting leadership actually makes calls on.",
+        "Ambition's only revenue operator, working across Sales, Marketing, Finance and CX. I run the deal desk, onboard and offboard vendors, build marketing campaigns, keep Salesforce and HubSpot clean, and put AI to work in production where it saves real time.",
     },
     {
       period: "2024 — 2025",
