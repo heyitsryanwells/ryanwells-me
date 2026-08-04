@@ -54,6 +54,149 @@ export const guides: Guide[] = [
       "A playbook for building a Slack app that turns one slash command into a scheduled, assigned customer implementation plan. Architecture, credentials, Slack scopes, and a copy-paste build prompt.",
     sections: [
       {
+        heading: "Start here",
+        blocks: [
+          {
+            type: "p",
+            text: "The prompt below is the whole build, described. Paste it into Claude with an empty directory open and you get a skeleton close enough to the real thing that what is left is credentials, the template list, and taste. Swap the role names and phase names for whatever your implementations actually use.",
+          },
+          {
+            type: "p",
+            text: "Four things have to exist before any of it runs: a Slack workspace where you can create an app, a CRM you can query for an account and its owners, an Anthropic API key, and somewhere to run a Node process that stays up. Section 05 covers each one.",
+          },
+          {
+            type: "code",
+            caption: "Copy from here",
+            code: `Build a Slack app that turns one slash command into a
+scheduled, assigned customer implementation plan.
+
+STACK
+Node, CommonJS. @slack/bolt v4 in Socket Mode.
+@anthropic-ai/sdk for the model calls. jsforce for the CRM
+lookup. node-cron for the weekly job. Phase names and role
+overrides live in a JSON config file read at startup.
+No database, no web framework.
+
+THE OBJECT
+A plan belongs to one customer account. It has a launch date,
+a length in days, three owners (CSM, SA, AE), ordered phases,
+and subtasks under each phase. Every subtask carries one due
+date and one assignee.
+
+TEMPLATE LIST
+Plan structure lives in a Slack List I build by hand and copy
+per customer. Keep it out of the code. Phases are top-level
+rows, subtasks are child rows. Read the copied list's schema
+at runtime and find the assignee column, the due-date column
+and a single-select column with "owner" in its name by type,
+never by hardcoded column id. Subtask columns can differ from
+parent columns; fall back to the parent schema when they do.
+
+COMMANDS
+Register one slash command and dispatch on the first token.
+  /launch <account> <date>   create the plan
+  /launch status <account>   phase progress and overdue items
+  /launch reschedule <acct>  new date, re-date every task
+  /launch complete <acct>    close it, stop the weekly job
+  /launch summary <acct>     run the weekly summary on demand
+  /launch list               every plan, active and completed
+  /launch help               the command list
+Accept MM-DD-YYYY, MM/DD/YYYY and YYYY-MM-DD. Anything only
+the caller needs goes out as an ephemeral message.
+
+CREATE FLOW
+1. Ack the command immediately. Parse the account name and
+   the date out of the command text.
+2. Open a modal prefilled with the account, a date picker, an
+   editable day count computed from today to the launch date,
+   and three user pickers showing "Loading...".
+3. In the background, query the CRM for the account's three
+   owner emails, resolve them with users.lookupByEmail, and
+   update the open modal in place.
+4. If that lookup fails, leave the modal open, show a warning
+   in a context block, and let the user pick the three people
+   by hand. Never block plan creation on the CRM.
+5. Recompute the day count whenever the date picker changes.
+6. On submit: post a placeholder message, copy the template
+   list, date and assign every row, share the list into the
+   channel, add it as a channel bookmark, save the plan
+   record, and edit the placeholder into the final summary.
+
+THE TWO MODEL CALLS
+Use a small fast model. Both calls return JSON and nothing
+else. Strip markdown fences before parsing.
+
+Call one classifies ownership. Send the subtask names plus a
+one-paragraph description of each of the three roles. Expect:
+  { "Subtask name": "CSM" | "SA" | "AE" }
+Role pins in the config file override the model. Filter the
+pinned subtasks out before building the prompt. If the parse
+fails, fall back to the owner on the parent phase and finish
+the run.
+
+Call two builds the schedule. Send the phases, their
+subtasks, the day count, and the computed start and launch
+dates. Expect:
+  {
+    "phases": {
+      "Phase name": { "startDate": "...", "endDate": "..." }
+    },
+    "subtasks": { "Subtask name": "YYYY-MM-DD" }
+  }
+State these rules in the prompt: phases are sequential and
+cannot overlap; all dates are weekdays; every subtask appears
+in the output; every date falls inside the window; short
+timelines compress admin work and front-load the critical
+path while technical work keeps real time; long timelines
+give the technical phases extra room.
+Do not use fixed day offsets. The same template has to
+schedule a seven-day rollout and a six-month one.
+Validate in code after the call: push weekend dates to
+Monday, and collect any subtask the model dropped into a
+warnings list shown in the confirmation message.
+
+STORAGE
+Assume the container filesystem is ephemeral and that the host
+provides a mounted volume. Write one store module with init,
+save, get, list and listActive. Read the directory from
+DATA_DIR and fall back to a local file when it is unset, so the
+same build runs locally and deployed. Prime an in-memory cache
+at startup so reads stay synchronous. Keep every path decision
+inside this module.
+Store per plan: list id, channel id, launch date, length in
+days, the three owner user ids, status, created and completed
+dates, and last week's task snapshot.
+
+WEEKLY JOB
+node-cron at 8am Friday in a named timezone, one summary per
+active plan. Before deciding anything, pull the last seven
+days of channel messages including thread replies, and diff
+current task state against the snapshot stored on the plan.
+Send the model the phase progress, what completed this week,
+what is overdue, what went overdue this week, the incomplete
+tasks and the conversation. Rule: a task is a risk only when
+it is overdue and the conversation shows no evidence of
+progress. Where the conversation suggests the work happened,
+list it under a heading that asks someone to tick the box.
+Pin the output format, cap it at 200 words, and save the new
+snapshot on the plan record.
+
+ERRORS
+Every command answers, including on failure. Wrap each
+handler so an exception becomes a message a human can read.
+
+BUILD ORDER
+Project layout and the slash command first. Then the create
+flow with hardcoded owners and fixed dates. Then the two
+model calls. Then storage. Then the rest of the commands.`,
+          },
+          {
+            type: "p",
+            text: "That is the whole thing if you want it working by this afternoon. Everything below is what the prompt is actually doing and why each decision went the way it did. Read it now if you would rather understand the thing before you run it, or leave it and come back when something breaks and you need to know where to look.",
+          },
+        ],
+      },
+      {
         heading: "The problem",
         blocks: [
           {
@@ -338,141 +481,6 @@ Call two, schedule:
           {
             type: "p",
             text: "Pin the output format in the prompt and cap the length. Progress, risks, next steps, and the tick-the-box section, two or three bullets each, dropped entirely when empty. That one change moves the Friday message from noise into something people open.",
-          },
-        ],
-      },
-      {
-        heading: "The build prompt",
-        blocks: [
-          {
-            type: "p",
-            text: "Paste this into Claude with an empty directory open. It produces a skeleton close enough to the real thing that what is left is credentials, the template list, and taste. Swap the role names and phase names for whatever your implementations actually use.",
-          },
-          {
-            type: "code",
-            caption: "Copy from here",
-            code: `Build a Slack app that turns one slash command into a
-scheduled, assigned customer implementation plan.
-
-STACK
-Node, CommonJS. @slack/bolt v4 in Socket Mode.
-@anthropic-ai/sdk for the model calls. jsforce for the CRM
-lookup. node-cron for the weekly job. Phase names and role
-overrides live in a JSON config file read at startup.
-No database, no web framework.
-
-THE OBJECT
-A plan belongs to one customer account. It has a launch date,
-a length in days, three owners (CSM, SA, AE), ordered phases,
-and subtasks under each phase. Every subtask carries one due
-date and one assignee.
-
-TEMPLATE LIST
-Plan structure lives in a Slack List I build by hand and copy
-per customer. Keep it out of the code. Phases are top-level
-rows, subtasks are child rows. Read the copied list's schema
-at runtime and find the assignee column, the due-date column
-and a single-select column with "owner" in its name by type,
-never by hardcoded column id. Subtask columns can differ from
-parent columns; fall back to the parent schema when they do.
-
-COMMANDS
-Register one slash command and dispatch on the first token.
-  /launch <account> <date>   create the plan
-  /launch status <account>   phase progress and overdue items
-  /launch reschedule <acct>  new date, re-date every task
-  /launch complete <acct>    close it, stop the weekly job
-  /launch summary <acct>     run the weekly summary on demand
-  /launch list               every plan, active and completed
-  /launch help               the command list
-Accept MM-DD-YYYY, MM/DD/YYYY and YYYY-MM-DD. Anything only
-the caller needs goes out as an ephemeral message.
-
-CREATE FLOW
-1. Ack the command immediately. Parse the account name and
-   the date out of the command text.
-2. Open a modal prefilled with the account, a date picker, an
-   editable day count computed from today to the launch date,
-   and three user pickers showing "Loading...".
-3. In the background, query the CRM for the account's three
-   owner emails, resolve them with users.lookupByEmail, and
-   update the open modal in place.
-4. If that lookup fails, leave the modal open, show a warning
-   in a context block, and let the user pick the three people
-   by hand. Never block plan creation on the CRM.
-5. Recompute the day count whenever the date picker changes.
-6. On submit: post a placeholder message, copy the template
-   list, date and assign every row, share the list into the
-   channel, add it as a channel bookmark, save the plan
-   record, and edit the placeholder into the final summary.
-
-THE TWO MODEL CALLS
-Use a small fast model. Both calls return JSON and nothing
-else. Strip markdown fences before parsing.
-
-Call one classifies ownership. Send the subtask names plus a
-one-paragraph description of each of the three roles. Expect:
-  { "Subtask name": "CSM" | "SA" | "AE" }
-Role pins in the config file override the model. Filter the
-pinned subtasks out before building the prompt. If the parse
-fails, fall back to the owner on the parent phase and finish
-the run.
-
-Call two builds the schedule. Send the phases, their
-subtasks, the day count, and the computed start and launch
-dates. Expect:
-  {
-    "phases": {
-      "Phase name": { "startDate": "...", "endDate": "..." }
-    },
-    "subtasks": { "Subtask name": "YYYY-MM-DD" }
-  }
-State these rules in the prompt: phases are sequential and
-cannot overlap; all dates are weekdays; every subtask appears
-in the output; every date falls inside the window; short
-timelines compress admin work and front-load the critical
-path while technical work keeps real time; long timelines
-give the technical phases extra room.
-Do not use fixed day offsets. The same template has to
-schedule a seven-day rollout and a six-month one.
-Validate in code after the call: push weekend dates to
-Monday, and collect any subtask the model dropped into a
-warnings list shown in the confirmation message.
-
-STORAGE
-Assume the container filesystem is ephemeral and that the host
-provides a mounted volume. Write one store module with init,
-save, get, list and listActive. Read the directory from
-DATA_DIR and fall back to a local file when it is unset, so the
-same build runs locally and deployed. Prime an in-memory cache
-at startup so reads stay synchronous. Keep every path decision
-inside this module.
-Store per plan: list id, channel id, launch date, length in
-days, the three owner user ids, status, created and completed
-dates, and last week's task snapshot.
-
-WEEKLY JOB
-node-cron at 8am Friday in a named timezone, one summary per
-active plan. Before deciding anything, pull the last seven
-days of channel messages including thread replies, and diff
-current task state against the snapshot stored on the plan.
-Send the model the phase progress, what completed this week,
-what is overdue, what went overdue this week, the incomplete
-tasks and the conversation. Rule: a task is a risk only when
-it is overdue and the conversation shows no evidence of
-progress. Where the conversation suggests the work happened,
-list it under a heading that asks someone to tick the box.
-Pin the output format, cap it at 200 words, and save the new
-snapshot on the plan record.
-
-ERRORS
-Every command answers, including on failure. Wrap each
-handler so an exception becomes a message a human can read.
-
-BUILD ORDER
-Project layout and the slash command first. Then the create
-flow with hardcoded owners and fixed dates. Then the two
-model calls. Then storage. Then the rest of the commands.`,
           },
         ],
       },
