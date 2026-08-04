@@ -116,7 +116,24 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "The create path runs in this order. Acknowledge the command inside three seconds. Open the modal. Fetch the CRM record in the background and update the open modal in place. On submit, copy the template list, generate the timeline, classify the roles, write a due date and an assignee onto every row, share the list into the channel, and edit the placeholder message into the final summary.",
+            text: "The create path runs in this order.",
+          },
+          {
+            type: "code",
+            caption: "Create path",
+            code: `/launch [account] [date]
+  -> ack within 3s
+  -> open modal
+  -> CRM lookup, in the background
+       -> update the open modal in place
+
+on submit
+  -> copy the template list
+  -> generate the timeline        [model call]
+  -> classify subtask roles       [model call]
+  -> write due date + assignee on every row
+  -> share the list into the channel
+  -> edit the placeholder into the summary`,
           },
           {
             type: "p",
