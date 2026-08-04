@@ -41,16 +41,16 @@ export const guides: Guide[] = [
         blocks: [
           {
             type: "p",
-            text: "Every customer implementation started the same way. A CSM opened the last customer's plan, copied it, renamed everything, guessed at dates, and assigned tasks from memory. It worked. It also ate the better part of an hour, produced a slightly different plan every time, and left the question of how an implementation was actually going answerable only by asking someone.",
+            text: "Every implementation started with a CSM opening the last customer's plan, copying it, renaming everything, guessing at dates, and assigning tasks from memory. It took the better part of an hour, and that hour turned out to be the whole problem.",
           },
           {
-            type: "list",
-            items: [
-              "Setup time scaled with the number of customers we signed",
-              "No two plans had the same shape, so no two could be compared",
-            ],
+            type: "quote",
+            text: "A plan that costs an hour to build often does not get built.",
           },
-          { type: "quote", text: "Progress lived in somebody's head." },
+          {
+            type: "p",
+            text: "So implementations ran without one. Nobody decided that, it just happened, one busy week at a time. And where a plan did exist it was the only record of where things stood, which meant anyone outside the account team who wanted an update had to come into the Slack channel and ask a person to go and look.",
+          },
         ],
       },
       {
@@ -103,11 +103,7 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "Phases are sequential and cannot overlap. Every subtask has to come back in the output, and every date has to fall inside the window. Those constraints are in the prompt, and they are checked again on the way out.",
-          },
-          {
-            type: "quote",
-            text: "A model that is right most of the time still needs a floor.",
+            text: "Phases are sequential and cannot overlap. Every subtask has to come back in the output, and every date has to fall inside the window. Those constraints are in the prompt, and they are checked again on the way out, because a model that is right most of the time still needs a floor under it.",
           },
         ],
       },
@@ -150,11 +146,7 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "The migration itself was a one-time task that read the old file and wrote it to S3. It ran once, and the very next commit deleted it.",
-          },
-          {
-            type: "quote",
-            text: "Migration code left in the repo runs again by accident.",
+            text: "The migration itself was a one-time task that read the old file and wrote it to S3. It ran once, and the very next commit deleted it. Migration code left in the repo runs again by accident, usually at a worse moment.",
           },
         ],
       },
@@ -200,11 +192,7 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "That was wrong often enough to be annoying. A task can be overdue and completely fine, because the work happened, the customer confirmed it in the channel, and nobody went back to tick the box.",
-          },
-          {
-            type: "quote",
-            text: "A report nobody trusts is a report nobody reads.",
+            text: "That was wrong often enough to be annoying, and a report nobody trusts is a report nobody reads. A task can be overdue and completely fine, because the work happened, the customer confirmed it in the channel, and nobody went back to tick the box.",
           },
           {
             type: "p",
