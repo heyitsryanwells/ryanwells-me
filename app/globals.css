@@ -245,6 +245,63 @@ body {
   }
 }
 
+/* Rocket climb, bottom-left to top-right.
+ *
+ * --travel is the horizontal distance: the full width plus enough at each end
+ * that it enters and leaves off-screen. The rise is exactly half of it, which
+ * is the 2:1 slope the artwork is drawn on, and starting --travel/2 down the
+ * container is therefore what puts the exit at the top-right corner. Both fall
+ * out of the same number, so the geometry holds at any width without a media
+ * query.
+ *
+ * The pass occupies the first 45% of the timeline and the rocket is hidden for
+ * the rest, so a long duration buys a long quiet gap rather than a slower
+ * rocket. Same trick as the shooting stars. */
+.rocket-launch {
+  --travel: calc(100vw + 20rem);
+  left: 0;
+  top: calc(var(--travel) / 2);
+  opacity: 0;
+  animation: rocket-climb 78s linear infinite;
+  will-change: transform;
+}
+
+/* The artwork is drawn pointing right and rotated onto the flight path here,
+   rather than drawn on the diagonal. Two nested elements so the rotation stays
+   a constant and does not have to be repeated in every keyframe.
+
+   atan(0.5) = 26.565 degrees, matching the rise/run above exactly. */
+.rocket-launch__art {
+  transform: rotate(-26.565deg);
+}
+
+@keyframes rocket-climb {
+  0% {
+    opacity: 0;
+    transform: translate(-10rem, 0);
+  }
+  3% {
+    opacity: 0.5;
+  }
+  41% {
+    opacity: 0.5;
+  }
+  45% {
+    opacity: 0;
+    transform: translate(
+      calc(var(--travel) - 10rem),
+      calc(var(--travel) / -2)
+    );
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(var(--travel) - 10rem),
+      calc(var(--travel) / -2)
+    );
+  }
+}
+
 /* Shooting star. A 2px head with a hard-offset trail, no blur, so it reads as
    pixel art rather than a glow. steps() makes it advance in discrete jumps.
 
@@ -402,6 +459,11 @@ body {
   }
 
   .satellite-drift {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .rocket-launch {
     animation: none !important;
     opacity: 0 !important;
   }

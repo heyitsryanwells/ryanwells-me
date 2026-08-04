@@ -16,6 +16,7 @@
 const sharp = require("sharp");
 const path = require("path");
 const fs = require("fs");
+const { keyBackdrop, countEnclosedHoles } = require("./lib/key-backdrop");
 
 const SRC = process.argv[2];
 const OUT_NAME = process.argv[3] || "portrait-cutout.webp";
@@ -28,8 +29,6 @@ if (!SRC) {
 const OUT = path.join(__dirname, "..", "public", OUT_NAME);
 
 const SIZE = 1100;
-const INNER = 46; // at or below this RGB distance from the backdrop: transparent
-const OUTER = 96; // at or above: opaque. Between the two we ramp.
 const FADE_FROM = 0.82; // start the bottom fade at this fraction of height
 
 (async () => {
@@ -45,29 +44,7 @@ const FADE_FROM = 0.82; // start the bottom fade at this fraction of height
     .toBuffer({ resolveWithObject: true });
 
   const { width: w, height: h, channels: c } = info;
-  const out = Buffer.from(data);
-
-  for (let i = 0; i < data.length; i += c) {
-    const r = data[i];
-    const g = data[i + 1];
-    const b = data[i + 2];
-    const d = Math.sqrt((r - BG[0]) ** 2 + (g - BG[1]) ** 2 + (b - BG[2]) ** 2);
-
-    let a;
-    if (d <= INNER) a = 0;
-    else if (d >= OUTER) a = 255;
-    else a = Math.round(((d - INNER) / (OUTER - INNER)) * 255);
-
-    // Despill: partially transparent edge pixels carry backdrop colour, which
-    // shows up as a coloured rim on hair. Pull the dominant backdrop channel
-    // back toward the others in proportion to transparency.
-    if (a > 0 && a < 255 && b > Math.max(r, g)) {
-      const spill = (1 - a / 255) * (b - Math.max(r, g));
-      out[i + 2] = Math.max(0, Math.round(b - spill));
-    }
-
-    out[i + 3] = a;
-  }
+  const out = keyBackdrop(Buffer.from(data), info, BG);
 
   // Bottom fade, so the subject does not end on a ruler-straight line where
   // the source frame cut them off.
@@ -100,6 +77,11 @@ const FADE_FROM = 0.82; // start the bottom fade at this fraction of height
       }
     }
   }
+  // A hole surrounded by subject is what an eaten eye looks like. Coverage
+  // alone will not catch it: two eyes are a rounding error against a face, so
+  // the old check passed at 98% while the eyes were gone.
+  const holes = countEnclosedHoles(v.data, v.info.width, v.info.height);
+
   const pct = (n, d) => ((100 * n) / d).toFixed(1) + "%";
   console.log("wrote", OUT, (fs.statSync(OUT).size / 1024).toFixed(1) + "KB");
   console.log("transparent:", pct(clear, w * h));
@@ -108,8 +90,16 @@ const FADE_FROM = 0.82; // start the bottom fade at this fraction of height
     pct(centreOpaque, centreTotal),
     "(want >90%)",
   );
+  console.log("enclosed transparent holes:", holes, "(want 0)");
+
+  let bad = false;
   if (centreOpaque / centreTotal < 0.9) {
-    console.error("WARNING: the subject may have been keyed away. Raise INNER.");
-    process.exit(1);
+    console.error("FAIL: the subject may have been keyed away. Lower core.");
+    bad = true;
   }
+  if (holes > 0) {
+    console.error("FAIL: transparent holes enclosed by the subject.");
+    bad = true;
+  }
+  if (bad) process.exit(1);
 })();

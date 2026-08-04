@@ -3,17 +3,17 @@
  *
  *   node scripts/avatar.js <source-image> [output-name]
  *
- * Square-crops the source, chroma-keys the flat studio backdrop to
- * transparent, masks the result to a circle, and writes a transparent WebP
- * into public/.
+ * Square-crops the source, removes the flat studio backdrop, masks the result
+ * to a circle, and writes a transparent WebP into public/.
  *
- * The backdrop is keyed rather than kept so the disc colour lives in CSS
+ * The backdrop is removed rather than kept so the disc colour lives in CSS
  * (`.avatar-disc`) instead of being baked into the pixels. That keeps it on a
  * token, and it means antialiased hair composites against whatever the disc
- * colour actually is rather than against a stale blue.
+ * colour actually is.
  *
- * Still the photographic headshot rather than the pixel portrait, and still a
- * circle, so About reads differently from the hero.
+ * See scripts/lib/key-backdrop.js for why the backdrop is removed by
+ * connectivity rather than by a colour threshold. Short version: a threshold
+ * cannot tell a navy backdrop from blue eyes, and ate them.
  *
  * Give the output a NEW filename when the photo changes: assets are served
  * with max-age=14400 and cached again at Cloudflare's edge.
@@ -21,14 +21,11 @@
 const sharp = require("sharp");
 const path = require("path");
 const fs = require("fs");
+const { keyBackdrop, countEnclosedHoles } = require("./lib/key-backdrop");
 
 const SRC = process.argv[2];
-const OUT_NAME = process.argv[3] || "avatar-cutout.webp";
+const OUT_NAME = process.argv[3] || "avatar-cutout-v2.webp";
 const SIZE = 640;
-
-// Same ramp as scripts/cutout.js, which is proven on this backdrop.
-const INNER = 46; // at or below this RGB distance from the backdrop: transparent
-const OUTER = 96; // at or above: opaque. Between the two we ramp.
 
 if (!SRC) {
   console.error("usage: node scripts/avatar.js <source-image> [output-name]");
@@ -53,39 +50,15 @@ const circle = Buffer.from(
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  const { width: w, height: h, channels: c } = info;
-  const keyed = Buffer.from(data);
-
-  for (let i = 0; i < data.length; i += c) {
-    const r = data[i];
-    const g = data[i + 1];
-    const b = data[i + 2];
-    const d = Math.sqrt((r - BG[0]) ** 2 + (g - BG[1]) ** 2 + (b - BG[2]) ** 2);
-
-    let a;
-    if (d <= INNER) a = 0;
-    else if (d >= OUTER) a = 255;
-    else a = Math.round(((d - INNER) / (OUTER - INNER)) * 255);
-
-    // Despill: partially transparent edge pixels carry backdrop colour, which
-    // shows up as a blue rim on hair. Pull the dominant backdrop channel back
-    // toward the others in proportion to transparency.
-    if (a > 0 && a < 255 && b > Math.max(r, g)) {
-      const spill = (1 - a / 255) * (b - Math.max(r, g));
-      keyed[i + 2] = Math.max(0, Math.round(b - spill));
-    }
-
-    keyed[i + 3] = a;
-  }
+  const keyed = keyBackdrop(Buffer.from(data), info, BG);
+  const { width: w, height: h } = info;
 
   await sharp(keyed, { raw: { width: w, height: h, channels: 4 } })
     .composite([{ input: circle, blend: "dest-in" }])
     .webp({ quality: 90, alphaQuality: 100 })
     .toFile(OUT);
 
-  // Verify rather than assume. Three things have to be true at once: the
-  // circle clipped the corners, the key cleared the backdrop inside the
-  // circle, and the subject survived both.
+  // ---- Verify --------------------------------------------------------------
   const { data: v, info: vi } = await sharp(OUT).ensureAlpha().raw().toBuffer({
     resolveWithObject: true,
   });
@@ -103,32 +76,49 @@ const circle = Buffer.from(
     }
   }
 
-  const corner = alphaAt(0, 0);
-  // Inside the circle (258px from a 320px radius) but well clear of the
-  // subject, so it should have been keyed away.
+  // The eye band specifically, since that is the thing that broke.
+  let eyeSoft = 0;
+  let eyeTotal = 0;
+  for (let y = 255; y < 300; y++) {
+    for (let x = 225; x < 415; x++) {
+      eyeTotal++;
+      if (alphaAt(x, y) < 250) eyeSoft++;
+    }
+  }
+
+  const holes = countEnclosedHoles(v, vi.width, vi.height);
   const backdropInCircle = alphaAt(Math.round(w * 0.15), Math.round(h * 0.3));
-  const pct = (n, d) => ((100 * n) / d).toFixed(1) + "%";
+  const corner = alphaAt(0, 0);
+  const pct = (n, d) => ((100 * n) / d).toFixed(2) + "%";
 
   console.log("wrote", OUT, (fs.statSync(OUT).size / 1024).toFixed(1) + "KB");
   console.log("transparent:", pct(clear, w * h));
   console.log("corner alpha:", corner, "(expect 0, outside the circle)");
   console.log("backdrop-inside-circle alpha:", backdropInCircle, "(expect 0)");
-  console.log(
-    "subject coverage through centre:",
-    pct(centreOpaque, centreTotal),
-    "(want >90%)",
-  );
+  console.log("subject coverage through centre:", pct(centreOpaque, centreTotal));
+  console.log("eye band not fully opaque:", pct(eyeSoft, eyeTotal), "(want 0%)");
+  console.log("enclosed transparent holes:", holes, "(want 0)");
 
+  let bad = false;
   if (corner > 20) {
-    console.error("WARNING: circular mask did not apply.");
-    process.exit(1);
+    console.error("FAIL: circular mask did not apply.");
+    bad = true;
   }
   if (backdropInCircle > 20) {
-    console.error("WARNING: the backdrop was not keyed away. Raise INNER.");
-    process.exit(1);
+    console.error("FAIL: the backdrop was not removed. Raise core.");
+    bad = true;
   }
   if (centreOpaque / centreTotal < 0.9) {
-    console.error("WARNING: the subject may have been keyed away. Raise INNER.");
-    process.exit(1);
+    console.error("FAIL: the subject was eaten. Lower core.");
+    bad = true;
   }
+  if (eyeSoft > 0) {
+    console.error("FAIL: the eye band is not fully opaque.");
+    bad = true;
+  }
+  if (holes > 0) {
+    console.error("FAIL: transparent holes enclosed by the subject.");
+    bad = true;
+  }
+  if (bad) process.exit(1);
 })();

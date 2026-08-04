@@ -127,3 +127,76 @@ export function SatelliteDrift({ top = "18%" }: { top?: string }) {
     </div>
   );
 }
+
+/**
+ * Pixel rocket, drawn climbing to the upper right.
+ *
+ * The body is a staircase of 2-wide, 1-up steps, which is the classic pixel
+ * diagonal and works out to 26.57 degrees. `.rocket-launch` flies it on
+ * exactly that slope, one unit up for every two across, so the artwork angle
+ * and the flight path agree on every viewport. Rotating a horizontal rocket
+ * with CSS would have been easier and would have put soft antialiased edges
+ * on artwork whose whole point is that it has none.
+ */
+function PixelRocket({
+  className = "",
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <svg viewBox="0 0 28 15" className={className} style={style} aria-hidden="true">
+      {/* Exhaust. Amber, so the one warm thing in the backdrop is the colour
+          the site uses everywhere else to mean "look here". Kept to two chunky
+          blocks: a long faded plume turns muddy brown against the page and
+          stops reading as fire. */}
+      <g fill="var(--accent)">
+        <path d="M2 5h4v5H2z" />
+        <path d="M0 6h2v3H0z" opacity="0.8" />
+      </g>
+
+      {/* Barrel. 15x7 keeps it a cylinder; squarer than about 2:1 and it stops
+          reading as a body at all. */}
+      <path d="M6 4h15v7H6z" fill="currentColor" />
+
+      <g fill="var(--accent)">
+        {/* Nose, stepping 7-5-3-1 so it seats on the barrel as a cone instead
+            of spiking out of it. The tip is 2 units long rather than 1: at
+            72px a single unit is 2.7px and dissolves, leaving the apex furry. */}
+        <path d="M21 4h1v7h-1zM22 5h2v5h-2zM24 6h2v3h-2zM26 7h2v1h-2z" />
+        {/* Fins, swept back off the tail, mirrored about the barrel. */}
+        <path d="M11 3h2v1h-2zM9 2h2v2H9zM7 1h2v3H7zM5 0h2v4H5z" />
+        <path d="M11 11h2v1h-2zM9 11h2v2H9zM7 11h2v3H7zM5 11h2v4H5z" />
+      </g>
+
+      {/* Porthole, punched back to the page colour like the satellite's array
+          lines. 4x3 rather than 3x3: the smaller square shrank to 8px at
+          render size, and it is the single clearest "this is a vehicle" cue. */}
+      <rect x="15" y="6" width="4" height="3" fill="var(--paper)" opacity="0.6" />
+    </svg>
+  );
+}
+
+/**
+ * Flies bottom-left to top-right across whatever container it is dropped into.
+ *
+ * The start height is derived from the distance travelled rather than set as a
+ * percentage of the container: at a fixed 2:1 slope, starting half the travel
+ * distance down the box is what lands it in the top-right corner, and it holds
+ * at any width. Long duration with the pass packed into the first 45%, so
+ * there is a long quiet stretch between launches rather than a rocket
+ * permanently on screen next to the satellite.
+ */
+export function RocketLaunch() {
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div className="rocket-launch absolute">
+        <PixelRocket className="rocket-launch__art w-16 text-muted sm:w-24" />
+      </div>
+    </div>
+  );
+}

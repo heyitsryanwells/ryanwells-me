@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { about, site } from "@/lib/content";
-import { SatelliteDrift } from "@/components/space-backdrop";
+import { RocketLaunch, SatelliteDrift } from "@/components/space-backdrop";
 import {
   BracketLink,
   Container,
@@ -26,9 +26,12 @@ export default function AboutPage() {
   return (
     <>
       <div className="starfield relative overflow-hidden">
-        {/* Below the body copy, which ends around 67%. Higher up it crossed
-            the portrait and the display type. */}
+        {/* Below the body copy. Higher up it crossed the portrait and the
+            display type. */}
         <SatelliteDrift top="76%" />
+        {/* The satellite sits low, so the rocket carries the top of the page.
+            Both pass behind the text. */}
+        <RocketLaunch />
 
         <div className="relative z-10">
           <Section top="none" bottom="tight">
@@ -56,6 +59,19 @@ export default function AboutPage() {
                         {paragraph}
                       </p>
                     ))}
+                  </div>
+
+                  {/* Outside of ops sits in this column rather than in its own
+                      band below the grid. The timeline runs 427px past the end
+                      of the copy, and this is what fills that. */}
+                  <div className="mt-14 max-w-2xl">
+                    <SectionHead
+                      sectionRef="01"
+                      label={about.personal.heading}
+                    />
+                    <p className="text-base leading-relaxed text-ink sm:text-lg">
+                      {about.personal.body}
+                    </p>
                   </div>
                 </div>
 
@@ -103,15 +119,12 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Outside of ops ------------------------------------------------- */}
+      {/* Closing actions. Kept out of the grid so they read as the end of the
+          page, and so the mobile order stays copy, timeline, then what to do
+          next. */}
       <Section top="tight">
         <Container>
-          <SectionHead sectionRef="01" label={about.personal.heading} />
-          <p className="max-w-2xl text-base leading-relaxed text-ink sm:text-lg">
-            {about.personal.body}
-          </p>
-
-          <div className="mt-12 flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3">
             <BracketLink href="/contact">Get in touch</BracketLink>
             <BracketLink href="/guides" variant="outline">
               Browse the guides

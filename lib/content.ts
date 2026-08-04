@@ -20,7 +20,7 @@ export const site = {
   // leaves visitors on the stale copy for hours.
   portrait: "/portrait-pixel.webp",
   // Circular photographic crop, so About reads differently from the hero.
-  avatar: "/avatar-cutout.webp",
+  avatar: "/avatar-cutout-v2.webp",
   email: "hellofromryanwells@gmail.com",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/hello-ryanwells/" },
