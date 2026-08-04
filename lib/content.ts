@@ -92,6 +92,9 @@ export const expertise = {
   heading: "Areas of work",
   subheading:
     "Six areas taken end to end, in production, with revenue riding on the outcome.",
+  // Order is a priority signal, and the top row carries the most weight.
+  // Deal desk sits at 05 on purpose: it is real work, and it is the least
+  // interesting thing here to a reader deciding whether to keep going.
   areas: [
     {
       ref: "01",
@@ -101,9 +104,9 @@ export const expertise = {
     },
     {
       ref: "02",
-      icon: "reporting",
-      title: "Deal Desk & Revenue Reporting",
-      body: "Deal structure reviewed before it reaches the paper, and modeled off line items so the numbers hold. Reporting reconciles back to what was signed, which ends the argument about whose figure is right.",
+      icon: "dataQuality",
+      title: "Data Quality & Enrichment",
+      body: "Contact lifecycle design, deduplication, departure detection, and enrichment pipelines that fill gaps without spending credits twice. Clean data stays clean through process, run continuously.",
     },
     {
       ref: "03",
@@ -113,21 +116,21 @@ export const expertise = {
     },
     {
       ref: "04",
-      icon: "dataQuality",
-      title: "Data Quality & Enrichment",
-      body: "Contact lifecycle design, deduplication, departure detection, and enrichment pipelines that fill gaps without spending credits twice. Clean data stays clean through process, run continuously.",
+      icon: "pipeline",
+      title: "Pipeline, Campaigns & Attribution",
+      body: "Campaign hierarchy, inbound routing, list sync between marketing and sales systems, and attribution that survives contact with the actual funnel.",
     },
     {
       ref: "05",
-      icon: "pipeline",
-      title: "Pipeline & Campaign Operations",
-      body: "Campaign hierarchy, inbound routing, list sync between marketing and sales systems, and attribution that survives contact with the actual funnel.",
+      icon: "reporting",
+      title: "Deal Desk & Revenue Reporting",
+      body: "Deal structure reviewed before it reaches the paper, and modeled off line items so the numbers hold. Reporting reconciles back to what was signed, which ends the argument about whose figure is right.",
     },
     {
       ref: "06",
       icon: "governance",
-      title: "Systems Governance",
-      body: "Role hierarchy, access reviews, change management, and documentation that outlives the person who wrote it. The unglamorous work that keeps an org from calcifying.",
+      title: "Governance & Enablement",
+      body: "Role hierarchy, access reviews, and change management, plus the documentation and training that decide whether any of it gets used. A system nobody adopts is a system nobody built.",
     },
     // `as const` so each `icon` narrows to a literal and indexes the icon map
     // without a cast. A typo here becomes a build error, not a blank card.
@@ -236,7 +239,7 @@ export const about = {
   // Keep the year count here matching site.tagline and hero.intro. All three
   // say "over 10 years"; they used to disagree.
   paragraphs: [
-    "I work across Sales, Marketing, CX and Finance, building the systems revenue actually runs through. Revenue operations is an art and a science. It takes creativity, collaboration, and restlessness. The science is the part that has to reconcile: the deal desk, the data model, clean records moving between Salesforce and HubSpot. The art is knowing which problems are worth solving, balancing stakeholders, and designing the customer journey.",
+    "I work across Sales, Marketing, CX and Finance, building the systems revenue actually runs through. Revenue operations is an art and a science. It takes creativity, collaboration, and restlessness. The science is the part that has to reconcile: the data model, clean records moving between Salesforce and HubSpot, attribution that ties back to something real, deal structure, and the automation holding it all together. The art is knowing which problems are worth solving, enabling the teams who use what I build, balancing stakeholders, and designing the customer journey.",
     "Most of the work is lining up strategy, tooling, and data so the people around me can do their best work without fighting the tools. Over 10 years of customer-facing work before this shaped how I approach that. I build for the person who has to live inside the system.",
     "Running revenue operations solo means I touch most parts of the business in a given week. I might commit a field change, wire up automation behind a new email campaign, join a renewal conversation, and ship a Salesforce dashboard, all in the same day.",
     "AI keeps moving where the ceiling sits, in revenue operations and in most of the roles I work alongside. I run agents against production systems through MCP, and audits and migrations that used to eat days now finish in an afternoon. \"You can just do things\" is the line I keep coming back to. It pushes me past the point where I would otherwise stop and wait for permission.",
@@ -249,7 +252,7 @@ export const about = {
       role: "Senior Revenue Operations Manager",
       org: "Ambition",
       detail:
-        "Sole revenue operator, working across Sales, Marketing, Finance and CX. I run the deal desk, onboard and offboard vendors, build marketing campaigns, keep Salesforce and HubSpot clean, and put AI to work in production where it saves real time.",
+        "Sole revenue operator, working across Sales, Marketing, CX and Finance. I own the Salesforce architecture, keep data clean between Salesforce and HubSpot, build marketing campaigns, run the deal desk, and put AI to work in production where it saves real time.",
     },
     {
       period: "2024 — 2025",
