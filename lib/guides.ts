@@ -612,14 +612,6 @@ Call two, schedule:
               "Peak time and place: Thursday at 2pm, in Slack",
             ],
           },
-          {
-            type: "p",
-            text: "It named the CRM I work in without being told. The profile also moves: an earlier one had me as a Context Enhancer, weaving together disparate pieces of information. Both are fair, and the shift tracks a real change in what I had been dictating.",
-          },
-          {
-            type: "p",
-            text: "And is the most corrected word, which is the sound of a sentence that kept going after it should have stopped. Voice makes you fluent before it makes you brief.",
-          },
         ],
       },
     ],
