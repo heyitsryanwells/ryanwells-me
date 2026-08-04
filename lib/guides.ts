@@ -512,7 +512,7 @@ Call two, schedule:
     slug: "wispr-flow-voice-dictation",
     ref: "02",
     title: "Wispr Flow: put the dictation button on your mouse",
-    dek: "Voice dictation sticks or fails on the trigger. Middle click plus a headset microphone gets me up to 170 words per minute. The setup, what it changed about how I write, and what Wispr worked out about the way I talk.",
+    dek: "Middle click plus a headset microphone gets me up to 170 words per minute. Where the trigger lives, why the obvious microphone upgrade is a trap, and what Wispr worked out about the way I talk.",
     format: "playbook",
     published: "August 2026",
     featured: true,
@@ -537,11 +537,15 @@ Call two, schedule:
         blocks: [
           {
             type: "p",
-            text: "Flow ships bound to Fn on a Mac and Ctrl+Win on Windows. Both sit somewhere your hand has to travel to, and half a second of travel is enough that you keep reaching for the keyboard out of habit. Dictating with Fn means stopping, finding the key, pinning it down with a finger that has no other job, talking, then letting go. Five movements wrapped around one thought.",
+            text: "Flow ships bound to Fn on a Mac and Ctrl+Win on Windows. Both work fine. If you dictate into one window all day you may never want anything else.",
           },
           {
             type: "p",
-            text: "Middle click deletes all of that. Your hand is already on the mouse and the finger is already on the wheel. After about a week I stopped noticing I was pressing it, which is the point at which a tool disappears and you just use it.",
+            text: "My day does not look like that. I am clicking into a Slack thread, then a Linear description, then a terminal, then the prompt box of whatever agent is running. The mouse is how I get to every one of those boxes. With the trigger on middle click, the click that puts my cursor where I want it and the button that starts dictation are the same hand in the same place, and I start talking without moving.",
+          },
+          {
+            type: "p",
+            text: "That is the whole gain, and it compounds across a day of short bursts into a lot of different places. After about a week I stopped noticing I was pressing it, which is the point where a tool disappears and you just use it.",
           },
           {
             type: "quote",
