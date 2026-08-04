@@ -484,6 +484,45 @@ Call two, schedule:
             type: "p",
             text: "Pin the output format in the prompt and cap the length. Progress, risks, next steps, and the tick-the-box section, two or three bullets each, dropped entirely when empty. That one change moves the Friday message from noise into something people open.",
           },
+          {
+            type: "code",
+            caption: "What lands in the channel on a Friday",
+            code: `Weekly Progress Summary - Acme Corp
+Jun 12 - Jun 19
+
+Overall: 4/42 tasks (10%) | 0 done this week | 0 overdue
+
+  Introduction & Pre-Kickoff .... 4/6
+  Kickoff ....................... 0/7
+  Technical Implementation ...... 0/19
+  Build Out & Configuration ..... 0/0
+  Launch ........................ 0/6
+  Post Launch ................... 0/4
+
+Progress
+- Team is in Phase 1 with 4 of 6 tasks completed.
+- Kickoff deck preparation is underway.
+- No tasks were formally marked complete this week,
+  though work is actively progressing.
+
+Risks
+- No risks this week.
+
+Next Steps
+- Complete remaining Phase 1 tasks to advance to Kickoff.
+- Schedule and conduct the kickoff call.
+- Begin Technical Implementation, starting with the
+  Technical Success Document and validation.
+
+Needs Attention
+- "Schedule kick-off call" appears in progress: the CSM is
+  preparing the kickoff deck. Consider marking it complete
+  once the call is scheduled.`,
+          },
+          {
+            type: "p",
+            text: "That last section is the one worth building. Nothing is overdue in this example, so the risks list correctly says so, and the model still noticed a task sitting open while the channel showed the work happening. A summary that only counts what is late would have had nothing to say.",
+          },
         ],
       },
       {
