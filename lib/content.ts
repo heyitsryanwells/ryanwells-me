@@ -235,14 +235,14 @@ export const about = {
       role: "Senior Revenue Operations Manager",
       org: "Ambition",
       detail:
-        "Own the Salesforce architecture, the bookings model, and the GTM automation stack.",
+        "Own the Salesforce data model end to end: contracts, orders, and the bookings that come off them. Build the GTM automation, and the reporting leadership actually makes calls on.",
     },
     {
       period: "2024 — 2025",
       role: "Manager, Support & Operations",
       org: "Ambition",
       detail:
-        "Led Support and Revenue Operations together. Primary Salesforce admin, and owned the GTM stack end to end.",
+        "Kept leading the support team while taking on the CRM. Became the Salesforce administrator, evaluated the GTM tech stack, and managed renewals.",
     },
     {
       period: "2022 — 2024",
