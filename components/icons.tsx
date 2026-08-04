@@ -79,6 +79,21 @@ export const IconGovernance = ({ className = "" }: { className?: string }) => (
   </Glyph>
 );
 
+/** Speech bubble: support and CX operations. */
+export const IconSupport = ({ className = "" }: { className?: string }) => (
+  <Glyph className={className}>
+    <path d="M2 2h12v9H2zM5 11h4v1H5zM5 12h3v1H5zM5 13h2v1H5z" />
+    <path d="M4 4h8v1H4zM4 6h8v1H4zM4 8h5v1H4z" fill="var(--paper)" />
+  </Glyph>
+);
+
+/** Four tiles: the tool stack, and the vendors behind it. */
+export const IconStack = ({ className = "" }: { className?: string }) => (
+  <Glyph className={className}>
+    <path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z" />
+  </Glyph>
+);
+
 export const capabilityIcons = {
   architecture: IconArchitecture,
   reporting: IconReporting,
@@ -86,6 +101,8 @@ export const capabilityIcons = {
   dataQuality: IconDataQuality,
   pipeline: IconPipeline,
   governance: IconGovernance,
+  support: IconSupport,
+  stack: IconStack,
 } as const;
 
 export type CapabilityIcon = keyof typeof capabilityIcons;

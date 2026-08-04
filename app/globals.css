@@ -191,6 +191,34 @@ body {
     0 12px 32px -12px rgba(0, 0, 0, 0.8);
 }
 
+/* Skill lists inside the capability cards. The marker is a hard 4px square in
+   the accent, which is the same vocabulary as the pixel artwork and the only
+   list bullet on the site. A disc would be the one round thing in a design
+   whose first rule is zero radius. */
+.skill-list li {
+  position: relative;
+  padding-left: 1.0625rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.skill-list li + li {
+  margin-top: 0.4375rem;
+}
+
+.skill-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  /* Sits on the text's optical centre, not its box: 0.5lh would ride high on
+     a wrapped second line. */
+  top: 0.52em;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+}
+
 /* About-page avatar. The source backdrop is keyed out, so the disc colour is
    set here rather than baked into the image: a panel fill one step off the
    page, quiet enough that the photo carries the contrast, with the same amber

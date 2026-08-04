@@ -91,9 +91,13 @@ export const stack = {
 export const expertise = {
   heading: "Areas of work",
   subheading:
-    "Six areas I own at Ambition. Each one is live, and each one has broken on me at least once.",
-  // One sentence each. Three-sentence bodies read as a stutter across six
-  // cards, and tool names ate the room the function needed.
+    "Eight areas I own at Ambition. Each one is live, and each one has broken on me at least once.",
+  // Skills, not prose. This section answers "what can he do", so a scannable
+  // list beats a sentence that has to be read to be mined. Five per card so
+  // the row heights stay even.
+  // Count is 8 on purpose: the grid runs 1/2/4 columns, and 8 is the only
+  // nearby count that divides all three. 7 leaves an orphan row, which
+  // shows the container's line colour as a solid block.
   // Order is a priority signal, and the top row carries the most weight.
   // Deal desk sits at 05 on purpose: it is real work, and it is the least
   // interesting thing here to a reader deciding whether to keep going.
@@ -102,37 +106,97 @@ export const expertise = {
       ref: "01",
       icon: "architecture",
       title: "Salesforce Architecture",
-      body: "Every report downstream inherits whatever the data model gets wrong, so contracts, orders, line-item economics, and validation rules are where I'm most careful.",
+      skills: [
+        "Data model design",
+        "Contracts and orders",
+        "Line-item economics",
+        "Validation rules",
+        "Permission sets and sharing",
+      ],
     },
     {
       ref: "02",
       icon: "dataQuality",
       title: "Data Quality & Enrichment",
-      body: "Records go stale the moment you stop looking at them, so lifecycle design, deduplication, and departure detection all run on a schedule.",
+      skills: [
+        "Contact lifecycle design",
+        "Deduplication and merging",
+        "Departure detection",
+        "Enrichment pipelines",
+        "Email deliverability",
+      ],
     },
     {
       ref: "03",
       icon: "automation",
       title: "GTM Automation & AI",
-      body: "I automate the manual steps that work fine right up until the quarter nobody remembers to run them, and increasingly I hand that work to agents.",
+      skills: [
+        "Workflow automation",
+        "CRM flows and triggers",
+        "AI agents in production",
+        "Systems integration",
+        "Process design",
+      ],
     },
     {
       ref: "04",
-      icon: "pipeline",
-      title: "Pipeline, Campaigns & Attribution",
-      body: "Attribution takes more argument than math, and it sits on top of campaign hierarchy, inbound routing, and list sync between marketing and sales.",
+      icon: "support",
+      title: "CX Operations",
+      skills: [
+        "Support platform administration",
+        "Help center migration",
+        "Operational workflow design",
+        "AI triage and deflection",
+        "CSAT and volume reporting",
+      ],
     },
     {
       ref: "05",
-      icon: "reporting",
-      title: "Deal Desk & Revenue Reporting",
-      body: "Deal structure gets reviewed before it reaches paper and modeled off line items, so the reporting still ties back to what was signed a year later.",
+      icon: "pipeline",
+      title: "Campaigns & Attribution",
+      skills: [
+        "Campaign hierarchy",
+        "Inbound lead routing",
+        "Marketing and sales list sync",
+        "Attribution modeling",
+        "Pipeline reporting",
+      ],
     },
     {
       ref: "06",
+      icon: "reporting",
+      title: "Deal Desk & Reporting",
+      skills: [
+        "Deal structure review",
+        "Quote and order modeling",
+        "ACV, TCV and bookings",
+        "Renewal and expansion tracking",
+        "Executive reporting",
+      ],
+    },
+    {
+      ref: "07",
+      icon: "stack",
+      title: "Vendor & Stack Management",
+      skills: [
+        "Vendor evaluation",
+        "Implementation and rollout",
+        "Renewal and spend review",
+        "Offboarding and data migration",
+        "Stack consolidation",
+      ],
+    },
+    {
+      ref: "08",
       icon: "governance",
       title: "Governance & Enablement",
-      body: "Documentation and training get as much of my time as role hierarchy and access reviews, because a system nobody adopts is one I end up operating by hand.",
+      skills: [
+        "Role hierarchy design",
+        "Access reviews",
+        "Change management",
+        "Documentation",
+        "Team training",
+      ],
     },
     // `as const` so each `icon` narrows to a literal and indexes the icon map
     // without a cast. A typo here becomes a build error, not a blank card.

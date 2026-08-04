@@ -99,8 +99,14 @@ export default function Home() {
 
           {/* Panels rather than conventional cards: flat fill, square corners,
               hairline border. The gap is 1px so neighbouring borders collapse
-              into a single shared line and the grid reads as one block. */}
-          <div className="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
+              into a single shared line and the grid reads as one block.
+
+              Columns are 1/2/4, and there are 8 cards, because every column
+              count has to divide the card count. A partial last row leaves
+              empty cells, and empty cells here show the container's line
+              colour as a solid slab. 4 columns waits for xl so the cards do
+              not get squeezed on a 13-inch laptop. */}
+          <div className="grid gap-px bg-line sm:grid-cols-2 xl:grid-cols-4">
             {expertise.areas.map((area) => {
               const Icon = capabilityIcons[area.icon];
               return (
@@ -115,9 +121,11 @@ export default function Home() {
                   <h3 className="type-heading mt-6 text-lg text-ink sm:text-xl">
                     {area.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {area.body}
-                  </p>
+                  <ul className="skill-list mt-4">
+                    {area.skills.map((skill) => (
+                      <li key={skill}>{skill}</li>
+                    ))}
+                  </ul>
                 </div>
               );
             })}
