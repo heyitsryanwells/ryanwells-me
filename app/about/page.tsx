@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { about, site } from "@/lib/content";
-import { RocketLaunch, SatelliteDrift } from "@/components/space-backdrop";
+import { SatelliteDrift } from "@/components/space-backdrop";
 import {
   BracketLink,
   Container,
@@ -29,9 +29,6 @@ export default function AboutPage() {
         {/* Below the body copy. Higher up it crossed the portrait and the
             display type. */}
         <SatelliteDrift top="76%" />
-        {/* The satellite sits low, so the rocket carries the top of the page.
-            Both pass behind the text. */}
-        <RocketLaunch />
 
         <div className="relative z-10">
           <Section top="none" bottom="tight">
