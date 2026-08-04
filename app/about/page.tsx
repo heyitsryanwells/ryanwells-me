@@ -11,7 +11,7 @@ import {
 
 export const metadata: Metadata = {
   title: "About",
-  description: about.lede,
+  description: about.metaDescription,
 };
 
 /**

@@ -36,7 +36,7 @@ export const footer = {
 };
 
 export const nav = [
-  { label: "Index", href: "/" },
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Guides", href: "/guides" },
   { label: "Tools", href: "/tools" },
@@ -220,11 +220,15 @@ export const toolCategories = [
 
 export const about = {
   heading: "About",
-  lede: "Revenue operations is an art and a science. I work across Sales, Marketing, Finance and CX at Ambition, trying to get both halves right.",
+  // Sits under the page title as the subheader.
+  lede: "Senior Revenue Operations Manager",
+  // The subheader is a job title, so metadata needs its own line.
+  metaDescription:
+    "Revenue operations at Ambition, working across Sales, Marketing, Finance and CX.",
   paragraphs: [
-    "Most of the work is lining up strategy, tooling, and data so the people around me can do the best work of their careers. The science is the half that has to reconcile: the deal desk, the data model, clean records moving between Salesforce and HubSpot. The art is knowing which problems are worth solving and which reports will actually get read.",
+    "Revenue operations is an art and a science. I work across Sales, Marketing, Finance and CX at Ambition, trying to get both halves right. The science is the part that has to reconcile: the deal desk, the data model, clean records moving between Salesforce and HubSpot. The art is knowing which problems are worth solving and which reports will actually get read.",
+    "Most of the work is lining up strategy, tooling, and data so the people around me can do the best work of their careers. Fifteen years of customer-facing work before this shaped how I approach that. I build for the person who has to live inside the system.",
     "Our revenue operations team is one person. That says more about our size than about me, though it does come with a useful kind of proximity. I get to watch a change to a single field land on a rep's Tuesday, then a renewal conversation, then a board slide, usually in that order.",
-    "Fifteen years of customer-facing work sits underneath all of it. A Chick-fil-A counter, a five-star resort front desk, an IT service desk, then years on support at a SaaS company. That history is why I build for the person who has to live inside the system.",
     "\"You can just do things\" is the sentence I keep coming back to with AI. It pushes me past the point where I would normally stop and wait for permission. I run agents against production systems through MCP, and audits and migrations that used to eat days now finish in an afternoon. Knowing which parts hold up once real data is involved is the whole skill.",
     "Revenue operations runs on knowledge nobody writes down. Teams solve identical problems in isolation, badly, over and over, and the answers stay locked in somebody's head. Publishing what worked shortens that loop for whoever hits it next.",
   ],
