@@ -355,7 +355,7 @@ export const contact = {
   metaDescription:
     "Get in touch with Ryan Wells on LinkedIn or by email.",
   intro: "Reach out to me on one of these.",
-  note: "I read everything that comes in, and I answer anything specific.",
+  note: "I like talking RevOps with people. Bring me a system you are untangling, a tool you are trying to pick, or something that broke last quarter and still bugs you.",
   // Two ways in, no form. The address is built from site.email so there is
   // still one place to change it.
   links: [
