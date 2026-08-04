@@ -318,7 +318,7 @@ export const about = {
       role: "Senior Revenue Operations Manager",
       org: "Ambition",
       detail:
-        "Sole revenue operator, working across Sales, Marketing, CX and Finance. I own the Salesforce architecture, keep data clean between Salesforce and HubSpot, build marketing campaigns, run the deal desk, and put AI to work in production where it saves real time.",
+        "Revenue operations for the whole company, solo. Rebuilt bookings reporting to reconcile against signed contracts, swapped the prospecting stack out for better data, and moved AI agents into production against live systems.",
     },
     {
       period: "2024 — 2025",
@@ -360,7 +360,12 @@ export const about = {
   // the body with whatever you want people to know about you off the clock.
   personal: {
     heading: "Outside of ops",
-    body: "I live in Knoxville, Tennessee, and spend a good number of Saturdays in the fall watching the Vols.",
+    // Every fact here came from Ryan. The one extrapolation is the closing
+    // clause, which is true of every homeowner alive and so cannot be
+    // repeated back to him as a thing he claimed. Earlier drafts were funnier
+    // and invented more (a garage, morning runs, knowing his air filter size),
+    // which is the wrong trade in the one paragraph an interviewer might quote.
+    body: "Knoxville native, still here, with my beautiful wife and three kids. I run, mountain bike, and play video games. I'm a Costco guy and pretty much your stereotypical homeowner, so there is always one thing in the house I have been meaning to get to.",
   },
 };
 
