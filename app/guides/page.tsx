@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import { guideFormats, guides, guidesIndex } from "@/lib/guides";
-import {
-  Container,
-  PageHeader,
-  Section,
-  SectionHead,
-  SpecRow,
-} from "@/components/ui";
+import { guides, guidesIndex } from "@/lib/guides";
+import { GuideGrid } from "@/components/guide-card";
+import { Container, PageHeader, Section, SectionHead } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Guides",
@@ -32,18 +27,7 @@ export default function GuidesPage() {
             label="Index"
             note={`${guides.length} ${guides.length === 1 ? "entry" : "entries"}`}
           />
-          <div>
-            {guides.map((guide) => (
-              <SpecRow
-                key={guide.ref}
-                sectionRef={guide.ref}
-                title={guide.title}
-                body={guide.dek}
-                meta={`${guideFormats[guide.format].emoji} ${guideFormats[guide.format].label}`}
-                href={`/guides/${guide.slug}`}
-              />
-            ))}
-          </div>
+          <GuideGrid guides={guides} />
         </Container>
       </Section>
     </>

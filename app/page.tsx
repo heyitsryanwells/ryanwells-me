@@ -1,5 +1,6 @@
 import { expertise, hero, site } from "@/lib/content";
 import { guides } from "@/lib/guides";
+import { GuideGrid } from "@/components/guide-card";
 import { capabilityIcons } from "@/components/icons";
 import { SpaceBackdrop } from "@/components/space-backdrop";
 import { StackMarquee } from "@/components/stack-marquee";
@@ -9,7 +10,6 @@ import {
   Label,
   Section,
   SectionHead,
-  SpecRow,
   TextLink,
 } from "@/components/ui";
 
@@ -143,18 +143,7 @@ export default function Home() {
           <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted">
             Write-ups from systems I built and then had to keep running.
           </p>
-          <div>
-            {featured.map((guide) => (
-              <SpecRow
-                key={guide.ref}
-                sectionRef={guide.ref}
-                title={guide.title}
-                body={guide.dek}
-                meta={guide.format}
-                href={`/guides/${guide.slug}`}
-              />
-            ))}
-          </div>
+          <GuideGrid guides={featured} />
           <div className="mt-6">
             <TextLink href="/guides">All guides</TextLink>
           </div>

@@ -26,7 +26,6 @@ export type GuideFormat = keyof typeof guideFormats;
 
 export type Guide = {
   slug: string;
-  ref: string;
   title: string;
   dek: string;
   format: GuideFormat;
@@ -40,7 +39,6 @@ export type Guide = {
 export const guides: Guide[] = [
   {
     slug: "launchpad-slack-app",
-    ref: "01",
     title: "LaunchPad: build a Slack app that writes implementation plans",
     dek: "One slash command, a modal, and a scheduled, fully assigned customer implementation plan in the channel a minute later. The architecture, the access you have to line up first, and a prompt you can paste into Claude to start building your own.",
     format: "playbook",
@@ -510,7 +508,6 @@ Call two, schedule:
   },
   {
     slug: "wispr-flow-voice-dictation",
-    ref: "02",
     title: "Wispr Flow: middle mouse button changes the game",
     dek: "Middle click plus a headset microphone gets me up to 170 words per minute. Where the trigger lives, why the obvious microphone upgrade is a trap, and what Wispr worked out about the way I talk.",
     format: "playbook",
