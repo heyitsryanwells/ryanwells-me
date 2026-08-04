@@ -11,7 +11,7 @@ export const site = {
   url: "https://ryanwells.me",
   role: "Revenue Operations",
   tagline:
-    "Fifteen years in CX, now applied to the art and science of revenue operations. I build systems for the people who actually have to use them.",
+    "I'm a Revenue Operator drawing on over 10 years in CX to build systems that serve the people actually using them.",
   monogram: "RW",
   // Pixel-art portrait, 1100px WebP. Brings its own starfield and lunar
   // horizon, so it is framed rather than cut out.
@@ -45,7 +45,7 @@ export const hero = {
   greeting: "Hi, I'm",
   firstName: "Ryan",
   intro:
-    "Fifteen years in CX, now applied to the art and science of revenue operations. I build systems for the people who actually have to use them.",
+    "I'm a Revenue Operator drawing on over 10 years in CX to build systems that serve the people actually using them.",
   primaryCta: { label: "Browse the guides", href: "/guides" },
   secondaryCta: { label: "Get in touch", href: "/contact" },
   portraitAlt:
