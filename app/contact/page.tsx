@@ -20,7 +20,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        sectionRef="06"
+        sectionRef="05"
         label="Contact"
         title={contact.heading}
         lede={contact.lede}
@@ -31,7 +31,7 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
             <div className="max-w-2xl">
               <SectionHead
-                sectionRef="§ 1"
+                sectionRef="01"
                 label="Reasons to write"
                 note={`${contact.reasons.length} entries`}
               />

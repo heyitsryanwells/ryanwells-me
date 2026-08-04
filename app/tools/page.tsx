@@ -26,7 +26,7 @@ export default function ToolsPage() {
           {toolCategories.map((group) => (
             <div key={group.ref} className="mb-16 last:mb-0">
               <SectionHead
-                sectionRef={`§ ${group.ref}`}
+                sectionRef={group.ref}
                 label={group.category}
                 note={`${group.tools.length} entries`}
               />

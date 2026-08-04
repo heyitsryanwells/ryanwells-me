@@ -27,7 +27,7 @@ export default function GuidesPage() {
       <Section top="tight">
         <Container>
           <SectionHead
-            sectionRef="§ 1"
+            sectionRef="01"
             label="Index"
             note={`${guides.length} entries`}
           />

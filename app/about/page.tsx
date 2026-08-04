@@ -5,7 +5,6 @@ import {
   Container,
   Label,
   PageHeader,
-  Plate,
   Section,
   SectionHead,
   SpecRow,
@@ -41,7 +40,7 @@ export default function AboutPage() {
 
               <div className="mt-12">
                 <SectionHead
-                  sectionRef="§ 1"
+                  sectionRef="01"
                   label="Selected work"
                   note={`${about.wins.length} entries`}
                 />
@@ -65,10 +64,14 @@ export default function AboutPage() {
             </div>
 
             <aside>
-              <Plate
-                src={site.portrait}
+              {/* Circular photographic crop rather than the hero's pixel
+                  plate, so the two pages do not lead with the same image. */}
+              <img
+                src={site.avatar}
                 alt={`Portrait of ${site.name}`}
-                caption="Fig. 1 — R. Wells"
+                width={640}
+                height={640}
+                className="mx-auto block h-auto w-full max-w-[16rem] lg:mx-0"
               />
 
               <div className="mt-9">

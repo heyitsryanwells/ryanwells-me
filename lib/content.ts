@@ -19,6 +19,8 @@ export const site = {
   // on top, so replacing the image requires a NEW FILENAME. Editing in place
   // leaves visitors on the stale copy for hours.
   portrait: "/portrait-pixel.webp",
+  // Circular photographic crop, so About reads differently from the hero.
+  avatar: "/avatar-round.webp",
   email: "hellofromryanwells@gmail.com",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/hello-ryanwells/" },
@@ -92,32 +94,32 @@ export const expertise = {
     "Six areas taken end to end, in production, with revenue riding on the outcome.",
   areas: [
     {
-      ref: "1.0",
+      ref: "01",
       title: "Salesforce Architecture",
       body: "Data models that hold up under real deal structures. Contracts and orders, line-item economics, validation rules, and a permission model built on permission sets rather than a sprawl of profiles.",
     },
     {
-      ref: "2.0",
+      ref: "02",
       title: "Bookings & Revenue Reporting",
       body: "ACV, TCV, and retention modeled from line items rather than guessed at the header. Reporting that reconciles to the signed paper, so finance and sales stop arguing about whose number is right.",
     },
     {
-      ref: "3.0",
+      ref: "03",
       title: "GTM Automation & AI",
       body: "Workflow automation across n8n, Zapier, and the CRM itself, plus AI agents wired directly into the stack through MCP. The goal is removing manual steps that quietly break every quarter.",
     },
     {
-      ref: "4.0",
+      ref: "04",
       title: "Data Quality & Enrichment",
       body: "Contact lifecycle design, deduplication, departure detection, and enrichment pipelines that fill gaps without spending credits twice. Clean data is a process, not a cleanup project.",
     },
     {
-      ref: "5.0",
+      ref: "05",
       title: "Pipeline & Campaign Operations",
       body: "Campaign hierarchy, inbound routing, list sync between marketing and sales systems, and attribution that survives contact with the actual funnel.",
     },
     {
-      ref: "6.0",
+      ref: "06",
       title: "Systems Governance",
       body: "Role hierarchy, access reviews, change management, and documentation that outlives the person who wrote it. The unglamorous work that keeps an org from calcifying.",
     },
@@ -130,7 +132,7 @@ export const expertise = {
  */
 export const guides = [
   {
-    ref: "A",
+    ref: "01",
     title: "The Salesforce Contract & Order Data Model",
     dek: "How to structure contracts, orders, and line items so renewals, expansions, and mid-term changes all reconcile without manual patching.",
     href: "/guides",
@@ -138,7 +140,7 @@ export const guides = [
     featured: true,
   },
   {
-    ref: "B",
+    ref: "02",
     title: "Bookings Reporting That Survives an Audit",
     dek: "A reporting model for ACV, TCV, and net retention that ties every number back to a signed line item. Includes report definitions you can deploy.",
     href: "/guides",
@@ -146,7 +148,7 @@ export const guides = [
     featured: true,
   },
   {
-    ref: "C",
+    ref: "03",
     title: "The RevOps Guide to AI Agents in Production",
     dek: "Where AI agents earn their keep inside a revenue stack, which tasks to keep human-gated, and how to wire them in without handing over write access to everything.",
     href: "/guides",
@@ -154,7 +156,7 @@ export const guides = [
     featured: true,
   },
   {
-    ref: "D",
+    ref: "04",
     title: "Contact Hygiene Field Guide",
     dek: "The lifecycle model, the departure flags, and the enrichment sequence that keeps a contact database usable past year three.",
     href: "/guides",
@@ -162,7 +164,7 @@ export const guides = [
     featured: false,
   },
   {
-    ref: "E",
+    ref: "05",
     title: "Permission Sets Over Profiles",
     dek: "A migration path from profile sprawl to a permission-set-led access model, with the audit queries to prove nothing broke.",
     href: "/guides",
@@ -178,7 +180,7 @@ export const guides = [
  */
 export const toolCategories = [
   {
-    ref: "1.0",
+    ref: "01",
     category: "Core CRM & GTM",
     tools: [
       { name: "Salesforce", href: "https://salesforce.com" },
@@ -190,7 +192,7 @@ export const toolCategories = [
     ],
   },
   {
-    ref: "2.0",
+    ref: "02",
     category: "Automation & AI",
     tools: [
       { name: "Claude", href: "https://claude.com" },
@@ -198,7 +200,7 @@ export const toolCategories = [
     ],
   },
   {
-    ref: "3.0",
+    ref: "03",
     category: "Data & Signal",
     tools: [
       { name: "Wiza", href: "https://wiza.co" },
@@ -206,7 +208,7 @@ export const toolCategories = [
     ],
   },
   {
-    ref: "4.0",
+    ref: "04",
     category: "Process & Documentation",
     tools: [
       { name: "Linear", href: "https://linear.app" },
@@ -246,8 +248,8 @@ export const contact = {
   heading: "Contact",
   lede: "The best way to reach me is email. I read everything, and I answer anything specific.",
   reasons: [
-    { ref: "1.0", title: "You're stuck on a systems problem", body: "Describe it in a few sentences. If I've hit the same wall I'll tell you what worked." },
-    { ref: "2.0", title: "You want to talk about advisory work", body: "Tell me the scope and the timeline and we'll figure out whether I'm the right fit." },
-    { ref: "3.0", title: "You want me to write or speak", body: "Send the audience, the topic, and the date." },
+    { ref: "01", title: "You're stuck on a systems problem", body: "Describe it in a few sentences. If I've hit the same wall I'll tell you what worked." },
+    { ref: "02", title: "You want to talk about advisory work", body: "Tell me the scope and the timeline and we'll figure out whether I'm the right fit." },
+    { ref: "03", title: "You want me to write or speak", body: "Send the audience, the topic, and the date." },
   ],
 };

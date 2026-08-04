@@ -93,7 +93,7 @@ export function SectionHead({
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
         <Label className="text-ink">
           {sectionRef ? (
-            <span className="text-accent">{sectionRef}&nbsp;&nbsp;</span>
+            <span className="text-accent">{sectionRef}/&nbsp;&nbsp;</span>
           ) : null}
           {label}
         </Label>
@@ -128,7 +128,7 @@ export function SpecRow({
   const inner = (
     <div className="grid grid-cols-[3.25rem_1fr] gap-x-4 py-7 sm:grid-cols-[5rem_1fr_auto] sm:gap-x-8 sm:py-8">
       <span className="type-ref pt-0.5 text-xs text-accent">
-        {sectionRef}
+        {sectionRef}/
       </span>
       <div className="min-w-0">
         <h3 className="type-heading text-lg sm:text-xl">{title}</h3>
@@ -246,37 +246,6 @@ export function TextLink({
   );
 }
 
-/** Photographic plate: hard edges, flattened image, mono figure caption. */
-export function Plate({
-  src,
-  alt,
-  caption,
-  className = "",
-}: {
-  src: string;
-  alt: string;
-  caption?: string;
-  className?: string;
-}) {
-  return (
-    <figure className={className}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <div className="plate">
-        <img
-          src={src}
-          alt={alt}
-          width={1100}
-          height={1100}
-          className="block h-full w-full object-cover"
-        />
-      </div>
-      {caption ? (
-        <figcaption className="type-label mt-2 text-faint">{caption}</figcaption>
-      ) : null}
-    </figure>
-  );
-}
-
 /** Document-style page opener used on every interior page. */
 export function PageHeader({
   sectionRef,
@@ -295,7 +264,7 @@ export function PageHeader({
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
           <Label className="text-ink">
             {sectionRef ? (
-              <span className="text-accent">{sectionRef}&nbsp;&nbsp;</span>
+              <span className="text-accent">{sectionRef}/&nbsp;&nbsp;</span>
             ) : null}
             {label}
           </Label>

@@ -23,7 +23,7 @@ export default function Home() {
     <>
       {/* Hero ---------------------------------------------------------------
           Deliberately looser than the rest of the site: no opening rule, no
-          spec table, no figure caption. The document structure starts at § 1.
+          spec table. The numbered document structure starts at 01/.
 
           Fills the viewport so the portrait is all that shows until you
           scroll. The subtracted height is the sticky nav, 3.5rem/4rem, which
@@ -87,7 +87,7 @@ export default function Home() {
       <Section top="default">
         <Container>
           <SectionHead
-            sectionRef="§ 1"
+            sectionRef="01"
             label="Capability index"
             title={expertise.heading}
             note={`${expertise.areas.length} entries`}
@@ -112,7 +112,7 @@ export default function Home() {
       <Section top="tight">
         <Container>
           <SectionHead
-            sectionRef="§ 2"
+            sectionRef="02"
             label="Guides"
             title="Templates and playbooks"
             note={`${guides.length} available`}

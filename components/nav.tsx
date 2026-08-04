@@ -39,7 +39,7 @@ export function Nav() {
                   }`}
                 >
                   <span className="text-tertiary">
-                    {String(i + 1).padStart(2, "0")}
+                    {String(i + 1).padStart(2, "0")}/
                   </span>
                   &nbsp;&nbsp;{item.label}
                 </Link>
@@ -76,7 +76,7 @@ export function Nav() {
                     }`}
                   >
                     <span className="text-tertiary">
-                      {String(i + 1).padStart(2, "0")}
+                      {String(i + 1).padStart(2, "0")}/
                     </span>
                     &nbsp;&nbsp;{item.label}
                   </Link>
