@@ -116,7 +116,7 @@ export default async function GuidePage({
             section they have already passed.
           */}
           <div className="mt-12 grid gap-x-16 lg:grid-cols-[14rem_minmax(0,44rem)]">
-            <div className="lg:col-start-2 lg:row-start-1">
+            <div className="min-w-0 lg:col-start-2 lg:row-start-1">
               {guide.cover ? (
                 <img
                   src={guide.cover.src}
