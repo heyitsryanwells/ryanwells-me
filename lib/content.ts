@@ -341,7 +341,8 @@ export const about = {
       period: "2019 — 2022",
       role: "Senior Support Advisor",
       org: "Ambition",
-      detail: "Front line with customers, on the product and the process.",
+      detail:
+        "On the front line with customers, becoming a subject matter expert in our product, and contributing to new hire training and help documentation.",
     },
     {
       period: "2016 — 2019",
