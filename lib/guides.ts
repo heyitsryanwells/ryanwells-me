@@ -508,6 +508,199 @@ Call two, schedule:
       },
     ],
   },
+  {
+    slug: "wispr-flow-voice-dictation",
+    ref: "02",
+    title: "Wispr Flow: put the dictation button on your mouse",
+    dek: "Voice dictation sticks or fails on the trigger. Middle click plus a headset microphone gets me up to 170 words per minute. The setup, what it changes about how you write, and where I go back to typing.",
+    format: "playbook",
+    published: "August 2026",
+    featured: true,
+    metaDescription:
+      "A playbook for making voice dictation a habit: bind Wispr Flow to your mouse's middle click, add a headset microphone, and write at speaking speed. Setup, what changes, and where voice is the wrong tool.",
+    sections: [
+      {
+        heading: "The short version",
+        blocks: [
+          {
+            type: "p",
+            text: "Wispr Flow is dictation that sits on top of whatever you are already typing into. Hold a button, talk, let go, and the text lands in the active window with the filler words and the false starts cleaned out. I get up to 170 words per minute out of it.",
+          },
+          {
+            type: "p",
+            text: "Most people who bounce off voice dictation bounce off the trigger. Flow ships bound to Fn on a Mac and Ctrl+Win on Windows. Both of those sit somewhere your hand has to travel to, and half a second of travel is enough that you keep reaching for the keyboard out of habit. Move the binding to your mouse. Middle click, the press of the scroll wheel, sits under a finger that has been resting there all day.",
+          },
+          {
+            type: "p",
+            text: "Then put on a headset. A microphone that holds one distance from your mouth is what takes Flow to basically flawless for me. Those two changes are the whole setup. Everything below is what happens afterward.",
+          },
+        ],
+      },
+      {
+        heading: "Why voice for this work",
+        blocks: [
+          {
+            type: "p",
+            text: "I work in revenue operations. A day is Slack threads, Linear issues, documentation nobody reads until something breaks, and long briefs handed to AI agents that need every scrap of background sitting in my head. Very little of that is writing where I am hunting for the word. I know what I mean before I start.",
+          },
+          {
+            type: "p",
+            text: "That is the case voice is good at. Typing is a transcription step between a finished thought and the screen, and speaking is a faster transcription step. I type fine. Talking is considerably faster, and the gap widens the longer the thing gets.",
+          },
+          {
+            type: "p",
+            text: "The cost lands hardest on the long stuff. A brief to an agent wants four paragraphs of background to come out right. Four paragraphs is real work at typing speed, and what most of us do is write one and hope the model fills in the rest. At talking speed you say all four.",
+          },
+        ],
+      },
+      {
+        heading: "Bind it to your mouse",
+        blocks: [
+          {
+            type: "p",
+            text: "Fn sits in the bottom left corner of a Mac keyboard. Dictating with it means stopping what you are doing, finding the key, pinning it down with a finger that has no other job, talking, and letting go. Five movements wrapped around one thought. Do that twenty times in a morning and you go back to typing.",
+          },
+          {
+            type: "p",
+            text: "Middle click deletes the travel. Your hand is on the mouse. The finger you would press it with is on the wheel already. Pressing it interrupts nothing you were doing, and after a week or so I stopped noticing I was doing it.",
+          },
+          {
+            type: "quote",
+            text: "The button has to be somewhere your hand already lives.",
+          },
+          {
+            type: "p",
+            text: "Flow is specific about which buttons it will take. Each one works on its own or with a keyboard modifier in front of it, like Ctrl+Mouse4.",
+          },
+          {
+            type: "code",
+            caption: "Mouse triggers Flow accepts",
+            code: `Middle click        yes
+Mouse 4 to Mouse 10 yes
+Left click          no
+Right click         no`,
+          },
+          {
+            type: "p",
+            text: "The hardware has to qualify too. Flow rules out the Apple Magic Mouse, built-in laptop trackpads, anything with three buttons or fewer, and external mice where it cannot work out the button count. Logitech's MX series is listed as known-good. On a bare laptop trackpad none of this is available to you and a key is what you have.",
+          },
+          {
+            type: "p",
+            text: "The button can hold one of two jobs. Push to talk records while you keep it down and pastes when you release. Hands-free toggles: one press starts, another stops. Either can live on the mouse, and holding gives you a hard edge on where a recording begins and ends.",
+          },
+        ],
+      },
+      {
+        heading: "Then the microphone",
+        blocks: [
+          {
+            type: "p",
+            text: "A laptop microphone sits near the hinge and hears the whole room. Your distance from it changes every time you shift in your chair, and it picks up the keys you press around the dictation.",
+          },
+          {
+            type: "p",
+            text: "A headset fixes the geometry. The mic holds one distance from your mouth whether you are leaning back or hunched over a spreadsheet, and it sits close enough that the room stops registering. With a headset on, Flow is basically flawless for me. The mouse binding is what gets you using it. A good microphone is what makes it worth using.",
+          },
+          {
+            type: "p",
+            text: "There is a social dividend as well. Talking at your screen in an open office looks strange. Do it with a headset on and it looks like a call.",
+          },
+        ],
+      },
+      {
+        heading: "What changes once it is fluent",
+        blocks: [
+          {
+            type: "p",
+            text: "The first thing that changes is length.",
+          },
+          {
+            type: "quote",
+            text: "When context is cheap, you stop rationing it.",
+          },
+          {
+            type: "p",
+            text: "Briefs get longer. Background that used to stay in my head because typing it out was a chore now goes into the prompt. Agents are the clearest case. They want the contract terms, the history, and the reason this particular account is weird, and every one of those sentences used to cost something to produce.",
+          },
+          {
+            type: "p",
+            text: "The second is where the first draft comes from. An empty box is a hard place to start. Talking gets a rough, badly organized version of the whole thing out in one pass, and editing a rough version is a different job from writing one. For a Linear issue I say all of it badly and then clean it up. By the time I start editing the structure is already sitting there.",
+          },
+          {
+            type: "p",
+            text: "The third is reach. Flow pastes into whatever window has focus, which covers Slack, a Linear description, a terminal, and the prompt box of whatever agent is running. Nothing to switch into and copy back out of.",
+          },
+          {
+            type: "p",
+            text: "It cleans up on the way through as well. Filler words come out. Punctuation goes in. Correct yourself halfway through a sentence and Flow keeps the correction and drops the false start. Real speech is full of restarts, and a transcript that preserves every one of them is worthless.",
+          },
+          {
+            type: "p",
+            text: "It also learns. Words you fix go into a dictionary, and after a few weeks it stops mangling the names of your products and your people.",
+          },
+        ],
+      },
+      {
+        heading: "Where it stops helping",
+        blocks: [
+          {
+            type: "quote",
+            text: "Voice rewards knowing the answer before you start.",
+          },
+          {
+            type: "p",
+            text: "Exact syntax is where I put the mouse down first. Field API names, SOQL, formulas, a JSON payload. Flow learns technical terms and handles code formatting, and I still type all of that by hand. A field name that comes out almost right is wrong.",
+          },
+          {
+            type: "p",
+            text: "Short messages are the other obvious one. A three-word Slack reply is quicker typed. Reaching for a button to say sounds good is theater.",
+          },
+          {
+            type: "p",
+            text: "Then there is the room. An open floor with a headset on is fine. A room where somebody else is on a call is not, and the rough rule is anywhere you would take a phone call.",
+          },
+          {
+            type: "p",
+            text: "The last one is anything I am still working out. Voice runs fast when the thinking is finished. When I am figuring out what I actually believe about something, the slowness of typing is doing part of the work.",
+          },
+        ],
+      },
+      {
+        heading: "What it noticed about me",
+        blocks: [
+          {
+            type: "p",
+            text: "Flow keeps an Insights page in the desktop app. One tab counts the measurable things: words per minute, total words dictated, corrections it made for you, which apps you use it in, a usage streak heatmap. Another tab builds a Voice Profile out of how you actually talk, and that one is the fun part.",
+          },
+          {
+            type: "p",
+            text: "Mine currently reads Structure Refiner, described like this: voice is your go-to tool for refining complex structures, whether it is reworking Salesforce workflows or clarifying project details. Your dictations often focus on streamlining processes and ensuring every detail aligns with broader goals.",
+          },
+          {
+            type: "list",
+            items: [
+              "Catchphrase: I think we can",
+              "Most used word: should",
+              "Most corrected word: and",
+              "Peak time and place: Thursday at 2pm, in Slack",
+            ],
+          },
+          {
+            type: "p",
+            text: "It named the CRM I work in without being told. That is the part that got my attention, because the profile is built from how I talk and it landed on the thing I actually spend Thursdays doing.",
+          },
+          {
+            type: "p",
+            text: "The profile moves. An earlier one had me as a Context Enhancer, with voice as the tool for weaving together disparate pieces of information. Both readings are fair and the shift tracks a real change in what I was dictating. Treat it as a snapshot of the last stretch of work.",
+          },
+          {
+            type: "p",
+            text: "Two of those superlatives are worth sitting with. A catchphrase of I think we can says something about the register I write in. And is the most corrected word, which is the sound of a sentence that kept going after it should have stopped. Voice makes you fluent before it makes you brief.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export const guidesIndex = {
