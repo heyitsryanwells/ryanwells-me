@@ -8,12 +8,11 @@ export const metadata: Metadata = {
 };
 
 /**
- * The whole page is a title, a line, and two links.
+ * A title, two lines, and two links.
  *
- * Everything here is sized up from the site's usual scale. The rest of the
- * site is dense on purpose, but a page with three elements on it reads as
- * unfinished at that size, so the links carry display type and the brackets
- * do the pointing.
+ * The links sit at the body scale the rest of the site uses, on one row. An
+ * earlier pass ran them at display size stacked down the page, which read as
+ * a landing page rather than as the last page of this one.
  */
 export default function ContactPage() {
   return (
@@ -22,24 +21,28 @@ export default function ContactPage() {
 
       <Section top="tight">
         <Container>
-          <p className="max-w-2xl text-xl leading-relaxed text-ink sm:text-2xl">
-            {contact.intro}
-          </p>
+          <div className="max-w-2xl">
+            <p className="text-lg leading-relaxed text-ink sm:text-xl">
+              {contact.intro}
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+              {contact.note}
+            </p>
 
-          <ul className="mt-12 space-y-7 sm:mt-14 sm:space-y-8">
-            {contact.links.map((link) => (
-              <li key={link.label}>
+            <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+              {contact.links.map((link) => (
                 <a
+                  key={link.label}
                   href={link.href}
                   target={link.href.startsWith("mailto:") ? undefined : "_blank"}
                   rel="noreferrer"
-                  className="bracket-link type-heading inline-block text-3xl text-ink transition-colors hover:text-accent sm:text-4xl"
+                  className="bracket-link type-heading text-lg text-ink transition-colors hover:text-accent sm:text-xl"
                 >
                   {link.label}
                 </a>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+          </div>
         </Container>
       </Section>
     </>

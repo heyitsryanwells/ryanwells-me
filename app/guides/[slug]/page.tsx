@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { guides, type Block } from "@/lib/guides";
+import { guideFormats, guides, type Block } from "@/lib/guides";
 import { Container, Label, PageHeader, Section } from "@/components/ui";
 
 export function generateStaticParams() {
@@ -90,7 +90,10 @@ export default async function GuidePage({
           {/* Metadata reads as a spec header, monospace like every other piece
               of structural data on the site. */}
           <div className="flex flex-wrap gap-x-8 gap-y-2">
-            <Label className="text-tertiary">{guide.format}</Label>
+            <Label className="text-tertiary">
+              {guideFormats[guide.format].emoji}{" "}
+              {guideFormats[guide.format].label}
+            </Label>
             <Label className="text-tertiary">{guide.published}</Label>
           </div>
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { guides, guidesIndex } from "@/lib/guides";
+import { guideFormats, guides, guidesIndex } from "@/lib/guides";
 import {
   Container,
   PageHeader,
@@ -38,7 +38,7 @@ export default function GuidesPage() {
                 sectionRef={guide.ref}
                 title={guide.title}
                 body={guide.dek}
-                meta={guide.format}
+                meta={`${guideFormats[guide.format].emoji} ${guideFormats[guide.format].label}`}
                 href={`/guides/${guide.slug}`}
               />
             ))}

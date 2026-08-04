@@ -12,12 +12,24 @@ export type Block =
   | { type: "quote"; text: string }
   | { type: "code"; caption?: string; code: string };
 
+/**
+ * Guide formats. A playbook tells you how to build the thing; a template is
+ * the thing, ready to fill in. The emoji is the only full-colour element on
+ * the site, so each one has to survive at 11px next to mono type.
+ */
+export const guideFormats = {
+  playbook: { label: "Playbook", emoji: "\u{1F4D8}" },
+  template: { label: "Template", emoji: "\u{1F4D0}" },
+} as const;
+
+export type GuideFormat = keyof typeof guideFormats;
+
 export type Guide = {
   slug: string;
   ref: string;
   title: string;
   dek: string;
-  format: string;
+  format: GuideFormat;
   published: string;
   featured: boolean;
   metaDescription: string;
@@ -30,7 +42,7 @@ export const guides: Guide[] = [
     ref: "01",
     title: "LaunchPad: a Slack app that builds implementation plans",
     dek: "A CSM types one slash command and gets a fully scheduled, fully assigned customer implementation plan in under a minute. How it was built, where the data ended up living, and why the command list is nothing like the one I designed.",
-    format: "Case study",
+    format: "playbook",
     published: "August 2026",
     featured: true,
     metaDescription:
