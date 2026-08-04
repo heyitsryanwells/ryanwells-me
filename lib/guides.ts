@@ -508,7 +508,7 @@ Call two, schedule:
   },
   {
     slug: "wispr-flow-voice-dictation",
-    title: "Wispr Flow: middle mouse button changes the game",
+    title: "Wispr Flow: Middle Mouse Button will make you work faster",
     dek: "Middle click plus a headset microphone gets me up to 170 words per minute. Where the trigger lives, why the obvious microphone upgrade is a trap, and what Wispr worked out about the way I talk.",
     format: "playbook",
     published: "August 2026",
