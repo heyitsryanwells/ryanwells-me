@@ -220,11 +220,12 @@ export const toolCategories = [
 
 export const about = {
   heading: "About",
-  lede: "I am the revenue operations team at Ambition. Sales, Marketing, Finance and CX all route through one person, and that person is me.",
+  lede: "Revenue operations is an art and a science. I work across Sales, Marketing, Finance and CX at Ambition, trying to get both halves right.",
   paragraphs: [
-    "The work spans whatever the week needs. Running the deal desk. Onboarding a vendor on Monday and offboarding another on Thursday. Standing up a marketing campaign. Keeping Salesforce and HubSpot clean enough that the numbers coming out of them survive a hard question. Breadth is the job.",
-    "Fifteen years of customer-facing work sits underneath all of it. A Chick-fil-A counter, a five-star resort front desk, an IT service desk, then years on support at a SaaS company. That history is why I build for the person who has to live inside the system. I start most problems at the source record and follow them up from there.",
-    "A lot of my leverage now comes from AI agents wired straight into production systems through MCP. Audits and migrations that used to eat days finish in an afternoon. I write about which parts of that hold up once real data is involved.",
+    "Most of the work is lining up strategy, tooling, and data so the people around me can do the best work of their careers. The science is the half that has to reconcile: the deal desk, the data model, clean records moving between Salesforce and HubSpot. The art is knowing which problems are worth solving and which reports will actually get read.",
+    "Our revenue operations team is one person. That says more about our size than about me, though it does come with a useful kind of proximity. I get to watch a change to a single field land on a rep's Tuesday, then a renewal conversation, then a board slide, usually in that order.",
+    "Fifteen years of customer-facing work sits underneath all of it. A Chick-fil-A counter, a five-star resort front desk, an IT service desk, then years on support at a SaaS company. That history is why I build for the person who has to live inside the system.",
+    "\"You can just do things\" is the sentence I keep coming back to with AI. It pushes me past the point where I would normally stop and wait for permission. I run agents against production systems through MCP, and audits and migrations that used to eat days now finish in an afternoon. Knowing which parts hold up once real data is involved is the whole skill.",
     "Revenue operations runs on knowledge nobody writes down. Teams solve identical problems in isolation, badly, over and over, and the answers stay locked in somebody's head. Publishing what worked shortens that loop for whoever hits it next.",
   ],
   // Compact history, in place of the old chronological timeline.
