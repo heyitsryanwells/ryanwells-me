@@ -219,6 +219,44 @@ body {
   background: var(--accent);
 }
 
+/* Body lists inside a guide. Same square accent marker as the capability
+   cards, sized up to sit with running prose. */
+.prose-list li {
+  position: relative;
+  padding-left: 1.375rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.prose-list li + li {
+  margin-top: 0.75rem;
+}
+
+.prose-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+}
+
+/* Code in guides. Panel fill one step off the page, no radius, and its own
+   horizontal scroll so a long line never widens the document. */
+.code-block {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 1rem 1.125rem;
+  overflow-x: auto;
+  font-family: var(--face-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--ink);
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* About-page avatar. The source backdrop is keyed out, so the disc colour is
    set here rather than baked into the image: a panel fill one step off the
    page, quiet enough that the photo carries the contrast, with the same amber

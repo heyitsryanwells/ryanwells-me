@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { guides } from "@/lib/content";
+import { guides, guidesIndex } from "@/lib/guides";
 import {
   Container,
   PageHeader,
@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "Guides",
   description:
-    "Templates, playbooks, and field guides for building revenue systems that hold up in production.",
+    "Write-ups from revenue systems built and kept running in production.",
 };
 
 export default function GuidesPage() {
@@ -21,7 +21,7 @@ export default function GuidesPage() {
         sectionRef="03"
         label="Guides"
         title="Templates and playbooks"
-        lede="Every guide here comes out of a system I actually built and had to defend. Take what's useful."
+        lede={guidesIndex.lede}
       />
 
       <Section top="tight">
@@ -29,7 +29,7 @@ export default function GuidesPage() {
           <SectionHead
             sectionRef="01"
             label="Index"
-            note={`${guides.length} entries`}
+            note={`${guides.length} ${guides.length === 1 ? "entry" : "entries"}`}
           />
           <div>
             {guides.map((guide) => (
@@ -39,13 +39,12 @@ export default function GuidesPage() {
                 title={guide.title}
                 body={guide.dek}
                 meta={guide.format}
-                href={guide.href}
+                href={`/guides/${guide.slug}`}
               />
             ))}
           </div>
         </Container>
       </Section>
-
     </>
   );
 }

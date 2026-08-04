@@ -1,9 +1,5 @@
-import {
-  expertise,
-  guides,
-  hero,
-  site,
-} from "@/lib/content";
+import { expertise, hero, site } from "@/lib/content";
+import { guides } from "@/lib/guides";
 import { capabilityIcons } from "@/components/icons";
 import { SpaceBackdrop } from "@/components/space-backdrop";
 import { StackMarquee } from "@/components/stack-marquee";
@@ -140,11 +136,10 @@ export default function Home() {
             sectionRef="02"
             label="Guides"
             title="Templates and playbooks"
-            note={`${guides.length} available`}
+            note={`${guides.length} ${guides.length === 1 ? "entry" : "entries"}`}
           />
           <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted">
-            The documents I wish someone had handed me before I rebuilt these
-            systems the hard way.
+            Write-ups from systems I built and then had to keep running.
           </p>
           <div>
             {featured.map((guide) => (
@@ -154,7 +149,7 @@ export default function Home() {
                 title={guide.title}
                 body={guide.dek}
                 meta={guide.format}
-                href={guide.href}
+                href={`/guides/${guide.slug}`}
               />
             ))}
           </div>
