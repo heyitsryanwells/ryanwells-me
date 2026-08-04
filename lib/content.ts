@@ -44,8 +44,14 @@ export const nav = [
 export const hero = {
   greeting: "Hi, I'm",
   firstName: "Ryan",
-  intro:
-    "I'm a Revenue Operator drawing on over 10 years in CX to build systems that serve the people actually using them.",
+  // Split so the role can carry the accent. site.tagline keeps the plain
+  // string, since meta descriptions cannot hold markup.
+  intro: {
+    before: "I'm a ",
+    emphasis: "Revenue Operator",
+    after:
+      " drawing on over 10 years in CX to build systems that serve the people actually using them.",
+  },
   primaryCta: { label: "Browse the guides", href: "/guides" },
   secondaryCta: { label: "Get in touch", href: "/contact" },
   portraitAlt:

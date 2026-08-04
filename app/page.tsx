@@ -46,7 +46,9 @@ export default function Home() {
               </h1>
 
               <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted sm:text-xl lg:max-w-2xl">
-                {hero.intro}
+                {hero.intro.before}
+                <span className="text-accent">{hero.intro.emphasis}</span>
+                {hero.intro.after}
               </p>
 
               <div className="mt-9 flex flex-wrap gap-3">
