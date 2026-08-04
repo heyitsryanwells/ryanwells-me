@@ -48,9 +48,9 @@ export const guides: Guide[] = [
             items: [
               "Setup time scaled with the number of customers we signed",
               "No two plans had the same shape, so no two could be compared",
-              "Progress lived in somebody's head",
             ],
           },
+          { type: "quote", text: "Progress lived in somebody's head." },
         ],
       },
       {
@@ -103,7 +103,11 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "Phases are sequential and cannot overlap. Every subtask has to come back in the output, and every date has to fall inside the window. Those constraints are in the prompt, and they are also checked on the way out, because a model that is right most of the time still needs a floor under it.",
+            text: "Phases are sequential and cannot overlap. Every subtask has to come back in the output, and every date has to fall inside the window. Those constraints are in the prompt, and they are checked again on the way out.",
+          },
+          {
+            type: "quote",
+            text: "A model that is right most of the time still needs a floor.",
           },
         ],
       },
@@ -146,32 +150,44 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "The migration itself was a one-time task that read the old file and wrote it to S3. It ran once, and the very next commit deleted it. Migration code that stays in the repo is migration code that eventually runs again by accident, usually at a worse moment.",
+            text: "The migration itself was a one-time task that read the old file and wrote it to S3. It ran once, and the very next commit deleted it.",
+          },
+          {
+            type: "quote",
+            text: "Migration code left in the repo runs again by accident.",
           },
         ],
       },
       {
-        heading: "The command list I did not design",
+        heading: "Commands",
         blocks: [
           {
             type: "p",
-            text: "The app shipped with one command. Everything after it was specified by CS, usually within minutes of them hitting the gap.",
+            text: "The app shipped with /launch and nothing else, and I was writing /launch status the same day. The first question after \"can you build it\" was \"how do I see it\", which in hindsight is the obvious question and should not have been a surprise.",
+          },
+          {
+            type: "quote",
+            text: "Anything that creates work has to answer for it.",
+          },
+          {
+            type: "p",
+            text: "That part is knowable before you write a line. A command that creates an object implies a command to read it, one to change it, and one to close it out. LaunchPad has all four, plus two for finding things, and every command after the first got written under pressure because somebody had already walked into the gap.",
           },
           {
             type: "list",
             items: [
-              "/launch — create a plan. The original, and for about an hour the only one.",
-              "/launch status — the first question after \"can you build it\" was \"how do I see it\". Same day.",
-              "/launch complete — plans need an end state, or the weekly summary keeps talking about customers who launched months ago.",
-              "/launch summary — an on-demand version of the Friday job, because people wanted it on their own schedule and not mine.",
-              "/launch reschedule — launches slip. This re-dates every task in place.",
-              "/launch help — added once the surface passed four commands and I stopped being able to answer from memory.",
-              "/launch list — started as a diagnostic I built for myself, and became a user-facing index of every plan.",
+              "/launch creates the plan.",
+              "/launch status reads it: phase-by-phase progress and anything overdue.",
+              "/launch reschedule updates it. Launches slip, and this re-dates every task in place.",
+              "/launch complete closes it, so the Friday summary stops reporting on customers who went live months ago.",
+              "/launch summary runs the Friday summary on demand, for people who wanted it on their own schedule.",
+              "/launch list shows every plan. It started as a diagnostic I built for myself and turned out to be the thing CS wanted most.",
+              "/launch help, once the surface passed four commands and I stopped being able to answer from memory.",
             ],
           },
           {
-            type: "quote",
-            text: "Not one of those was in the original design. The only one I would have guessed is status.",
+            type: "p",
+            text: "Create, read, update, close, find. That is the shape of any object in any system, and sketching it out first would have cost an afternoon and saved most of a month of small releases.",
           },
         ],
       },
@@ -184,7 +200,11 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "That was wrong often enough to be annoying, and a weekly report that is wrong often enough to be annoying is a weekly report nobody reads. A task can be overdue and completely fine, because the work happened, the customer confirmed it in the channel, and nobody went back to tick the box.",
+            text: "That was wrong often enough to be annoying. A task can be overdue and completely fine, because the work happened, the customer confirmed it in the channel, and nobody went back to tick the box.",
+          },
+          {
+            type: "quote",
+            text: "A report nobody trusts is a report nobody reads.",
           },
           {
             type: "p",
@@ -198,12 +218,12 @@ export const guides: Guide[] = [
           {
             type: "list",
             items: [
-              "Ship one command. The rest of the surface gets specified for you by the people using it, and their version is better than the one you would have drawn.",
+              "Sketch the whole lifecycle before you build the first command. Create, read, update, close, find.",
               "Give the model a narrow job and a JSON contract, then validate the output anyway.",
-              "Let config beat the model. A wrong classification should be a one-line fix, not a prompt rewrite.",
+              "Let config beat the model, so a wrong classification is a one-line config fix.",
               "Assume the disk is ephemeral before the platform teaches you.",
               "Delete migration code in the commit after it runs.",
-              "The status command matters as much as the create command. Anything that generates work also has to answer for it.",
+              "Ship the read path with the write path. They are one feature wearing two names.",
             ],
           },
         ],

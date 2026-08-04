@@ -65,8 +65,8 @@ export const stack = {
   /**
    * Marks are normalized to trimmed transparent WebP at 120px tall by
    * scripts/logos.js. They are rendered as white silhouettes rather than in
-   * brand colour: 7 of the 12 measured below 90 mean luminance and would have
-   * disappeared against the black band. Whitening also makes 12 different
+   * brand colour: 9 of the 14 measure below 90 mean luminance and would have
+   * disappeared against the black band. Whitening also makes 14 different
    * brand systems read as one set.
    *
    * An entry without `logo` falls back to its wordmark.
@@ -85,6 +85,7 @@ export const stack = {
     { name: "Slack", logo: "/logos/slack.webp" },
     { name: "Vector", logo: "/logos/vector.webp" },
     { name: "RevenueHero", logo: "/logos/revenuehero.webp" },
+    { name: "Wispr Flow", logo: "/logos/wisprflow.webp" },
   ],
 };
 

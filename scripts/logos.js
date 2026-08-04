@@ -5,13 +5,23 @@
  * wildly different sizes, some with transparency and some on a solid
  * background. Everything comes out as a trimmed transparent WebP at a uniform
  * height so the marquee can treat them identically.
+ *
+ *   node scripts/logos.js
+ *
+ * Reads ../assets/logos-original, which is outside the published site repo
+ * and holds the original download for every mark. Add a new tool by dropping
+ * its source there and adding a line to MAP.
  */
 const sharp = require("sharp");
 const path = require("path");
 const fs = require("fs");
 
-const SRC = "/Users/ryan/Downloads";
-const OUT = "/Users/ryan/projects/ryanwells-me/public/logos";
+// Sources are archived in the repo, not read out of ~/Downloads. Downloads
+// gets cleared; these have to survive that. OUT is resolved from __dirname
+// because the repo has moved once already and an absolute path went stale
+// without anything failing loudly.
+const SRC = path.join(__dirname, "..", "..", "assets", "logos-original");
+const OUT = path.join(__dirname, "..", "public", "logos");
 
 const MAP = [
   ["salesforce.svg", "salesforce"],
@@ -27,6 +37,7 @@ const MAP = [
   ["vector_logo.svg", "vector"],
   ["revenuehero.svg", "revenuehero"],
   ["slack.svg", "slack"],
+  ["wisprflow.png", "wisprflow"],
 ];
 
 const H = 120; // 2x the ~60px display height
