@@ -318,7 +318,10 @@ export const about = {
       role: "Senior Revenue Operations Manager",
       org: "Ambition",
       detail:
-        "Sole revenue operator across Sales, Marketing and CX. Rebuilt the CRM foundation, stood up campaign and attribution infrastructure, moved CX onto a new support platform, and put AI agents to work in production.",
+        // Two sentences on purpose. The gerunds are work still underway, the
+        // past tense is work that shipped. A single list would have to pick
+        // one tense and misstate half of it.
+        "Sole revenue operator across Sales, Marketing and CX. Cleaning and rebuilding our CRM foundations, standing up campaigns and attribution infrastructure. Moved CX onto a new support platform and put AI agents to work in production.",
     },
     {
       period: "2024 — 2025",
