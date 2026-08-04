@@ -1,103 +1,45 @@
 import type { Metadata } from "next";
-import { contact, site } from "@/lib/content";
-import { ContactForm } from "@/components/contact-form";
-import {
-  Container,
-  Label,
-  PageHeader,
-  Section,
-  SectionHead,
-  SpecList,
-  SpecRow,
-} from "@/components/ui";
+import { contact } from "@/lib/content";
+import { Container, PageHeader, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: contact.lede,
+  description: contact.metaDescription,
 };
 
 /**
- * Page shell stays a server component. The only thing that ships as client
- * code is <ContactForm />, which owns all of the state and the post.
+ * The whole page is a title, a line, and two links.
  *
- * The address itself is gone from the page. What used to be a mailto CTA
- * printing hellofromryanwells@gmail.com in 20px type is now the form, and the
- * only remaining route to the inbox is the "Email" row in Elsewhere, which
- * renders a label and keeps the address in the href.
+ * Everything here is sized up from the site's usual scale. The rest of the
+ * site is dense on purpose, but a page with three elements on it reads as
+ * unfinished at that size, so the links carry display type and the brackets
+ * do the pointing.
  */
 export default function ContactPage() {
   return (
     <>
-      <PageHeader
-        sectionRef="05"
-        label="Contact"
-        title={contact.heading}
-        lede={contact.lede}
-      />
+      <PageHeader sectionRef="05" label="Contact" title={contact.heading} />
 
       <Section top="tight">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
-            <div className="max-w-2xl">
-              <SectionHead
-                sectionRef="01"
-                label={contact.form.label}
-                note={contact.form.note}
-              />
-              <ContactForm />
+          <p className="max-w-2xl text-xl leading-relaxed text-ink sm:text-2xl">
+            {contact.intro}
+          </p>
 
-              <div className="mt-16">
-                <SectionHead
-                  sectionRef="02"
-                  label="Reasons to write"
-                  note={`${contact.reasons.length} entries`}
-                />
-                <div>
-                  {contact.reasons.map((reason) => (
-                    <SpecRow
-                      key={reason.ref}
-                      sectionRef={reason.ref}
-                      title={reason.title}
-                      body={reason.body}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <aside>
-              <Label className="pb-2 text-ink">
-                Details
-              </Label>
-              <SpecList
-                className="mt-1"
-                items={[
-                  { label: "Reply", value: "Usually within a few days" },
-                  { label: "Based in", value: "Knoxville, Tennessee" },
-                ]}
-              />
-
-              <Label className="mt-9 block pb-2 text-ink">
-                Elsewhere
-              </Label>
-              <ul className="mt-1">
-                {site.socials.map((social) => (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      target={
-                        social.href.startsWith("mailto:") ? undefined : "_blank"
-                      }
-                      rel="noreferrer"
-                      className="type-label block py-3 text-muted transition-colors hover:text-accent"
-                    >
-                      {social.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </aside>
-          </div>
+          <ul className="mt-12 space-y-7 sm:mt-14 sm:space-y-8">
+            {contact.links.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel="noreferrer"
+                  className="bracket-link type-heading inline-block text-3xl text-ink transition-colors hover:text-accent sm:text-4xl"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </Container>
       </Section>
     </>
