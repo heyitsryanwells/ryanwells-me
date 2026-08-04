@@ -92,6 +92,8 @@ export const expertise = {
   heading: "Areas of work",
   subheading:
     "Six areas I own at Ambition. Each one is live, and each one has broken on me at least once.",
+  // One sentence each. Three-sentence bodies read as a stutter across six
+  // cards, and tool names ate the room the function needed.
   // Order is a priority signal, and the top row carries the most weight.
   // Deal desk sits at 05 on purpose: it is real work, and it is the least
   // interesting thing here to a reader deciding whether to keep going.
@@ -100,37 +102,37 @@ export const expertise = {
       ref: "01",
       icon: "architecture",
       title: "Salesforce Architecture",
-      body: "Get the data model wrong and every report downstream inherits the mistake, so this is where I'm most careful. Contracts, orders, line-item economics, validation rules. Access runs on permission sets so it stays legible as the org grows.",
+      body: "Every report downstream inherits whatever the data model gets wrong, so contracts, orders, line-item economics, and validation rules are where I'm most careful.",
     },
     {
       ref: "02",
       icon: "dataQuality",
       title: "Data Quality & Enrichment",
-      body: "Records go stale the moment you stop looking at them. People change jobs, emails bounce, duplicates creep back in. I handle contact lifecycle design, departure detection, and enrichment through Lusha and Wiza, filling the gaps without paying for the same record twice.",
+      body: "Records go stale the moment you stop looking at them, so lifecycle design, deduplication, and departure detection all run on a schedule.",
     },
     {
       ref: "03",
       icon: "automation",
       title: "GTM Automation & AI",
-      body: "I automate across n8n, Zapier, and the CRM itself, and I run AI agents against production systems through MCP. Most of what I'm removing is manual steps that work fine right up until the quarter nobody remembers to run them.",
+      body: "I automate the manual steps that work fine right up until the quarter nobody remembers to run them, and increasingly I hand that work to agents.",
     },
     {
       ref: "04",
       icon: "pipeline",
       title: "Pipeline, Campaigns & Attribution",
-      body: "Campaign hierarchy, inbound routing through RevenueHero, list sync running between HubSpot and Salesforce. Attribution is the hard part. Landing on a number that survives contact with the actual funnel takes more argument than math.",
+      body: "Attribution takes more argument than math, and it sits on top of campaign hierarchy, inbound routing, and list sync between marketing and sales.",
     },
     {
       ref: "05",
       icon: "reporting",
       title: "Deal Desk & Revenue Reporting",
-      body: "Deal structure gets reviewed before it reaches paper, and modeled off line items so the numbers still hold a year later. Reporting ties back to what was actually signed. That settles most arguments about whose figure is right.",
+      body: "Deal structure gets reviewed before it reaches paper and modeled off line items, so the reporting still ties back to what was signed a year later.",
     },
     {
       ref: "06",
       icon: "governance",
       title: "Governance & Enablement",
-      body: "None of this is glamorous. Role hierarchy, access reviews, change management. I spend about as much time on documentation and training as on the build itself, because a system nobody adopts is one I end up operating by hand.",
+      body: "Documentation and training get as much of my time as role hierarchy and access reviews, because a system nobody adopts is one I end up operating by hand.",
     },
     // `as const` so each `icon` narrows to a literal and indexes the icon map
     // without a cast. A typo here becomes a build error, not a blank card.
