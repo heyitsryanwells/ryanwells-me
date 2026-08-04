@@ -179,7 +179,7 @@ on submit
           },
           {
             type: "p",
-            text: "Both the Anthropic and S3 clients read from the environment. Neither constructor takes arguments, and S3 finds its region and credentials in the standard variables or an attached role.",
+            text: "The Anthropic client reads its key from the environment, so the constructor takes no arguments.",
           },
           {
             type: "code",
@@ -193,9 +193,7 @@ SF_LOGIN_URL           the login or sandbox host
 SF_USERNAME
 SF_PASSWORD
 SF_SECURITY_TOKEN      appended to the password on login
-AWS_S3_BUCKET_NAME     unset locally, set in production
-ACCOUNTS_S3_KEY        per-app prefix inside a shared bucket
-AWS_REGION             the S3 client is built with no options
+DATA_DIR               the mounted volume path, unset locally
 PORT`,
           },
           {
@@ -293,20 +291,20 @@ Call two, schedule:
           },
           {
             type: "p",
-            text: "Container filesystems do not survive a deploy. On Railway that has a clean answer: attach a persistent volume and the file stays where you left it. Stopping there is a legitimate choice, and for a while it was the right one.",
+            text: "Container filesystems do not survive a deploy. Railway has a clean answer: attach a volume, mount it, and write the file to the mounted path. That is the whole fix, it costs one setting, and it is where this can reasonably stop.",
           },
           {
             type: "p",
-            text: "Object storage is the step after that. A volume ties the app to the host that provides it. A bucket travels. Write the store module so the backend is a runtime decision: with a bucket name in the environment, read and write a single JSON object; with no bucket name, fall back to a local file for development. The same build then runs in both places.",
+            text: "Write the store module so the path is a runtime decision anyway. Read the mount point from the environment and fall back to a local file when it is unset, so the same build runs on your laptop and on the host. A volume does tie the app to whoever provides it, and if you later move somewhere with no volumes on offer, swapping the file for an object in a bucket is a change inside that one module.",
           },
           {
             type: "code",
             caption: "The storage rule, as a comment in the store module",
-            code: `// Storage backend:
-//   - If AWS_S3_BUCKET_NAME is set (production), persist
-//     accounts.json to object storage. Container disks are
-//     ephemeral, so local files do not survive a redeploy.
-//   - Otherwise (local dev), fall back to a JSON file on disk.`,
+            code: `// Storage backend. Container disks do not survive a
+// deploy, so the file has to live on a mounted volume.
+//   - DATA_DIR set:   write accounts.json there.
+//   - DATA_DIR unset: fall back to a local file, for dev.
+// Nothing above this module knows which one it got.`,
           },
           {
             type: "p",
@@ -314,11 +312,11 @@ Call two, schedule:
           },
           {
             type: "p",
-            text: "One wrinkle worth stealing: if the bucket is shared with other applications, a bare accounts.json key collides with whatever else is in there. Put the object under a per-application prefix that arrives as an environment variable.",
+            text: "If the volume is ever shared, or if you do move to a bucket later, namespace the file under a per-application prefix from the environment. A bare accounts.json collides with whatever else is in there.",
           },
           {
             type: "p",
-            text: "Migrate with a one-time task that reads the old file and writes it to the bucket, then delete the task in the commit right after it runs. Migration code left in the repo runs again by accident, usually at a worse moment.",
+            text: "If you do move the store, migrate with a one-time task and delete the task in the commit right after it runs. Migration code left in the repo runs again by accident, usually at a worse moment.",
           },
         ],
       },
@@ -442,14 +440,13 @@ Monday, and collect any subtask the model dropped into a
 warnings list shown in the confirmation message.
 
 STORAGE
-Assume the filesystem is ephemeral. Write one store module
-with init, save, get, list and listActive. With a bucket name
-present in the environment, read and write a single JSON
-object in object storage; with no bucket name, fall back to a
-local file for development. Prime an in-memory cache at
-startup so reads stay synchronous. Namespace the object key
-under a per-app prefix from the environment, since the bucket
-may be shared with other applications.
+Assume the container filesystem is ephemeral and that the host
+provides a mounted volume. Write one store module with init,
+save, get, list and listActive. Read the directory from
+DATA_DIR and fall back to a local file when it is unset, so the
+same build runs locally and deployed. Prime an in-memory cache
+at startup so reads stay synchronous. Keep every path decision
+inside this module.
 Store per plan: list id, channel id, launch date, length in
 days, the three owner user ids, status, created and completed
 dates, and last week's task snapshot.
