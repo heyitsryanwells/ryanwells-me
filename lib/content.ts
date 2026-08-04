@@ -369,7 +369,7 @@ export const about = {
     // made. Earlier drafts were funnier and invented more (a garage, morning
     // runs, knowing his air filter size by heart), which is the wrong trade in
     // the one paragraph an interviewer might quote at him.
-    body: "Knoxville native, still here, with my beautiful wife and three kids. I run, mountain bike, and play video games. I'm a Costco guy and pretty much your stereotypical homeowner, so there is always one thing in the house I have been meaning to get to. Fall Saturdays belong to the Vols.",
+    body: "Knoxville native, still here, with my beautiful wife and three kids. I run, mountain bike, and play video games. I'm a Costco dad and pretty much your stereotypical homeowner, so there is always one thing in the house I have been meaning to get to. During football, basketball, and baseball season, you will catch me cheering on the Vols.",
   },
 };
 
