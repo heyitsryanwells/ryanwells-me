@@ -211,45 +211,42 @@ export const expertise = {
  *
  * One category per job the stack does, which leaves six of the nine holding a
  * single tool. That is the signal: the function is covered by exactly one
- * thing. The page renders these as table rows, so a one-entry category costs a
- * line, and the old four-wide grid of near-empty rows is gone.
+ * thing.
  *
- * Order is Ryan's. Refs are sequential and zero-padded to match the rest of
- * the document, so inserting a category means renumbering everything below it.
+ * The category is the heading on the page, so there are no refs here. Nine is
+ * also the count the layout is built on: the grid runs 1 or 3 columns, and
+ * both divide nine, so the last row fills. Changing the count means checking
+ * that too.
+ *
+ * Order is Ryan's, and it earns its keep: the six single-tool categories come
+ * first, so the three that hold more than one land together on the last row.
  */
 export const toolCategories = [
   {
-    ref: "01",
     category: "CRM",
     tools: [{ name: "Salesforce", href: "https://salesforce.com" }],
   },
   {
-    ref: "02",
     category: "Marketing Automation",
     tools: [{ name: "HubSpot", href: "https://hubspot.com" }],
   },
   {
-    ref: "03",
     category: "Support & Customer Lifecycle",
     tools: [{ name: "Pylon", href: "https://usepylon.com" }],
   },
   {
-    ref: "04",
     category: "Call Intelligence",
     tools: [{ name: "Gong", href: "https://gong.io" }],
   },
   {
-    ref: "05",
     category: "Sales Engagement",
     tools: [{ name: "Outreach", href: "https://outreach.io" }],
   },
   {
-    ref: "06",
     category: "Inbound Routing",
     tools: [{ name: "RevenueHero", href: "https://revenuehero.io" }],
   },
   {
-    ref: "07",
     category: "AI & Orchestration",
     tools: [
       { name: "Claude", href: "https://claude.com" },
@@ -257,7 +254,6 @@ export const toolCategories = [
     ],
   },
   {
-    ref: "08",
     category: "Data Enrichment & Signals",
     tools: [
       { name: "Wiza", href: "https://wiza.co" },
@@ -265,16 +261,11 @@ export const toolCategories = [
     ],
   },
   {
-    ref: "09",
     category: "Where Work Happens",
     tools: [
       { name: "Linear", href: "https://linear.app" },
       { name: "Granola", href: "https://granola.ai" },
       { name: "Slack", href: "https://slack.com" },
-      // No mark yet. The logo lookup reads `stack`, which Wispr Flow is not on,
-      // so this entry shows its name over an empty mark slot until an asset
-      // goes through scripts/logos.js. Adding it to `stack` also puts it in the
-      // home page strip, so the two stay in step.
       { name: "Wispr Flow", href: "https://wisprflow.ai" },
     ],
   },
@@ -359,12 +350,95 @@ export const about = {
   },
 };
 
+/**
+ * Where the contact form posts.
+ *
+ * PLACEHOLDER. Nothing is listening on this value and it is not a URL. The site
+ * is a static export with no server, so the form has to post straight from the
+ * browser to a hosted form service. Pick one, paste the endpoint it gives you
+ * here, and the form turns itself on.
+ *
+ * While this stays a placeholder the form keeps its send button switched off
+ * and says so on the page, so nobody writes a message into a dead end.
+ *
+ * Services that take a plain JSON post from the browser and work with the code
+ * as written: Formspree, Web3Forms, Getform, Basin. The endpoint is visible to
+ * anyone who views source. Every one of these services is built that way, and
+ * it is safe to commit.
+ */
+export const contactFormEndpoint: string = "PASTE_FORM_ENDPOINT_URL_HERE";
+
+/**
+ * Only Web3Forms needs this. It posts every form to one shared URL and
+ * identifies the recipient by an access key in the body. Leave it empty for
+ * Formspree, Getform and Basin, where the endpoint itself is the identifier.
+ */
+export const contactFormAccessKey: string = "";
+
+/** The form enables itself once the placeholder above becomes a real URL. */
+export const contactFormReady = contactFormEndpoint.startsWith("https://");
+
 export const contact = {
   heading: "Contact",
-  lede: "The best way to reach me is email. I read everything, and I answer anything specific.",
+  lede: "Write to me with the form below. I read everything, and I answer anything specific.",
+  // Each reason doubles as an option in the form's reason select, so the list
+  // people read and the list they pick from can never drift apart. `option` is
+  // the short label; `title` is the second-person version the page shows.
   reasons: [
-    { ref: "01", title: "You're stuck on a systems problem", body: "Describe it in a few sentences. If I've hit the same wall I'll tell you what worked." },
-    { ref: "02", title: "You want to talk about advisory work", body: "Tell me the scope and the timeline and we'll figure out whether I'm the right fit." },
-    { ref: "03", title: "You want me to write or speak", body: "Send the audience, the topic, and the date." },
+    { ref: "01", option: "A systems problem", title: "You're stuck on a systems problem", body: "Describe it in a few sentences. If I've hit the same wall I'll tell you what worked." },
+    { ref: "02", option: "Advisory work", title: "You want to talk about advisory work", body: "Tell me the scope and the timeline and we'll figure out whether I'm the right fit." },
+    { ref: "03", option: "Writing or speaking", title: "You want me to write or speak", body: "Send the audience, the topic, and the date." },
   ],
+  form: {
+    label: "Send a message",
+    note: "All fields required",
+    // Appended to the reason select so anything outside the three reasons above
+    // still has a home.
+    otherOption: "Something else",
+    fields: {
+      name: {
+        label: "Name",
+        required: "Tell me your name so I know who I'm answering.",
+      },
+      email: {
+        label: "Email",
+        hint: "This is where the reply goes.",
+        required: "I need an email address to reply to.",
+        invalid: "That address is missing something. Check it and try again.",
+      },
+      reason: {
+        label: "Reason",
+        prompt: "Pick one",
+        required: "Pick the closest reason so I can route it.",
+      },
+      message: {
+        label: "Message",
+        hint: "Specifics get specific answers.",
+        required: "Add a message before sending.",
+        tooShort: "A few more words would help me answer well.",
+      },
+    },
+    // Front of the subject line on the mail the form service sends, with the
+    // chosen reason after it.
+    subjectPrefix: "ryanwells.me contact",
+    submit: "Send message",
+    submitting: "Sending",
+    success: {
+      heading: "Message sent",
+      // {name} is replaced with whatever they typed.
+      body: "Thanks, {name}. It landed in my inbox. I read everything and usually reply within a few days.",
+      again: "Send another message",
+    },
+    error: {
+      heading: "That didn't send",
+      body: "The message did not get through. Everything you wrote is still here, so you can try again.",
+    },
+    unconfigured: {
+      heading: "The form is switched off",
+      body: "It has no delivery service wired up yet, so nothing typed here would reach me. Reach me on one of these.",
+    },
+    // Shown in both failure panels above, so there is always a route that
+    // works even when the form does not.
+    fallbackEmail: "Email me directly",
+  },
 };

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { contact, site } from "@/lib/content";
+import { ContactForm } from "@/components/contact-form";
 import {
-  BracketLink,
   Container,
   Label,
   PageHeader,
@@ -16,6 +16,15 @@ export const metadata: Metadata = {
   description: contact.lede,
 };
 
+/**
+ * Page shell stays a server component. The only thing that ships as client
+ * code is <ContactForm />, which owns all of the state and the post.
+ *
+ * The address itself is gone from the page. What used to be a mailto CTA
+ * printing hellofromryanwells@gmail.com in 20px type is now the form, and the
+ * only remaining route to the inbox is the "Email" row in Elsewhere, which
+ * renders a label and keeps the address in the href.
+ */
 export default function ContactPage() {
   return (
     <>
@@ -32,24 +41,27 @@ export default function ContactPage() {
             <div className="max-w-2xl">
               <SectionHead
                 sectionRef="01"
-                label="Reasons to write"
-                note={`${contact.reasons.length} entries`}
+                label={contact.form.label}
+                note={contact.form.note}
               />
-              <div>
-                {contact.reasons.map((reason) => (
-                  <SpecRow
-                    key={reason.ref}
-                    sectionRef={reason.ref}
-                    title={reason.title}
-                    body={reason.body}
-                  />
-                ))}
-              </div>
+              <ContactForm />
 
-              <div className="mt-10">
-                <BracketLink href={`mailto:${site.email}`}>
-                  {site.email}
-                </BracketLink>
+              <div className="mt-16">
+                <SectionHead
+                  sectionRef="02"
+                  label="Reasons to write"
+                  note={`${contact.reasons.length} entries`}
+                />
+                <div>
+                  {contact.reasons.map((reason) => (
+                    <SpecRow
+                      key={reason.ref}
+                      sectionRef={reason.ref}
+                      title={reason.title}
+                      body={reason.body}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -60,8 +72,8 @@ export default function ContactPage() {
               <SpecList
                 className="mt-1"
                 items={[
-                  { label: "Email", value: site.email },
                   { label: "Reply", value: "Usually within a few days" },
+                  { label: "Based in", value: "Knoxville, Tennessee" },
                 ]}
               />
 

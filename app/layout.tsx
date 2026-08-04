@@ -3,6 +3,7 @@ import { Archivo, Archivo_Narrow, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { SiteSpace } from "@/components/space-backdrop";
 import { site } from "@/lib/content";
 
 /**
@@ -77,6 +78,14 @@ export default function RootLayout({
       className={`${faceBody.variable} ${faceMono.variable} ${faceDisplay.variable} h-full`}
     >
       <body className="flex min-h-full flex-col bg-paper text-ink">
+        {/* The sky, on every route. Fixed to the viewport at z-0, so the two
+            things after it that would otherwise paint underneath a positioned
+            element (main, and the footer, neither of which is positioned) are
+            lifted to z-10. The nav is already sticky at z-40. Doing it here
+            rather than with a negative z-index keeps the stacking explicit
+            instead of leaning on the body background propagating to the
+            canvas. */}
+        <SiteSpace />
         <a
           href="#main"
           className="type-label sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
@@ -84,10 +93,12 @@ export default function RootLayout({
           Skip to content
         </a>
         <Nav />
-        <main id="main" className="flex-1">
+        <main id="main" className="relative z-10 flex-1">
           {children}
         </main>
-        <Footer />
+        <div className="relative z-10">
+          <Footer />
+        </div>
       </body>
     </html>
   );

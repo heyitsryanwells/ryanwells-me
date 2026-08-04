@@ -414,16 +414,21 @@ body {
   }
 }
 
-/* Starfield behind the hero, echoing the portrait's own sky.
+/* Starfield, echoing the portrait's own sky.
    Baked as an inline SVG data URI, so it costs no extra request. Masked so it
    dissolves downward rather than ending on an edge. Peak star opacity is 0.55
    on 1-2px dots, which is far too little coverage to affect the contrast of
-   text sitting over it. */
+   text sitting over it.
+
+   Two frames share the one field. `.starfield` scopes it to a section a page
+   has marked; `.site-space` is the layout's viewport-wide layer. The
+   declarations below are common to both; what differs follows. */
 .starfield {
   position: relative;
 }
 
-.starfield::before {
+.starfield::before,
+.site-space::before {
   content: "";
   position: absolute;
   inset: -2rem 0 0 0;
@@ -442,6 +447,48 @@ body {
    direct child, which silently overrode `absolute` on the space backdrop and
    collapsed it to a zero-width flow element. */
 
+/* The site-wide sky, rendered once in the root layout so every route stands on
+   the same ground.
+
+   Fixed to the viewport rather than stretched over the document. Two reasons.
+   The field is a single 1400x900 image sized with `cover`, so on a 4000px
+   document it would scale up more than four times and the 1px stars would
+   render as 5px blocks. And stars that far away have no parallax: holding them
+   still while the page scrolls is what they would actually do.
+
+   Sits at z-0 with `main` and the footer lifted to z-10 in the layout, so
+   nothing here can ever paint over content. */
+.site-space {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.site-space::before {
+  inset: 0;
+  /* No downward dissolve. That mask exists to end a section's field without a
+     visible edge; this one has no edge to hide, and a viewport-locked fade
+     would park a permanent dim band at the bottom of the screen. */
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* One field, ever.
+   Home and About each wrap a section in `.starfield`, and the layout now lays
+   a field under every route. Painting both would stack two copies of the same
+   image at different scales and visibly double the star density on exactly
+   those two pages. So where the layout's layer exists, the page-level one
+   stops painting and keeps only its other job: being the positioning context
+   its ornaments (the moon, the satellite, the shooting stars) are absolutely
+   placed against. Any number of `.starfield` elements now produce exactly one
+   field, and if the layout layer is ever removed the page-level fields come
+   back on their own. */
+body:has(> .site-space) .starfield::before {
+  content: none;
+}
+
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -457,7 +504,11 @@ body {
   }
 
   /* Infinite animations crushed to 0.01ms strobe. Stop them instead: the
-     strip becomes a static row and the shooting stars simply never fire. */
+     strip becomes a static row and the shooting stars simply never fire.
+
+     This covers the site-wide layer too. Every moving thing in it is one of
+     these two classes, which is the reason it reuses them rather than growing
+     its own; the layer's static artwork keeps its place either way. */
   .marquee__track {
     animation: none !important;
   }
@@ -471,4 +522,110 @@ body {
     animation: none !important;
     opacity: 0 !important;
   }
+}
+
+/* --- Form controls -------------------------------------------------------- */
+
+/* Square, flat, panel-filled. Same vocabulary as .code-block: a one-step-off
+   fill inside a hairline, with nothing rounded or raised. Text sits at 16px
+   because anything smaller makes iOS Safari zoom the page on focus, and the
+   11px mono labels above already supply the type contrast. */
+.field-control {
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color 160ms ease;
+}
+
+.field-control::placeholder {
+  color: var(--faint);
+}
+
+/* Focus lifts the border to ink; the accent focus ring is applied globally by
+   the :focus-visible rule above. Invalid comes last so an invalid field that
+   is also focused keeps its amber border and gains the ring. */
+.field-control:focus {
+  border-color: var(--ink);
+}
+
+/* The inset ring doubles the amber edge to 2px without changing the border
+   width, which would shift the field by a pixel every time an error appears.
+   A single hairline was too easy to miss on a dark ground. */
+.field-control[aria-invalid="true"] {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.field-control--select {
+  appearance: none;
+  padding-right: 2.5rem;
+  /* Hard triangle, drawn rather than shipped as a font glyph, so the one
+     disclosure marker on the site has no curves in it. */
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='6'><path d='M0 0h9L4.5 6z' fill='%237a8b9e'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.9375rem center;
+}
+
+/* Platforms that paint the option list themselves still read these. */
+.field-control--select option {
+  background-color: var(--panel);
+  color: var(--ink);
+}
+
+textarea.field-control {
+  display: block;
+  resize: vertical;
+  min-height: 9rem;
+}
+
+/* Field help and field errors. Both sit in the body face rather than mono:
+   they are sentences, and 11px tracked uppercase is punishing to read at
+   sentence length. Amber is the caution signal from the palette notes. */
+.field-hint {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--faint);
+}
+
+.field-message {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--accent);
+}
+
+/* Status blocks for the three states the form can be in that are not a plain
+   idle form. The left edge carries the signal colour, amber for caution and
+   green for nominal, which keeps them apart without a second fill. */
+.form-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: 1.125rem 1.25rem;
+}
+
+.form-panel--ok {
+  border-left-color: var(--tertiary);
+}
+
+/* Spam trap. Takes no space, takes no tab stop, and is marked aria-hidden in
+   the markup, so only a bot filling inputs by name ever touches it. Clipped
+   rather than pushed off-canvas: a -9999px offset is a horizontal overflow
+   that some layouts will happily scroll to. */
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }

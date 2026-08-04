@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
 import { stack, toolCategories } from "@/lib/content";
-import { Container, Label, PageHeader, Section, SectionHead } from "@/components/ui";
+import { Container, PageHeader, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Tools",
-  description: "The software I actually run a revenue operation on.",
+  description: "Some of my favorite tools from our GTM tech stack.",
 };
 
 /** Marks live on `stack`, so they are looked up rather than duplicated here. */
 const markFor = (name: string) =>
   stack.items.find((i) => i.name === name && "logo" in i && i.logo)?.logo;
 
-const toolCount = toolCategories.reduce(
-  (total, group) => total + group.tools.length,
-  0,
-);
 
 export default function ToolsPage() {
   return (
@@ -23,42 +19,50 @@ export default function ToolsPage() {
         sectionRef="04"
         label="Stack"
         title="Tools I use"
-        lede="No affiliate links and no rankings. This is what I actually run a revenue operation on, day to day."
+        lede="Some of my favorite tools from our GTM tech stack."
       />
 
       <Section top="tight">
         <Container>
-          <SectionHead
-            sectionRef="01"
-            label="Index"
-            note={`${toolCategories.length} categories, ${toolCount} tools`}
-          />
 
           {/*
-            One row per category, on the same ref / label / content columns the
-            spec rows elsewhere use. Six of the nine categories hold a single
-            tool, which the old four-wide grid rendered as one mark and three
-            empty cells. As rows they cost a line each.
+            Nine category blocks at one or three columns. Both counts divide
+            nine, so the last row always fills; a two-wide step would leave a
+            short row and a hole in the corner. Ryan's order does the rest of
+            the work: the six single-tool categories take the first two rows,
+            which lands the three larger ones together on the last.
 
-            The table only assembles at lg. Below that the four columns leave
-            the marks about 90px of room, so the row stacks instead.
+            Three columns start at md. On a phone they would leave each mark
+            under 100px, and half the wordmarks are wider than that.
           */}
-          <div>
+          <div className="grid gap-x-8 gap-y-12 md:grid-cols-3 md:gap-y-16 lg:gap-x-14">
             {toolCategories.map((group) => (
-              <div
-                key={group.ref}
-                className="grid grid-cols-[3.25rem_1fr] gap-x-4 py-6 lg:grid-cols-[5rem_16rem_1fr] lg:gap-x-8 lg:py-7"
-              >
-                <span className="type-ref pt-1 text-xs text-accent">
-                  {group.ref}/
-                </span>
-                <Label className="pt-1 text-ink">{group.category}</Label>
+              <section key={group.category}>
                 {/*
-                  auto-fill sizes the columns, so the marks keep a 7.5rem floor
-                  at every width. Every category resolves to the same column
-                  width, which lines the entries up vertically from row to row.
+                  The category is the only accent in the block. Everything
+                  under it stays in ink, which keeps nine amber headings
+                  reading as structure on a page that normally spends the
+                  accent once.
+
+                  Two lines are reserved from md up, the widths where the
+                  longer names wrap. Without the reserve, a wrapped heading
+                  drops its own marks half a line below the two beside it.
                 */}
-                <ul className="col-start-2 mt-5 grid grid-cols-[repeat(auto-fill,minmax(7.5rem,1fr))] gap-x-6 gap-y-6 lg:col-start-3 lg:mt-0 lg:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] lg:gap-x-8">
+                <h2 className="type-heading text-lg text-accent md:min-h-[2.1em] lg:text-xl">
+                  {group.category}
+                </h2>
+                {/*
+                  Two tool columns once a block is wide enough for the widest
+                  mark. Wispr Flow measures 147px at this height, and a split
+                  block below xl comes in under that, which would scale the
+                  mark down off the shared baseline. Both multi-tool counts
+                  are even, so the split leaves no stray entry.
+                */}
+                <ul
+                  className={`mt-5 grid gap-6 ${
+                    group.tools.length > 1 ? "xl:grid-cols-2 xl:gap-x-8" : ""
+                  }`}
+                >
                   {group.tools.map((tool) => {
                     const logo = markFor(tool.name);
                     return (
@@ -72,7 +76,7 @@ export default function ToolsPage() {
                           {/*
                             Fixed slot, so marks of different proportions share
                             a baseline and an entry without one keeps its name
-                            level with the rest of the row.
+                            level with the rest of the column.
                           */}
                           <span className="flex h-6 items-end">
                             {logo ? (
@@ -84,7 +88,7 @@ export default function ToolsPage() {
                               />
                             ) : null}
                           </span>
-                          <span className="type-heading text-base transition-colors group-hover:text-accent lg:text-lg">
+                          <span className="type-heading text-base transition-colors group-hover:text-accent">
                             {tool.name}
                           </span>
                         </a>
@@ -92,13 +96,9 @@ export default function ToolsPage() {
                     );
                   })}
                 </ul>
-              </div>
+              </section>
             ))}
           </div>
-
-          <Label className="mt-12 block text-faint">
-            End of list &nbsp;&middot;&nbsp; No paid placements
-          </Label>
         </Container>
       </Section>
     </>
