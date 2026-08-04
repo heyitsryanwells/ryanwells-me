@@ -91,7 +91,7 @@ export const stack = {
 export const expertise = {
   heading: "Areas of work",
   subheading:
-    "Six areas taken end to end, in production, with revenue riding on the outcome.",
+    "Six areas I own at Ambition. Each one is live, and each one has broken on me at least once.",
   // Order is a priority signal, and the top row carries the most weight.
   // Deal desk sits at 05 on purpose: it is real work, and it is the least
   // interesting thing here to a reader deciding whether to keep going.
@@ -100,37 +100,37 @@ export const expertise = {
       ref: "01",
       icon: "architecture",
       title: "Salesforce Architecture",
-      body: "Data models that hold up under real deal structures. Contracts and orders, line-item economics, validation rules, and a permission model built on permission sets that stays legible as the org grows.",
+      body: "Get the data model wrong and every report downstream inherits the mistake, so this is where I'm most careful. Contracts, orders, line-item economics, validation rules. Access runs on permission sets so it stays legible as the org grows.",
     },
     {
       ref: "02",
       icon: "dataQuality",
       title: "Data Quality & Enrichment",
-      body: "Contact lifecycle design, deduplication, departure detection, and enrichment pipelines that fill gaps without spending credits twice. Clean data stays clean through process, run continuously.",
+      body: "Records go stale the moment you stop looking at them. People change jobs, emails bounce, duplicates creep back in. I handle contact lifecycle design, departure detection, and enrichment through Lusha and Wiza, filling the gaps without paying for the same record twice.",
     },
     {
       ref: "03",
       icon: "automation",
       title: "GTM Automation & AI",
-      body: "Workflow automation across n8n, Zapier, and the CRM itself, plus AI agents wired directly into the stack through MCP. The goal is removing manual steps that quietly break every quarter.",
+      body: "I automate across n8n, Zapier, and the CRM itself, and I run AI agents against production systems through MCP. Most of what I'm removing is manual steps that work fine right up until the quarter nobody remembers to run them.",
     },
     {
       ref: "04",
       icon: "pipeline",
       title: "Pipeline, Campaigns & Attribution",
-      body: "Campaign hierarchy, inbound routing, list sync between marketing and sales systems, and attribution that survives contact with the actual funnel.",
+      body: "Campaign hierarchy, inbound routing through RevenueHero, list sync running between HubSpot and Salesforce. Attribution is the hard part. Landing on a number that survives contact with the actual funnel takes more argument than math.",
     },
     {
       ref: "05",
       icon: "reporting",
       title: "Deal Desk & Revenue Reporting",
-      body: "Deal structure reviewed before it reaches the paper, and modeled off line items so the numbers hold. Reporting reconciles back to what was signed, which ends the argument about whose figure is right.",
+      body: "Deal structure gets reviewed before it reaches paper, and modeled off line items so the numbers still hold a year later. Reporting ties back to what was actually signed. That settles most arguments about whose figure is right.",
     },
     {
       ref: "06",
       icon: "governance",
       title: "Governance & Enablement",
-      body: "Role hierarchy, access reviews, and change management, plus the documentation and training that decide whether any of it gets used. A system nobody adopts is a system nobody built.",
+      body: "None of this is glamorous. Role hierarchy, access reviews, change management. I spend about as much time on documentation and training as on the build itself, because a system nobody adopts is one I end up operating by hand.",
     },
     // `as const` so each `icon` narrows to a literal and indexes the icon map
     // without a cast. A typo here becomes a build error, not a blank card.
