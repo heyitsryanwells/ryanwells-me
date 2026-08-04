@@ -242,7 +242,7 @@ export const about = {
       role: "Manager, Support & Operations",
       org: "Ambition",
       detail:
-        "Kept leading the support team while taking on the CRM. Became the Salesforce administrator, evaluated the GTM tech stack, and managed renewals.",
+        "Kept leading the support team while taking on the CRM. Became the Salesforce administrator, right-sized the GTM tech stack, and managed renewals.",
     },
     {
       period: "2022 — 2024",
