@@ -321,14 +321,14 @@ export const about = {
         // Two sentences on purpose. The gerunds are work still underway, the
         // past tense is work that shipped. A single list would have to pick
         // one tense and misstate half of it.
-        "Sole revenue operator across Sales, Marketing and CX. Cleaning and rebuilding our CRM foundations, standing up campaigns and attribution infrastructure. Moved CX onto a new support platform and put AI agents to work in production.",
+        "Dedicated revenue operator across Sales, Marketing and CX. Cleaning and rebuilding our CRM foundations, standing up campaigns and attribution infrastructure. Moved CX onto a new support platform and put AI agents to work in production.",
     },
     {
       period: "2024 — 2025",
       role: "Manager, Support & Operations",
       org: "Ambition",
       detail:
-        "Kept leading the support team while taking on the CRM. Became the Salesforce administrator, right-sized the GTM tech stack, and managed renewals.",
+        "Kept leading the support team while taking on the responsibility of Salesforce admin. Learned and owned the rest of the GTM stack while right-sizing it for our organization.",
     },
     {
       period: "2022 — 2024",
@@ -349,7 +349,7 @@ export const about = {
       role: "Service Desk & TechBar",
       org: "Clayton Homes",
       detail:
-        "11,000 service requests in two years. Built the organisation's first walk-up IT channel and the technician training plan.",
+        "11,000 service requests in two years. Built the organization's first walk-up IT channel and the technician training plan.",
     },
     {
       period: "2010 — 2016",
