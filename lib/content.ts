@@ -318,7 +318,7 @@ export const about = {
       role: "Senior Revenue Operations Manager",
       org: "Ambition",
       detail:
-        "Revenue operations for the whole company, solo. Rebuilt bookings reporting to reconcile against signed contracts, swapped the prospecting stack out for better data, and moved AI agents into production against live systems.",
+        "Sole revenue operator across Sales, Marketing and CX. Rebuilt the CRM foundation, stood up campaign and attribution infrastructure, moved CX onto a new support platform, and put AI agents to work in production.",
     },
     {
       period: "2024 — 2025",
@@ -360,12 +360,13 @@ export const about = {
   // the body with whatever you want people to know about you off the clock.
   personal: {
     heading: "Outside of ops",
-    // Every fact here came from Ryan. The one extrapolation is the closing
-    // clause, which is true of every homeowner alive and so cannot be
-    // repeated back to him as a thing he claimed. Earlier drafts were funnier
-    // and invented more (a garage, morning runs, knowing his air filter size),
-    // which is the wrong trade in the one paragraph an interviewer might quote.
-    body: "Knoxville native, still here, with my beautiful wife and three kids. I run, mountain bike, and play video games. I'm a Costco guy and pretty much your stereotypical homeowner, so there is always one thing in the house I have been meaning to get to.",
+    // Every fact here is Ryan's, including the Vols, which he confirmed.
+    // The one extrapolation is the homeowner clause, which is true of every
+    // homeowner alive and so cannot be repeated back to him as a claim he
+    // made. Earlier drafts were funnier and invented more (a garage, morning
+    // runs, knowing his air filter size by heart), which is the wrong trade in
+    // the one paragraph an interviewer might quote at him.
+    body: "Knoxville native, still here, with my beautiful wife and three kids. I run, mountain bike, and play video games. I'm a Costco guy and pretty much your stereotypical homeowner, so there is always one thing in the house I have been meaning to get to. Fall Saturdays belong to the Vols.",
   },
 };
 
