@@ -251,11 +251,14 @@ export function PageHeader({
   sectionRef,
   label,
   title,
+  subtitle,
   lede,
 }: {
   sectionRef?: string;
   label: string;
   title: string;
+  /** Optional accent line between the title and the lede. */
+  subtitle?: string;
   lede?: string;
 }) {
   return (
@@ -272,8 +275,13 @@ export function PageHeader({
         <h1 className="type-display mt-6 max-w-4xl text-5xl sm:text-7xl">
           {title}
         </h1>
+        {subtitle ? (
+          <p className="type-heading mt-5 text-2xl text-accent sm:text-3xl">
+            {subtitle}
+          </p>
+        ) : null}
         {lede ? (
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg lg:max-w-3xl">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg lg:max-w-3xl">
             {lede}
           </p>
         ) : null}

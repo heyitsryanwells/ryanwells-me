@@ -28,6 +28,7 @@ export default function AboutPage() {
         sectionRef="02"
         label="About"
         title={about.heading}
+        subtitle={site.name}
         lede={about.lede}
       />
 
