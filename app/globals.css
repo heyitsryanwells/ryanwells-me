@@ -23,6 +23,41 @@
    panel, so darken it further only after re-checking contrast.
 --------------------------------------------------------------------------- */
 
+/* ---------------------------------------------------------------------------
+   Section refs: the `NN/` marks
+   ---------------------------------------------------------------------------
+   A ref numbers a set. It earns its place when the number carries
+   information, which takes all three of:
+
+     1. Four or more members, so position helps a reader keep their place.
+     2. Contiguous, stable numbering, so "see 06" points at one thing. A ref
+        is never renumbered into a gap: a run of 01, 02, 03 stays contiguous
+        when an entry is pulled.
+     3. No second counter on screen wearing the same token. One mark counting
+        two sets is what turns the whole system into decoration.
+
+   Where refs belong:
+
+     - The nav. Five entries, fixed order, and the site's only page-level
+       counter.
+     - Items in an enumerated set: the capability cards (8 of them, with the
+       count printed above), the rows in the guides index. The ref is a part
+       number owned by the item, so it sits in the item's own corner or its
+       own grid column.
+     - Sections inside a long document. The guide pages qualify at 8 sections.
+
+   Where they do not:
+
+     - Page headers. The nav numbers every page already and stays on screen
+       while the header is read. That slot also doubled as a guide's catalog
+       ref, so one mark meant two things depending on the route. `SectionHead`
+       therefore takes no ref argument at all, which puts the rule in the type
+       system. `PageHeader` still declares one, deprecated and unused.
+     - Section headings on a page with fewer than four sections. Home has 2,
+       About has 1, the guides index has 1. A ref that never reaches 02 is
+       counting nothing.
+--------------------------------------------------------------------------- */
+
 @theme inline {
   --color-paper: var(--paper);
   --color-panel: var(--panel);

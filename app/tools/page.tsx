@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { stack, toolCategories } from "@/lib/content";
+import { SectionNav } from "@/components/section-nav";
 import { Container, PageHeader, Section } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -11,12 +12,36 @@ export const metadata: Metadata = {
 const markFor = (name: string) =>
   stack.items.find((i) => i.name === name && "logo" in i && i.logo)?.logo;
 
+const slug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
+/**
+ * Long-form stack page: a sticky category index on the left, sections
+ * scrolling on the right.
+ *
+ * Built for the write-ups that are coming. Until a tool has a `note` it
+ * renders as a mark and a name, so the page is honest about being a list
+ * today and turns into a document one paragraph at a time.
+ *
+ * The earlier version put every category in an equal grid cell, which is what
+ * made the balance feel wrong: six of the nine categories hold a single tool,
+ * so those cells filled 8 to 32 percent of their width while the last row ran
+ * to 104. A section is only as tall as its content, so that mismatch stops
+ * mattering here.
+ */
 export default function ToolsPage() {
+  const items = toolCategories.map((g) => ({
+    id: slug(g.category),
+    label: g.category,
+  }));
+
   return (
     <>
       <PageHeader
-        sectionRef="04"
         label="Stack"
         title="Tools I use"
         lede="Some of my favorite tools from our GTM tech stack."
@@ -24,80 +49,71 @@ export default function ToolsPage() {
 
       <Section top="tight">
         <Container>
+          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[13rem_1fr]">
+            {/* Sticky below the 4rem nav, with a little air above it. */}
+            <div className="lg:sticky lg:top-24 lg:self-start">
+              <SectionNav items={items} />
+            </div>
 
-          {/*
-            Nine category blocks at one or three columns. Both counts divide
-            nine, so the last row always fills; a two-wide step would leave a
-            short row and a hole in the corner. Ryan's order does the rest of
-            the work: the six single-tool categories take the first two rows,
-            which lands the three larger ones together on the last.
-
-            Three columns start at md. On a phone they would leave each mark
-            under 100px, and half the wordmarks are wider than that.
-          */}
-          <div className="grid gap-x-8 gap-y-12 md:grid-cols-3 md:gap-y-16 lg:gap-x-14">
-            {toolCategories.map((group) => (
-              <section key={group.category}>
-                {/*
-                  The category is the only accent in the block. Everything
-                  under it stays in ink, which keeps nine amber headings
-                  reading as structure on a page that normally spends the
-                  accent once.
-
-                  Two lines are reserved from md up, the widths where the
-                  longer names wrap. Without the reserve, a wrapped heading
-                  drops its own marks half a line below the two beside it.
-                */}
-                <h2 className="type-heading text-lg text-accent md:min-h-[2.1em] lg:text-xl">
-                  {group.category}
-                </h2>
-                {/*
-                  Two tool columns once a block is wide enough for the widest
-                  mark. Wispr Flow measures 147px at this height, and a split
-                  block below xl comes in under that, which would scale the
-                  mark down off the shared baseline. Both multi-tool counts
-                  are even, so the split leaves no stray entry.
-                */}
-                <ul
-                  className={`mt-5 grid gap-6 ${
-                    group.tools.length > 1 ? "xl:grid-cols-2 xl:gap-x-8" : ""
+            <div>
+              {toolCategories.map((group) => {
+                /* A section with no write-ups yet is a heading and a mark, so
+                   it gets tighter spacing. Otherwise the page reads as nine
+                   near-empty bands until every note is written. The moment a
+                   note lands the section opens up on its own. */
+                const written = group.tools.some((t) => t.note);
+                return (
+                <section
+                  key={group.category}
+                  id={slug(group.category)}
+                  /* Clears the sticky site nav when jumped to. */
+                  className={`scroll-mt-24 border-t border-line first:border-t-0 first:pt-0 ${
+                    written ? "py-10" : "py-6"
                   }`}
                 >
-                  {group.tools.map((tool) => {
-                    const logo = markFor(tool.name);
-                    return (
-                      <li key={tool.name}>
-                        <a
-                          href={tool.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="group flex flex-col gap-3"
-                        >
-                          {/*
-                            Fixed slot, so marks of different proportions share
-                            a baseline and an entry without one keeps its name
-                            level with the rest of the column.
-                          */}
-                          <span className="flex h-6 items-end">
-                            {logo ? (
-                              <img
-                                src={logo}
-                                alt=""
-                                aria-hidden="true"
-                                className="logo-mark max-h-6 w-auto max-w-full object-contain"
-                              />
-                            ) : null}
-                          </span>
-                          <span className="type-heading text-base transition-colors group-hover:text-accent">
-                            {tool.name}
-                          </span>
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
-            ))}
+                  <h2 className="type-heading text-xl text-accent sm:text-2xl">
+                    {group.category}
+                  </h2>
+
+                  <div className={written ? "mt-7 space-y-9" : "mt-4 space-y-3"}>
+                    {group.tools.map((tool) => {
+                      const logo = markFor(tool.name);
+                      return (
+                        <div key={tool.name}>
+                          <a
+                            href={tool.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group inline-flex items-center gap-4"
+                          >
+                            <span className="flex h-6 items-center">
+                              {logo ? (
+                                <img
+                                  src={logo}
+                                  alt=""
+                                  aria-hidden="true"
+                                  className="logo-mark max-h-6 w-auto object-contain"
+                                />
+                              ) : null}
+                            </span>
+                            <span className="type-label text-faint transition-colors group-hover:text-accent">
+                              {tool.name}
+                            </span>
+                          </a>
+
+                          {tool.note ? (
+                            <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink">
+                              {tool.note}
+                            </p>
+                          ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+                );
+              })}
+            </div>
           </div>
         </Container>
       </Section>

@@ -213,15 +213,18 @@ export const expertise = {
  * single tool. That is the signal: the function is covered by exactly one
  * thing.
  *
- * The category is the heading on the page, so there are no refs here. Nine is
- * also the count the layout is built on: the grid runs 1 or 3 columns, and
- * both divide nine, so the last row fills. Changing the count means checking
- * that too.
+ * The category is the heading on the page, so there are no refs here.
  *
- * Order is Ryan's, and it earns its keep: the six single-tool categories come
- * first, so the three that hold more than one land together on the last row.
+ * `note` is the write-up. It is optional on purpose: the page renders a tool
+ * with just its mark and name until a note exists, and grows a paragraph the
+ * moment one is added. Nothing here is written for Ryan. The per-tool
+ * commentary that used to sit in this file was written by Claude, it read like
+ * it, and it was cut. Leave a note out until he has written it.
  */
-export const toolCategories = [
+export type Tool = { name: string; href: string; note?: string };
+export type ToolCategory = { category: string; blurb?: string; tools: Tool[] };
+
+export const toolCategories: ToolCategory[] = [
   {
     category: "CRM",
     tools: [{ name: "Salesforce", href: "https://salesforce.com" }],

@@ -74,16 +74,19 @@ export function Label({
 }
 
 /**
- * Section opener: heavy rule, then a mono ref and label on one line, then the
- * condensed title. Replaces the eyebrow-over-centered-heading pattern.
+ * Section opener: a mono label on one line, an optional count opposite it,
+ * then the condensed title. Replaces the eyebrow-over-centered-heading
+ * pattern.
+ *
+ * Carries no ref by design. See the "Section refs" block in globals.css: no
+ * page here has enough sections for one to count anything, and a heading ref
+ * sitting above a grid of item refs put two counters on one screen.
  */
 export function SectionHead({
-  sectionRef,
   label,
   title,
   note,
 }: {
-  sectionRef?: string;
   label: string;
   title?: string;
   note?: string;
@@ -91,12 +94,7 @@ export function SectionHead({
   return (
     <div className="mb-10 sm:mb-12">
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-        <Label className="text-ink">
-          {sectionRef ? (
-            <span className="text-accent">{sectionRef}/&nbsp;&nbsp;</span>
-          ) : null}
-          {label}
-        </Label>
+        <Label className="text-ink">{label}</Label>
         {note ? <Label className="text-tertiary">{note}</Label> : null}
       </div>
       {title ? (
@@ -109,8 +107,10 @@ export function SectionHead({
 }
 
 /**
- * A numbered row in a spec table. Ref sits in its own column so every row
- * aligns down the page, the way a real reference document reads.
+ * A numbered row in a spec table. The ref is the row's own part number, so it
+ * sits in its own column and every row aligns down the page, the way a real
+ * reference document reads. This is one of the two places a ref is allowed;
+ * see the "Section refs" block in globals.css.
  */
 export function SpecRow({
   sectionRef,
@@ -248,6 +248,15 @@ export function TextLink({
 
 /** Document-style page opener used on every interior page. */
 type PageHeaderProps = {
+  /**
+   * @deprecated Page headers carry no ref. The nav numbers every page and is
+   * on screen while the header is read, and this same slot used to hold a
+   * guide's catalog ref, so one mark counted two sets depending on the route.
+   * See the "Section refs" block in globals.css.
+   *
+   * Zero call sites remain. It is held open only because the Tools page is
+   * being reworked in parallel; delete it once that settles.
+   */
   sectionRef?: string;
   label: string;
   title: string;

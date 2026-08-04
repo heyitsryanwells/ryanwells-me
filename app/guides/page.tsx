@@ -18,7 +18,6 @@ export default function GuidesPage() {
   return (
     <>
       <PageHeader
-        sectionRef="03"
         label="Guides"
         title="Templates and playbooks"
         lede={guidesIndex.lede}
@@ -26,8 +25,10 @@ export default function GuidesPage() {
 
       <Section top="tight">
         <Container>
+          {/* Label and count only. The rows below carry the page's one
+              counter, and a ref here would have numbered a single section
+              while claiming the same token. */}
           <SectionHead
-            sectionRef="01"
             label="Index"
             note={`${guides.length} ${guides.length === 1 ? "entry" : "entries"}`}
           />

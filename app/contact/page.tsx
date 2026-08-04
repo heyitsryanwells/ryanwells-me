@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <PageHeader sectionRef="05" label="Contact" title={contact.heading} />
+      <PageHeader label="Contact" title={contact.heading} />
 
       <Section top="tight">
         <Container>

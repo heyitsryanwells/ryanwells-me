@@ -40,7 +40,6 @@ export default function AboutPage() {
               <div className="grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-16">
                 <div>
                   <PageHeaderBody
-                    sectionRef="02"
                     label="About"
                     title={about.heading}
                     subtitle={site.name}
@@ -58,14 +57,14 @@ export default function AboutPage() {
                     ))}
                   </div>
 
-                  {/* Outside of ops sits in this column rather than in its own
-                      band below the grid. The timeline runs 427px past the end
-                      of the copy, and this is what fills that. */}
+                  {/* Outside of ops sits inside this column. The timeline runs
+                      427px past the end of the copy, and this is what fills
+                      that.
+
+                      It carries no ref. This is the only subsection on the
+                      page, so a number here counted to one and stopped. */}
                   <div className="mt-14 max-w-2xl">
-                    <SectionHead
-                      sectionRef="01"
-                      label={about.personal.heading}
-                    />
+                    <SectionHead label={about.personal.heading} />
                     <p className="text-base leading-relaxed text-ink sm:text-lg">
                       {about.personal.body}
                     </p>

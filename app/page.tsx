@@ -20,7 +20,7 @@ export default function Home() {
     <>
       {/* Hero ---------------------------------------------------------------
           Deliberately looser than the rest of the site: no opening rule, no
-          spec table. The numbered document structure starts at 01/.
+          spec table.
 
           Fills the viewport so the portrait is all that shows until you
           scroll. The subtracted height is the sticky nav, 3.5rem/4rem, which
@@ -84,7 +84,6 @@ export default function Home() {
       <Section id="areas" top="default">
         <Container>
           <SectionHead
-            sectionRef="01"
             label="Capability index"
             title={expertise.heading}
             note={`${expertise.areas.length} entries`}
@@ -112,6 +111,10 @@ export default function Home() {
                 >
                   <div className="flex items-center justify-between">
                     <Icon className="h-7 w-7 text-accent" />
+                    {/* The card's own part number, and one of the few refs
+                        the site keeps: eight of them, contiguous, with the
+                        count printed in the section head above. Faint, so it
+                        annotates the card without competing with the icon. */}
                     <span className="type-ref text-faint">{area.ref}/</span>
                   </div>
                   <h3 className="type-heading mt-6 text-lg text-ink sm:text-xl">
@@ -133,7 +136,6 @@ export default function Home() {
       <Section top="tight">
         <Container>
           <SectionHead
-            sectionRef="02"
             label="Guides"
             title="Templates and playbooks"
             note={`${guides.length} ${guides.length === 1 ? "entry" : "entries"}`}

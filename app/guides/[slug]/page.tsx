@@ -78,12 +78,11 @@ export default async function GuidePage({
 
   return (
     <>
-      <PageHeader
-        sectionRef={guide.ref}
-        label="Guide"
-        title={guide.title}
-        lede={guide.dek}
-      />
+      {/* No ref on the header. It used to print the guide's catalog number,
+          which landed a `01/` directly above the `01/` on the first section
+          heading below: same token, same accent, two different counters. The
+          document's own section numbers won that slot. */}
+      <PageHeader label="Guide" title={guide.title} lede={guide.dek} />
 
       <Section top="tight" bottom="tight">
         <Container>
@@ -97,6 +96,10 @@ export default async function GuidePage({
             <Label className="text-tertiary">{guide.published}</Label>
           </div>
 
+          {/* The one place a heading still carries a ref. A guide runs eight
+              sections, which is long enough that the number marks progress and
+              gives a reader something to cite. It is also now the only counter
+              on the page. */}
           <div className="mt-12 max-w-2xl">
             {guide.sections.map((section, i) => (
               <section key={section.heading} className="mb-14">
