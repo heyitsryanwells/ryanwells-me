@@ -232,13 +232,14 @@ export const about = {
   lede: "Senior Revenue Operations Manager",
   // The subheader is a job title, so metadata needs its own line.
   metaDescription:
-    "Revenue operations at Ambition, working across Sales, Marketing, Finance and CX.",
+    "Revenue operations at Ambition, working across Sales, Marketing, CX and Finance.",
+  // Keep the year count here matching site.tagline and hero.intro. All three
+  // say "over 10 years"; they used to disagree.
   paragraphs: [
-    "Revenue operations is an art and a science. I work across Sales, Marketing, Finance and CX at Ambition, trying to get both halves right. The science is the part that has to reconcile: the deal desk, the data model, clean records moving between Salesforce and HubSpot. The art is knowing which problems are worth solving and which reports will actually get read.",
-    "Most of the work is lining up strategy, tooling, and data so the people around me can do the best work of their careers. Fifteen years of customer-facing work before this shaped how I approach that. I build for the person who has to live inside the system.",
-    "Our revenue operations team is one person. That says more about our size than about me, though it does come with a useful kind of proximity. I get to watch a change to a single field land on a rep's Tuesday, then a renewal conversation, then a board slide, usually in that order.",
-    "\"You can just do things\" is the sentence I keep coming back to with AI. It pushes me past the point where I would normally stop and wait for permission. I run agents against production systems through MCP, and audits and migrations that used to eat days now finish in an afternoon. Knowing which parts hold up once real data is involved is the whole skill.",
-    "Revenue operations runs on knowledge nobody writes down. Teams solve identical problems in isolation, badly, over and over, and the answers stay locked in somebody's head. Publishing what worked shortens that loop for whoever hits it next.",
+    "I work across Sales, Marketing, CX and Finance, building the systems revenue actually runs through. Revenue operations is an art and a science. It takes creativity, collaboration, and restlessness. The science is the part that has to reconcile: the deal desk, the data model, clean records moving between Salesforce and HubSpot. The art is knowing which problems are worth solving, balancing stakeholders, and designing the customer journey.",
+    "Most of the work is lining up strategy, tooling, and data so the people around me can do their best work without fighting the tools. Over 10 years of customer-facing work before this shaped how I approach that. I build for the person who has to live inside the system.",
+    "Running revenue operations solo means I touch most parts of the business in a given week. I might commit a field change, wire up automation behind a new email campaign, join a renewal conversation, and ship a Salesforce dashboard, all in the same day.",
+    "AI keeps moving where the ceiling sits, in revenue operations and in most of the roles I work alongside. I run agents against production systems through MCP, and audits and migrations that used to eat days now finish in an afternoon. \"You can just do things\" is the line I keep coming back to. It pushes me past the point where I would otherwise stop and wait for permission.",
   ],
   // Sidebar timeline. Restored: it used the column better than the flat
   // company row did.
