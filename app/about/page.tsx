@@ -6,8 +6,6 @@ import {
   Label,
   PageHeader,
   Section,
-  SectionHead,
-  SpecRow,
 } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -37,23 +35,6 @@ export default function AboutPage() {
                   {paragraph}
                 </p>
               ))}
-
-              <div className="mt-12">
-                <SectionHead
-                  sectionRef="01"
-                  label="Selected work"
-                  note={`${about.wins.length} entries`}
-                />
-                <div>
-                  {about.wins.map((win, i) => (
-                    <SpecRow
-                      key={win.slice(0, 30)}
-                      sectionRef={String(i + 1).padStart(2, "0")}
-                      title={win}
-                    />
-                  ))}
-                </div>
-              </div>
 
               <div className="mt-10 flex flex-wrap gap-3">
                 <BracketLink href="/contact">Get in touch</BracketLink>

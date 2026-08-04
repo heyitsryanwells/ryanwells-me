@@ -228,19 +228,49 @@ export const about = {
     "Lately most of my leverage comes from AI. I run agents directly against production systems through MCP for auditing, migration, and reporting work that used to take days. It is genuinely different from the last automation wave, and I write about what actually holds up versus what demos well.",
     "I publish what I learn because revenue operations is full of hard-won knowledge that never gets documented. People solve the same problems in isolation, badly, over and over. Writing it down is the cheapest way to shorten that loop for someone else.",
   ],
-  // PLACEHOLDER: replace with your real timeline.
+  // Real history, pulled from LinkedIn 2026-08-03.
   timeline: [
-    { period: "Now", role: "Revenue Operations", org: "Ambition", detail: "Own the Salesforce architecture, bookings model, and GTM automation stack." },
-    { period: "Before", role: "Add your prior role", org: "Company name", detail: "One line on what you owned and what changed because of you." },
-    { period: "Before that", role: "Add your prior role", org: "Company name", detail: "One line on what you owned and what changed because of you." },
-  ],
-  // PLACEHOLDER: these are the highest-value thing you can send me. Real
-  // numbers here do more for the site than any design decision.
-  wins: [
-    "Rebuilt the bookings model so ACV derives from line items, ending recurring disputes between sales and finance.",
-    "Collapsed a 25-role hierarchy into 7, cutting access-review time and removing years of accumulated exceptions.",
-    "Replaced a five-figure enrichment vendor with a cost-neutral stack that returned better data.",
-    "Wired AI agents into the CRM through MCP for audits and migrations that previously took days of manual work.",
+    {
+      period: "Oct 2025 — Now",
+      role: "Senior Revenue Operations Manager",
+      org: "Ambition",
+      detail:
+        "Own the Salesforce architecture, the bookings model, and the GTM automation stack.",
+    },
+    {
+      period: "2024 — 2025",
+      role: "Manager, Support & Operations",
+      org: "Ambition",
+      detail:
+        "Led Support and Revenue Operations together. Primary Salesforce admin, and owned the GTM stack end to end.",
+    },
+    {
+      period: "2022 — 2024",
+      role: "Manager, Support",
+      org: "Ambition",
+      detail:
+        "Ran escalations, retrospectives and root cause analysis. Hiring, training and coaching for the support team.",
+    },
+    {
+      period: "2019 — 2022",
+      role: "Senior Support Advisor",
+      org: "Ambition",
+      detail: "Front line with customers, on the product and the process.",
+    },
+    {
+      period: "2017 — 2019",
+      role: "Service Desk & TechBar",
+      org: "Clayton Homes",
+      detail:
+        "11,000 service requests in two years. Built the organisation's first walk-up IT channel and the technician training plan.",
+    },
+    {
+      period: "2010 — 2016",
+      role: "Service & hospitality leadership",
+      org: "Chick-fil-A, Blackberry Farm",
+      detail:
+        "Team Leader, then corporate Certified Trainer opening restaurants nationally, then front desk supervisor at a five-star property.",
+    },
   ],
 };
 
