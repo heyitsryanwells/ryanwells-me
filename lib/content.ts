@@ -220,58 +220,31 @@ export const toolCategories = [
 
 export const about = {
   heading: "About",
-  lede: "I got to revenue operations the long way around, through fifteen years of customer-facing work. It shows in what I build.",
+  lede: "I am the revenue operations team at Ambition. Sales, Marketing, Finance and CX all route through one person, and that person is me.",
   paragraphs: [
-    "It started behind a counter at a Chick-fil-A in Alcoa, leading a team of sixty. Blackberry Farm came next, where a five-star welcome is the entire job description. Then an IT service desk at Clayton Homes: eleven thousand tickets in two years, plus the walk-up channel I built from scratch. Each one taught the same thing. You learn a system fastest standing at the point where it fails on somebody.",
-    "Ambition hired me into support in 2019. I answered for the product when it broke, then ran the team that did, then took over the CRM underneath all of it. The work kept moving upstream: from the ticket, to the process, to the data model generating both.",
-    "Today I am the only revenue operator at Ambition. Sales, Marketing, Finance and CX all route through one person, so a week can run from the deal desk, to onboarding a vendor, to standing up a campaign, to scrubbing records across Salesforce and HubSpot. Breadth is the job.",
+    "The work spans whatever the week needs. Running the deal desk. Onboarding a vendor on Monday and offboarding another on Thursday. Standing up a marketing campaign. Keeping Salesforce and HubSpot clean enough that the numbers coming out of them survive a hard question. Breadth is the job.",
+    "Fifteen years of customer-facing work sits underneath all of it. A Chick-fil-A counter, a five-star resort front desk, an IT service desk, then years on support at a SaaS company. That history is why I build for the person who has to live inside the system. I start most problems at the source record and follow them up from there.",
     "A lot of my leverage now comes from AI agents wired straight into production systems through MCP. Audits and migrations that used to eat days finish in an afternoon. I write about which parts of that hold up once real data is involved.",
     "Revenue operations runs on knowledge nobody writes down. Teams solve identical problems in isolation, badly, over and over, and the answers stay locked in somebody's head. Publishing what worked shortens that loop for whoever hits it next.",
   ],
-  // Real history, pulled from LinkedIn 2026-08-03.
-  timeline: [
-    {
-      period: "Oct 2025 — Now",
-      role: "Senior Revenue Operations Manager",
-      org: "Ambition",
-      detail:
-        "Ambition's only revenue operator, working across Sales, Marketing, Finance and CX. I run the deal desk, onboard and offboard vendors, build marketing campaigns, keep Salesforce and HubSpot clean, and put AI to work in production where it saves real time.",
-    },
-    {
-      period: "2024 — 2025",
-      role: "Manager, Support & Operations",
-      org: "Ambition",
-      detail:
-        "Kept leading the support team while taking on the CRM. Became the Salesforce administrator, right-sized the GTM tech stack, and managed renewals.",
-    },
-    {
-      period: "2022 — 2024",
-      role: "Manager, Support",
-      org: "Ambition",
-      detail:
-        "Ran escalations, retrospectives and root cause analysis. Hiring, training and coaching for the support team.",
-    },
-    {
-      period: "2019 — 2022",
-      role: "Senior Support Advisor",
-      org: "Ambition",
-      detail: "Front line with customers, on the product and the process.",
-    },
-    {
-      period: "2017 — 2019",
-      role: "Service Desk & TechBar",
-      org: "Clayton Homes",
-      detail:
-        "11,000 service requests in two years. Built the organisation's first walk-up IT channel and the technician training plan.",
-    },
-    {
-      period: "2010 — 2016",
-      role: "Service & hospitality leadership",
-      org: "Chick-fil-A, Blackberry Farm",
-      detail:
-        "Team Leader, then corporate Certified Trainer opening restaurants nationally, then front desk supervisor at a five-star property.",
-    },
-  ],
+  // Compact history, in place of the old chronological timeline.
+  companies: {
+    heading: "Where I have worked",
+    items: [
+      { name: "Ambition", note: "Currently" },
+      { name: "Clayton Homes", note: "2017 — 2019" },
+      { name: "Vanderbilt Mortgage", note: "2016 — 2017" },
+      { name: "Blackberry Farm", note: "2015 — 2016" },
+      { name: "Chick-fil-A", note: "2010 — 2015" },
+    ],
+  },
+  // PLACEHOLDER: Ryan, this is the one section I cannot write for you.
+  // Knoxville and the Vols are the only two things I actually know. Replace
+  // the body with whatever you want people to know about you off the clock.
+  personal: {
+    heading: "Outside of ops",
+    body: "I live in Knoxville, Tennessee, and spend a good number of Saturdays in the fall watching the Vols.",
+  },
 };
 
 export const contact = {

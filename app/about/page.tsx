@@ -6,6 +6,7 @@ import {
   Label,
   PageHeader,
   Section,
+  SectionHead,
 } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -13,6 +14,13 @@ export const metadata: Metadata = {
   description: about.lede,
 };
 
+/**
+ * Present tense first, history compressed, personal note last.
+ *
+ * The previous version opened with a chronological career walk and hung a
+ * six-entry timeline in the sidebar, which buried what Ryan actually does now.
+ * The old roles are still here, reduced to a company list.
+ */
 export default function AboutPage() {
   return (
     <>
@@ -23,7 +31,7 @@ export default function AboutPage() {
         lede={about.lede}
       />
 
-      <Section top="tight">
+      <Section top="tight" bottom="tight">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
             <div className="max-w-2xl">
@@ -35,13 +43,6 @@ export default function AboutPage() {
                   {paragraph}
                 </p>
               ))}
-
-              <div className="mt-10 flex flex-wrap gap-3">
-                <BracketLink href="/contact">Get in touch</BracketLink>
-                <BracketLink href="/guides" variant="outline">
-                  Browse the guides
-                </BracketLink>
-              </div>
             </div>
 
             <aside>
@@ -54,30 +55,43 @@ export default function AboutPage() {
                 height={640}
                 className="mx-auto block h-auto w-full max-w-[16rem] lg:mx-0"
               />
-
-              <div className="mt-9">
-                <Label className="pb-2 text-ink">
-                  Track record
-                </Label>
-                <div className="mt-1">
-                  {about.timeline.map((entry) => (
-                    <div
-                      key={`${entry.period}-${entry.org}`}
-                      className="py-4"
-                    >
-                      <Label className="text-accent">{entry.period}</Label>
-                      <p className="type-heading mt-2 text-base">
-                        {entry.role}
-                      </p>
-                      <Label className="mt-1 text-faint">{entry.org}</Label>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">
-                        {entry.detail}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </aside>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Where I have worked ------------------------------------------- */}
+      <Section top="tight" bottom="tight">
+        <Container>
+          <SectionHead
+            sectionRef="01"
+            label={about.companies.heading}
+            note={`${about.companies.items.length} entries`}
+          />
+          <ul className="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+            {about.companies.items.map((c) => (
+              <li key={c.name}>
+                <p className="type-heading text-lg">{c.name}</p>
+                <Label className="mt-1.5 text-tertiary">{c.note}</Label>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      {/* Outside of ops ------------------------------------------------- */}
+      <Section top="tight">
+        <Container>
+          <SectionHead sectionRef="02" label={about.personal.heading} />
+          <p className="max-w-2xl text-base leading-relaxed text-ink sm:text-lg">
+            {about.personal.body}
+          </p>
+
+          <div className="mt-12 flex flex-wrap gap-3">
+            <BracketLink href="/contact">Get in touch</BracketLink>
+            <BracketLink href="/guides" variant="outline">
+              Browse the guides
+            </BracketLink>
           </div>
         </Container>
       </Section>
