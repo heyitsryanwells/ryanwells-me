@@ -7,8 +7,11 @@
    from drifting back toward generic SaaS:
 
      - Zero border radius. Anywhere.
-     - No cards and no dividing rules. Structure comes from a shared column
-       grid, section refs, and generous vertical space.
+     - No floating cards: nothing rounded, raised or shadowed. Where panels
+       are used they butt together on a 1px gap so their borders collapse into
+       one shared grid, which reads as a table rather than a card deck.
+     - Structure otherwise comes from a shared column grid, section refs, and
+       generous vertical space rather than dividing rules.
      - Monospace carries all structure: labels, refs, metadata, figures.
      - One accent, used sparingly, plus a quieter tertiary reserved for small
        structural metadata (nav indices, entry counts). The tertiary never
@@ -188,6 +191,22 @@ body {
     0 12px 32px -12px rgba(0, 0, 0, 0.8);
 }
 
+/* About-page avatar. The source backdrop is keyed out, so the disc colour is
+   set here rather than baked into the image: a panel fill one step off the
+   page, quiet enough that the photo carries the contrast, with the same amber
+   halo as the hero plate so the two pages feel lit by the same source.
+
+   The radius is the exception to the zero-radius rule. It is a photographic
+   crop, not a container, and the circle is the point. */
+.avatar-disc {
+  border-radius: 50%;
+  background: var(--panel);
+  box-shadow:
+    0 0 80px -20px rgba(240, 138, 60, 0.42),
+    0 0 32px -12px rgba(240, 138, 60, 0.26),
+    0 24px 60px -22px rgba(0, 0, 0, 0.9);
+}
+
 /* Glow behind the RW monogram. Two stacked shadows rather than one: a tight
    inner halo to make the letterforms feel lit, and a wide soft one to spill
    onto the surrounding ground. */
@@ -205,11 +224,16 @@ body {
 }
 
 /* Satellite pass. Travels the full width plus its own size at both ends, so
-   it enters and exits fully off-screen. steps() keeps the motion discrete,
-   matching the pixel artwork. */
+   it enters and exits fully off-screen.
+
+   Linear, not steps(). Over a 54s crossing, discrete steps land ~21px apart
+   roughly twice a second, which reads as stuttering rather than as pixel art.
+   The artwork is already hard-edged; the motion carrying it should be smooth,
+   and continuous transform stays on the compositor. */
 .satellite-drift {
   right: 0;
-  animation: satellite-pass 54s steps(90, end) infinite;
+  animation: satellite-pass 54s linear infinite;
+  will-change: transform;
 }
 
 @keyframes satellite-pass {

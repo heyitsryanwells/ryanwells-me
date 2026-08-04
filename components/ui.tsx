@@ -247,45 +247,60 @@ export function TextLink({
 }
 
 /** Document-style page opener used on every interior page. */
-export function PageHeader({
-  sectionRef,
-  label,
-  title,
-  subtitle,
-  lede,
-}: {
+type PageHeaderProps = {
   sectionRef?: string;
   label: string;
   title: string;
   /** Optional accent line between the title and the lede. */
   subtitle?: string;
   lede?: string;
-}) {
+};
+
+/**
+ * The header block on its own, without the Container.
+ *
+ * Split out so a page can place it inside a column it has already laid out.
+ * About does that: putting the header in the left column lets the sidebar
+ * start level with it instead of below the whole header.
+ */
+export function PageHeaderBody({
+  sectionRef,
+  label,
+  title,
+  subtitle,
+  lede,
+}: PageHeaderProps) {
+  return (
+    <div className="pt-10 sm:pt-14">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+        <Label className="text-ink">
+          {sectionRef ? (
+            <span className="text-accent">{sectionRef}/&nbsp;&nbsp;</span>
+          ) : null}
+          {label}
+        </Label>
+      </div>
+      <h1 className="type-display mt-6 max-w-4xl text-5xl sm:text-7xl">
+        {title}
+      </h1>
+      {subtitle ? (
+        <p className="type-heading mt-5 text-2xl text-accent sm:text-3xl">
+          {subtitle}
+        </p>
+      ) : null}
+      {lede ? (
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg lg:max-w-3xl">
+          {lede}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+export function PageHeader(props: PageHeaderProps) {
   return (
     <Container>
-      <div className="pt-10 sm:pt-14">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-          <Label className="text-ink">
-            {sectionRef ? (
-              <span className="text-accent">{sectionRef}/&nbsp;&nbsp;</span>
-            ) : null}
-            {label}
-          </Label>
-        </div>
-        <h1 className="type-display mt-6 max-w-4xl text-5xl sm:text-7xl">
-          {title}
-        </h1>
-        {subtitle ? (
-          <p className="type-heading mt-5 text-2xl text-accent sm:text-3xl">
-            {subtitle}
-          </p>
-        ) : null}
-        {lede ? (
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg lg:max-w-3xl">
-            {lede}
-          </p>
-        ) : null}
-      </div>
+      <PageHeaderBody {...props} />
     </Container>
   );
 }

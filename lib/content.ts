@@ -20,7 +20,7 @@ export const site = {
   // leaves visitors on the stale copy for hours.
   portrait: "/portrait-pixel.webp",
   // Circular photographic crop, so About reads differently from the hero.
-  avatar: "/avatar-round.webp",
+  avatar: "/avatar-cutout.webp",
   email: "hellofromryanwells@gmail.com",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/hello-ryanwells/" },
@@ -95,35 +95,43 @@ export const expertise = {
   areas: [
     {
       ref: "01",
+      icon: "architecture",
       title: "Salesforce Architecture",
       body: "Data models that hold up under real deal structures. Contracts and orders, line-item economics, validation rules, and a permission model built on permission sets that stays legible as the org grows.",
     },
     {
       ref: "02",
+      icon: "reporting",
       title: "Deal Desk & Revenue Reporting",
       body: "Deal structure reviewed before it reaches the paper, and modeled off line items so the numbers hold. Reporting reconciles back to what was signed, which ends the argument about whose figure is right.",
     },
     {
       ref: "03",
+      icon: "automation",
       title: "GTM Automation & AI",
       body: "Workflow automation across n8n, Zapier, and the CRM itself, plus AI agents wired directly into the stack through MCP. The goal is removing manual steps that quietly break every quarter.",
     },
     {
       ref: "04",
+      icon: "dataQuality",
       title: "Data Quality & Enrichment",
       body: "Contact lifecycle design, deduplication, departure detection, and enrichment pipelines that fill gaps without spending credits twice. Clean data stays clean through process, run continuously.",
     },
     {
       ref: "05",
+      icon: "pipeline",
       title: "Pipeline & Campaign Operations",
       body: "Campaign hierarchy, inbound routing, list sync between marketing and sales systems, and attribution that survives contact with the actual funnel.",
     },
     {
       ref: "06",
+      icon: "governance",
       title: "Systems Governance",
       body: "Role hierarchy, access reviews, change management, and documentation that outlives the person who wrote it. The unglamorous work that keeps an org from calcifying.",
     },
-  ],
+    // `as const` so each `icon` narrows to a literal and indexes the icon map
+    // without a cast. A typo here becomes a build error, not a blank card.
+  ] as const,
 };
 
 /**

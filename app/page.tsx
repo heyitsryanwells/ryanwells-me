@@ -4,6 +4,7 @@ import {
   hero,
   site,
 } from "@/lib/content";
+import { capabilityIcons } from "@/components/icons";
 import { SpaceBackdrop } from "@/components/space-backdrop";
 import { StackMarquee } from "@/components/stack-marquee";
 import {
@@ -84,7 +85,7 @@ export default function Home() {
       </div>
 
       {/* Areas of work ------------------------------------------------------ */}
-      <Section top="default">
+      <Section id="areas" top="default">
         <Container>
           <SectionHead
             sectionRef="01"
@@ -92,18 +93,34 @@ export default function Home() {
             title={expertise.heading}
             note={`${expertise.areas.length} entries`}
           />
-          <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted">
+          <p className="mb-10 max-w-2xl text-base leading-relaxed text-muted">
             {expertise.subheading}
           </p>
-          <div>
-            {expertise.areas.map((area) => (
-              <SpecRow
-                key={area.ref}
-                sectionRef={area.ref}
-                title={area.title}
-                body={area.body}
-              />
-            ))}
+
+          {/* Panels rather than conventional cards: flat fill, square corners,
+              hairline border. The gap is 1px so neighbouring borders collapse
+              into a single shared line and the grid reads as one block. */}
+          <div className="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
+            {expertise.areas.map((area) => {
+              const Icon = capabilityIcons[area.icon];
+              return (
+                <div
+                  key={area.ref}
+                  className="group bg-paper p-7 transition-colors duration-200 hover:bg-panel sm:p-8"
+                >
+                  <div className="flex items-center justify-between">
+                    <Icon className="h-7 w-7 text-accent" />
+                    <span className="type-ref text-faint">{area.ref}/</span>
+                  </div>
+                  <h3 className="type-heading mt-6 text-lg text-ink sm:text-xl">
+                    {area.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {area.body}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </Container>
       </Section>

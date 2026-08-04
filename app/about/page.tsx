@@ -5,7 +5,7 @@ import {
   BracketLink,
   Container,
   Label,
-  PageHeader,
+  PageHeaderBody,
   Section,
   SectionHead,
 } from "@/components/ui";
@@ -26,43 +26,55 @@ export default function AboutPage() {
   return (
     <>
       <div className="starfield relative overflow-hidden">
-        <SatelliteDrift top="14%" />
+        {/* Below the body copy, which ends around 67%. Higher up it crossed
+            the portrait and the display type. */}
+        <SatelliteDrift top="76%" />
 
         <div className="relative z-10">
-          <PageHeader
-            sectionRef="02"
-            label="About"
-            title={about.heading}
-            subtitle={site.name}
-            lede={about.lede}
-          />
-
-          <Section top="tight" bottom="tight">
+          <Section top="none" bottom="tight">
             <Container>
+              {/* The header sits inside the left column rather than above the
+                  grid, so the sidebar starts level with it. That lifts the
+                  portrait and the whole timeline by the height of the header
+                  and takes a few hundred pixels off the page. */}
               <div className="grid gap-12 lg:grid-cols-[1fr_22rem] lg:gap-16">
-                <div className="max-w-2xl">
-                  {about.paragraphs.map((paragraph) => (
-                    <p
-                      key={paragraph.slice(0, 40)}
-                      className="mb-5 text-base leading-relaxed text-ink sm:text-lg"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
+                <div>
+                  <PageHeaderBody
+                    sectionRef="02"
+                    label="About"
+                    title={about.heading}
+                    subtitle={site.name}
+                    lede={about.lede}
+                  />
+
+                  <div className="mt-10 max-w-2xl">
+                    {about.paragraphs.map((paragraph) => (
+                      <p
+                        key={paragraph.slice(0, 40)}
+                        className="mb-5 text-base leading-relaxed text-ink sm:text-lg"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 </div>
 
-                <aside>
+                {/* Matches PageHeaderBody's own top padding so the portrait
+                    and the "About" label share a baseline. */}
+                <aside className="pt-10 sm:pt-14">
                   {/* Circular photographic crop rather than the hero's pixel
-                      plate, so the two pages do not lead with the same image. */}
+                      plate, so the two pages do not lead with the same image.
+                      Backdrop is keyed out of the asset; .avatar-disc supplies
+                      the fill and the amber halo. */}
                   <img
                     src={site.avatar}
                     alt={`Portrait of ${site.name}`}
                     width={640}
                     height={640}
-                    className="mx-auto block h-auto w-full max-w-[16rem] lg:mx-0"
+                    className="avatar-disc mx-auto block h-auto w-full max-w-[16rem] lg:mx-0"
                   />
 
-                  <div className="mt-10">
+                  <div className="mt-12">
                     <Label className="text-ink">Track record</Label>
                     <div className="mt-2">
                       {about.timeline.map((entry) => (
