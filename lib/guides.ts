@@ -88,7 +88,7 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "Three roles run an implementation and the app has to know the difference between them. The CSM owns the relationship, the scheduling, the onboarding sessions and enablement. The SA owns the technical work: integrations, SSO, API configuration, data imports. The AE owns the pre-sale handoff, which is a small number of tasks. That distinction is what makes automatic assignment worth doing at all.",
+            text: "Three roles run an implementation and the app has to know the difference between them. The CSM owns the relationship, the scheduling, the onboarding sessions and enablement. The SA owns the technical work: integrations, SSO, API configuration, data imports. The AE owns a handful of pre-sale handoff tasks. Automatic assignment is only worth building because those three differ.",
           },
           {
             type: "p",
@@ -129,7 +129,7 @@ export const guides: Guide[] = [
         blocks: [
           {
             type: "p",
-            text: "Line all of this up before you write code. Every item here blocks something.",
+            text: "Line all of this up before you write code.",
           },
           {
             type: "p",
@@ -154,15 +154,15 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "Then the template list. Build it once, by hand. Phases are top-level rows, subtasks are child rows underneath them. The list needs a to-do assignee column, a to-do due-date column, and a single-select column with owner in its name carrying the role for each phase. The app finds those columns by type at runtime and copies the whole list per customer, so the template can change without a deploy. Keep its ID in the environment.",
+            text: "Then the template list. Build it once, by hand. Phases are top-level rows, subtasks are child rows underneath them. The list needs a to-do assignee column, a to-do due-date column, and a single-select column with owner in its name carrying the role for each phase. The app finds those columns by type at runtime, then copies the list per customer. Edit the template and no deploy is needed. Keep its ID in the environment.",
           },
           {
             type: "p",
-            text: "CRM access needs an integration user with the API enabled, read on the account object, and read on the three user-lookup fields that hold the owning trio. jsforce logs in with a username, a password and a security token appended to it. If your org restricts login IP ranges, the host's outbound IP has to be allowlisted, and that IP is worth logging on the first connection so you can find it without guessing.",
+            text: "CRM access needs an integration user with the API enabled, read on the account object, and read on the three user-lookup fields that hold the owning trio. jsforce logs in with a username, a password and a security token appended to it. If your org restricts login IP ranges, allowlist the host's outbound IP. Log it on the first connection so you are not hunting for it later.",
           },
           {
             type: "p",
-            text: "The Anthropic and S3 clients both read from the environment, so both constructors take no arguments. S3 picks up its region and credentials from the standard variables or an attached role.",
+            text: "Both the Anthropic and S3 clients read from the environment. Neither constructor takes arguments, and S3 finds its region and credentials in the standard variables or an attached role.",
           },
           {
             type: "code",
@@ -183,7 +183,7 @@ PORT`,
           },
           {
             type: "p",
-            text: "Hosting is a process that stays up. Socket Mode means there is no inbound URL to terminate TLS on, so anything that runs Node will do. I used Railway, which turns a repo into a running service with almost no ceremony.",
+            text: "Hosting is a process that stays up. Socket Mode leaves no inbound URL to terminate TLS on, so anything that runs Node will do. I used Railway.",
           },
         ],
       },
@@ -192,7 +192,7 @@ PORT`,
         blocks: [
           {
             type: "p",
-            text: "Both calls run on a small fast model. Both get a narrow job and a JSON contract. Neither one is asked to be clever.",
+            text: "Both calls run on a small fast model, each with a narrow job and a JSON contract. Neither is asked to be clever.",
           },
           {
             type: "p",
