@@ -54,15 +54,19 @@ export const guides: Guide[] = [
       "A playbook for building a Slack app that turns one slash command into a scheduled, assigned customer implementation plan. Architecture, credentials, Slack scopes, and a copy-paste build prompt.",
     sections: [
       {
-        heading: "Start here",
+        heading: "TL;DR",
         blocks: [
           {
             type: "p",
-            text: "The prompt below is the whole build, described. Paste it into Claude with an empty directory open and you get a skeleton close enough to the real thing that what is left is credentials, the template list, and taste. Swap the role names and phase names for whatever your implementations actually use.",
+            text: "A CSM types one slash command with an account name and a launch date. A minute later the channel holds a Slack List carrying every phase and subtask, each one dated and assigned to the right person, with a summary message and a bookmark above it. Underneath: a Bolt app in Socket Mode, a template list copied per customer, one CRM query that resolves the three owners, two small model calls that handle ownership and dates, and a cron job that posts progress every Friday. About a dozen files and no database.",
           },
           {
             type: "p",
-            text: "Four things have to exist before any of it runs: a Slack workspace where you can create an app, a CRM you can query for an account and its owners, an Anthropic API key, and somewhere to run a Node process that stays up. Section 05 covers each one.",
+            text: "You need a Slack workspace where you can create an app, a CRM you can query for an account and its owners, an Anthropic API key, and somewhere to run a Node process that stays up. Section 05 covers each one.",
+          },
+          {
+            type: "p",
+            text: "Paste the prompt below into Claude with an empty directory open. It produces a skeleton close enough to the real thing that what is left is credentials, the template list, and taste. Swap the role and phase names for whatever your implementations actually use.",
           },
           {
             type: "code",
@@ -192,7 +196,7 @@ model calls. Then storage. Then the rest of the commands.`,
           },
           {
             type: "p",
-            text: "That is the whole thing if you want it working by this afternoon. Everything below is what the prompt is actually doing and why each decision went the way it did. Read it now if you would rather understand the thing before you run it, or leave it and come back when something breaks and you need to know where to look.",
+            text: "That is the whole thing if you want it working by this afternoon. Everything past here is what the prompt is doing and why each decision went the way it did. Read on, or come back when something breaks and you need to know where to look.",
           },
         ],
       },
