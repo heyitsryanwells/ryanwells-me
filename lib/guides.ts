@@ -525,7 +525,7 @@ Call two, schedule:
           },
           {
             type: "p",
-            text: "Two changes are what took it from a novelty to the thing I reach for. Move the trigger to your mouse, and stop using whatever microphone you happen to have. Everything else is detail.",
+            text: "Two pieces of hardware are what took it from a novelty to the thing I reach for. Get a mouse with a scroll wheel you can press, and a headset with a dedicated microphone. Bind dictation to the scroll wheel click, talk into the headset, and the rest of this is why those two and what changed once they were in place.",
           },
         ],
       },
@@ -543,10 +543,6 @@ Call two, schedule:
           {
             type: "p",
             text: "That is the whole gain, and it compounds across a day of short bursts into a lot of different places. After about a week I stopped noticing I was pressing it, which is the point where a tool disappears and you just use it.",
-          },
-          {
-            type: "quote",
-            text: "The button has to be somewhere your hand already lives.",
           },
           {
             type: "p",
