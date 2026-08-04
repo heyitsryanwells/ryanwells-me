@@ -232,17 +232,51 @@ export const about = {
     "\"You can just do things\" is the sentence I keep coming back to with AI. It pushes me past the point where I would normally stop and wait for permission. I run agents against production systems through MCP, and audits and migrations that used to eat days now finish in an afternoon. Knowing which parts hold up once real data is involved is the whole skill.",
     "Revenue operations runs on knowledge nobody writes down. Teams solve identical problems in isolation, badly, over and over, and the answers stay locked in somebody's head. Publishing what worked shortens that loop for whoever hits it next.",
   ],
-  // Compact history, in place of the old chronological timeline.
-  companies: {
-    heading: "Where I have worked",
-    items: [
-      { name: "Ambition", note: "Currently" },
-      { name: "Clayton Homes", note: "2017 — 2019" },
-      { name: "Vanderbilt Mortgage", note: "2016 — 2017" },
-      { name: "Blackberry Farm", note: "2015 — 2016" },
-      { name: "Chick-fil-A", note: "2010 — 2015" },
-    ],
-  },
+  // Sidebar timeline. Restored: it used the column better than the flat
+  // company row did.
+  timeline: [
+    {
+      period: "Oct 2025 — Now",
+      role: "Senior Revenue Operations Manager",
+      org: "Ambition",
+      detail:
+        "Sole revenue operator, working across Sales, Marketing, Finance and CX. I run the deal desk, onboard and offboard vendors, build marketing campaigns, keep Salesforce and HubSpot clean, and put AI to work in production where it saves real time.",
+    },
+    {
+      period: "2024 — 2025",
+      role: "Manager, Support & Operations",
+      org: "Ambition",
+      detail:
+        "Kept leading the support team while taking on the CRM. Became the Salesforce administrator, right-sized the GTM tech stack, and managed renewals.",
+    },
+    {
+      period: "2022 — 2024",
+      role: "Manager, Support",
+      org: "Ambition",
+      detail:
+        "Ran escalations, retrospectives and root cause analysis. Hiring, training and coaching for the support team.",
+    },
+    {
+      period: "2019 — 2022",
+      role: "Senior Support Advisor",
+      org: "Ambition",
+      detail: "Front line with customers, on the product and the process.",
+    },
+    {
+      period: "2016 — 2019",
+      role: "Service Desk & TechBar",
+      org: "Clayton Homes",
+      detail:
+        "11,000 service requests in two years. Built the organisation's first walk-up IT channel and the technician training plan.",
+    },
+    {
+      period: "2010 — 2016",
+      role: "Service & hospitality leadership",
+      org: "Chick-fil-A, Blackberry Farm",
+      detail:
+        "Team Leader, then corporate Certified Trainer opening restaurants nationally, then front desk supervisor at a five-star property.",
+    },
+  ],
   // PLACEHOLDER: Ryan, this is the one section I cannot write for you.
   // Knoxville and the Vols are the only two things I actually know. Replace
   // the body with whatever you want people to know about you off the clock.

@@ -204,6 +204,23 @@ body {
     0 0 40px rgba(233, 237, 243, 0.3);
 }
 
+/* Satellite pass. Travels the full width plus its own size at both ends, so
+   it enters and exits fully off-screen. steps() keeps the motion discrete,
+   matching the pixel artwork. */
+.satellite-drift {
+  right: 0;
+  animation: satellite-pass 54s steps(90, end) infinite;
+}
+
+@keyframes satellite-pass {
+  0% {
+    transform: translateX(12rem);
+  }
+  100% {
+    transform: translateX(calc(-100vw - 12rem));
+  }
+}
+
 /* Shooting star. A 2px head with a hard-offset trail, no blur, so it reads as
    pixel art rather than a glow. steps() makes it advance in discrete jumps.
 
@@ -356,6 +373,11 @@ body {
   }
 
   .shooting-star {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .satellite-drift {
     animation: none !important;
     opacity: 0 !important;
   }

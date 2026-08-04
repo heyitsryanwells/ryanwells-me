@@ -73,3 +73,57 @@ export function SpaceBackdrop() {
     </div>
   );
 }
+
+/**
+ * Pixel satellite: body, two solar arrays, a dish on a mast. Unit rects on a
+ * 26x14 grid so it stays hard-edged at any size, same as the moon.
+ */
+function PixelSatellite({
+  className = "",
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <svg viewBox="0 0 26 14" className={className} style={style} aria-hidden="true">
+      <g fill="currentColor">
+        {/* solar arrays */}
+        <path d="M1 5h7v4H1z" />
+        <path d="M18 5h7v4h-7z" />
+        {/* booms */}
+        <path d="M8 6h2v2H8zM16 6h2v2h-2z" />
+        {/* body */}
+        <path d="M10 4h6v6h-6z" />
+        {/* mast and dish */}
+        <path d="M12 2h2v2h-2zM11 0h4v1h-4z" />
+      </g>
+      {/* array cell lines, punched back to the page colour */}
+      <g fill="var(--paper)" opacity="0.5">
+        <rect x="3" y="5" width="1" height="4" />
+        <rect x="5" y="5" width="1" height="4" />
+        <rect x="20" y="5" width="1" height="4" />
+        <rect x="22" y="5" width="1" height="4" />
+      </g>
+    </svg>
+  );
+}
+
+/**
+ * Drifts right to left across whatever container it is dropped into. Long
+ * duration so it reads as a slow pass rather than something demanding
+ * attention. Stops under prefers-reduced-motion.
+ */
+export function SatelliteDrift({ top = "18%" }: { top?: string }) {
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      aria-hidden="true"
+    >
+      <PixelSatellite
+        className="satellite-drift absolute w-16 text-muted opacity-35 sm:w-20"
+        style={{ top }}
+      />
+    </div>
+  );
+}
