@@ -40,7 +40,7 @@ export const guides: Guide[] = [
   {
     slug: "launchpad-slack-app",
     title: "LaunchPad: build a Slack app that writes implementation plans",
-    dek: "One slash command, a modal, and a scheduled, fully assigned customer implementation plan in the channel a minute later. The architecture, the access you have to line up first, and a prompt you can paste into Claude to start building your own.",
+    dek: "A CSM types an account name and a launch date. A minute later the channel has a full implementation plan, every task dated and assigned to the right person. The prompt that builds it sits at the top of the page.",
     format: "playbook",
     published: "August 2026",
     cover: {
@@ -49,7 +49,7 @@ export const guides: Guide[] = [
     },
     featured: true,
     metaDescription:
-      "A playbook for building a Slack app that turns one slash command into a scheduled, assigned customer implementation plan. Architecture, credentials, Slack scopes, and a copy-paste build prompt.",
+      "How to build a Slack app that turns one slash command into a scheduled, assigned customer implementation plan, with the prompt to start from and the Slack scopes and credentials you need first.",
     sections: [
       {
         heading: "TL;DR",
@@ -548,12 +548,12 @@ Needs Attention
   {
     slug: "wispr-flow-voice-dictation",
     title: "Wispr Flow: Middle Mouse Button will make you work faster",
-    dek: "Middle click plus a headset microphone gets me up to 170 words per minute. Where the trigger lives, why the obvious microphone upgrade is a trap, and what Wispr worked out about the way I talk.",
+    dek: "I dictate most of what I write now, at up to 170 words a minute. Getting there took a mouse with a clickable scroll wheel and a real headset, plus one wrong turn through AirPods.",
     format: "playbook",
     published: "August 2026",
     featured: true,
     metaDescription:
-      "How I set up Wispr Flow voice dictation: binding it to the middle mouse button, why a headset beats a laptop mic and AirPods, and what it changed about how I write.",
+      "How I set up Wispr Flow to dictate at 170 words a minute: the middle mouse button as the trigger, why AirPods make it worse, and what changed about how I write.",
     sections: [
       {
         heading: "The short version",
