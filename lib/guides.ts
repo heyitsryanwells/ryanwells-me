@@ -40,7 +40,7 @@ export const guides: Guide[] = [
   {
     slug: "launchpad-slack-app",
     title: "LaunchPad: build a Slack app that writes implementation plans",
-    dek: "One slash command builds the whole implementation plan, dated and assigned, in about a minute. I included a Claude prompt to get started at the top of the playbook.",
+    dek: "I built a Slack app because implementation plans that take an hour mostly don't get written. There's a Claude prompt at the top of the playbook to get you started.",
     format: "playbook",
     published: "August 2026",
     cover: {
