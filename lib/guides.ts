@@ -548,7 +548,7 @@ Needs Attention
   {
     slug: "wispr-flow-voice-dictation",
     title: "Wispr Flow: Middle Mouse Button will make you work faster",
-    dek: "I dictate almost everything now, around 170 words a minute. You need a clickable scroll wheel and a real headset. AirPods make it worse.",
+    dek: "I dictate almost everything now. You should try it too, but let me try to convince you to get a mouse with a scroll wheel and headset microphone first.",
     format: "playbook",
     published: "August 2026",
     featured: true,
