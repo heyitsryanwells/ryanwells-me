@@ -40,7 +40,7 @@ export const guides: Guide[] = [
   {
     slug: "launchpad-slack-app",
     title: "LaunchPad: build a Slack app that writes implementation plans",
-    dek: "A CSM types an account name and a launch date. A minute later the channel has a full implementation plan, every task dated and assigned to the right person. The prompt that builds it sits at the top of the page.",
+    dek: "One slash command builds the whole implementation plan, dated and assigned, in about a minute. The prompt is at the top.",
     format: "playbook",
     published: "August 2026",
     cover: {
@@ -548,7 +548,7 @@ Needs Attention
   {
     slug: "wispr-flow-voice-dictation",
     title: "Wispr Flow: Middle Mouse Button will make you work faster",
-    dek: "I dictate most of what I write now, at up to 170 words a minute. Getting there took a mouse with a clickable scroll wheel and a real headset, plus one wrong turn through AirPods.",
+    dek: "I dictate almost everything now, around 170 words a minute. You need a clickable scroll wheel and a real headset. AirPods make it worse.",
     format: "playbook",
     published: "August 2026",
     featured: true,
