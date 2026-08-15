@@ -287,7 +287,14 @@ export const about = {
     "I work across Sales, Marketing, CX and Finance, building the systems revenue actually runs through. Revenue operations is an art and a science. It takes creativity, collaboration, and restlessness. The science is the part that has to reconcile: the data model, clean records moving between Salesforce and HubSpot, attribution that ties back to something real, deal structure, and the automation holding it all together. The art is knowing which problems are worth solving, enabling the teams who use what I build, balancing stakeholders, and designing the customer journey.",
     "Most of the work is lining up strategy, tooling, and data so the people around me can do their best work without fighting the tools. Over 10 years of customer-facing work before this shaped how I approach that. I build for the person who has to live inside the system.",
     "Running revenue operations solo means I touch most parts of the business in a given week. I might commit a field change, wire up automation behind a new email campaign, join a renewal conversation, and ship a Salesforce dashboard, all in the same day.",
-    "AI keeps moving where the ceiling sits, in revenue operations and in most of the roles I work alongside. I run agents against production systems through MCP, and audits and migrations that used to eat days now finish in an afternoon. \"You can just do things\" is the line I keep coming back to. It pushes me past the point where I would otherwise stop and wait for permission.",
+    // Ryan's draft, kept close to as written. The 90% figure is his own
+    // estimate and the most concrete thing on the page, so it stays even
+    // though it will need refreshing.
+    "AI keeps moving where the ceiling sits, in operations and in most of the roles I work alongside. Solid foundational systems and clean data are paramount. That groundwork is what makes the rest of this possible. I find myself completing almost every task and deployment with Claude. I have put it as high as 90% of my day, working with Claude and the various MCP connectors, API keys, and CLIs we have been able to plug in. As a solo operator my output has increased significantly, and I get through a wide range of projects with relative ease (with the exception of arguing with Claude, of course).",
+    // Dates the paragraph above on purpose. The 90% claim and the tooling named
+    // alongside it are current practice and will move, and saying so out loud
+    // is what keeps them honest.
+    "That is the current shape of it. The practices I lean on now are recent, and keeping up with what replaces them is part of the work.",
   ],
   // Sidebar timeline. Restored: it used the column better than the flat
   // company row did.
