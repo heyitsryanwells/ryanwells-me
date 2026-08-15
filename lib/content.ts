@@ -286,7 +286,6 @@ export const about = {
   paragraphs: [
     "I work across Sales, Marketing, CX and Finance, building the systems revenue actually runs through. Revenue operations is an art and a science. It takes creativity, collaboration, and restlessness. The science is the part that has to reconcile: the data model, clean records moving between Salesforce and HubSpot, attribution that ties back to something real, deal structure, and the automation holding it all together. The art is knowing which problems are worth solving, enabling the teams who use what I build, balancing stakeholders, and designing the customer journey.",
     "Most of the work is lining up strategy, tooling, and data so the people around me can do their best work without fighting the tools. Over 10 years of customer-facing work before this shaped how I approach that. I build for the person who has to live inside the system.",
-    "Running revenue operations solo means I touch most parts of the business in a given week. I might commit a field change, wire up automation behind a new email campaign, join a renewal conversation, and ship a Salesforce dashboard, all in the same day.",
     // Ryan's draft, kept close to as written. The 90% figure is his own
     // estimate and the most concrete thing on the page, so it stays even
     // though it will need refreshing.
