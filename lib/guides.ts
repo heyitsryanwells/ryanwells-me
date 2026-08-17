@@ -85,10 +85,6 @@ export const guides: Guide[] = [
             type: "quote",
             text: "The knowledge was always in the tickets. The cost of getting it out is what kept it there.",
           },
-          {
-            type: "p",
-            text: "That cost is the thing AI actually changes. What I find myself caring about most is how cheap it has become to learn from a ticket, because a lesson that makes it out of the queue keeps paying long after the ticket is closed.",
-          },
         ],
       },
       {
