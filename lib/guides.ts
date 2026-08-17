@@ -13,13 +13,20 @@ export type Block =
   | { type: "code"; caption?: string; code: string };
 
 /**
- * Guide formats. A playbook tells you how to build the thing; a template is
- * the thing, ready to fill in. The emoji is the only full-colour element on
- * the site, so each one has to survive at 11px next to mono type.
+ * Guide formats. A playbook tells you how to build the thing, a template is
+ * the thing ready to fill in, and a field note is an account of something
+ * running in production with a point of view attached. The emoji is the only
+ * full-colour element on the site, so each one has to survive at 11px next to
+ * mono type.
+ *
+ * The telescope reads as observation and it keeps the space motif, which the
+ * notebook and memo glyphs did not. It also stays distinct from the playbook
+ * book at 11px, where a second book-shaped glyph would not have.
  */
 export const guideFormats = {
   playbook: { label: "Playbook", emoji: "\u{1F4D8}" },
   template: { label: "Template", emoji: "\u{1F4D0}" },
+  fieldnote: { label: "Field note", emoji: "\u{1F52D}" },
 } as const;
 
 export type GuideFormat = keyof typeof guideFormats;
