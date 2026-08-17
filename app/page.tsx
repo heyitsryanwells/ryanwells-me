@@ -135,9 +135,10 @@ export default function Home() {
       {/* Guides index -------------------------------------------------------- */}
       <Section top="tight">
         <Container>
+          {/* Keep this matching the same title on /guides. */}
           <SectionHead
             label="Guides"
-            title="Templates and playbooks"
+            title="Playbooks, templates and field notes"
             note={`${guides.length} ${guides.length === 1 ? "entry" : "entries"}`}
           />
           <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted">

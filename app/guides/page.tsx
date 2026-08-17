@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 export default function GuidesPage() {
   return (
     <>
+      {/* Titled for the formats that exist. Was "Templates and playbooks"
+          until field notes arrived and made that a partial list. */}
       <PageHeader
         label="Guides"
-        title="Templates and playbooks"
+        title="Playbooks, templates and field notes"
         lede={guidesIndex.lede}
       />
 

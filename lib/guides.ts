@@ -45,6 +45,133 @@ export type Guide = {
 
 export const guides: Guide[] = [
   {
+    slug: "pylon-support-agent",
+    title: "Support tickets are the best data in your company",
+    dek: "Ours come through Pylon, and most of the work now happens before an advisor or an engineer ever opens one. Here is what we have running today, and the part of it I am still building toward.",
+    format: "fieldnote",
+    published: "August 2026",
+    featured: true,
+    metaDescription:
+      "How we use Pylon's agent to research a ticket and draft a first response before an advisor opens it, and how our escalation path reviews the codebase through MCP connectors so engineering receives a bug that has already been triaged.",
+    // Triage and Escalation are top-level sections rather than subheadings.
+    // Block has no heading type, so a nested heading would have to be faked
+    // with bold prose, and the section nav would lose both entries.
+    sections: [
+      {
+        heading: "TL;DR",
+        blocks: [
+          {
+            type: "p",
+            text: "A ticket arrives in Pylon and Pylon's agent goes to work on it before an advisor opens anything. It researches the account and the history, then writes a suggested first response into the side panel next to the ticket. An advisor reads it, approves or rewrites it, and sends. When the ticket turns out to be a bug, Pylon's escalation path picks it up and reaches out through MCP connectors for the context that lives elsewhere, with Cursor establishing the expected behavior from the code, Sentry surfacing errors, and Slack filling in what has already been said internally. The issue lands on our support board in Linear.",
+          },
+          {
+            type: "p",
+            text: "Both of those are worth having on their own. What holds my attention is the bigger thing sitting underneath them, which is that a support queue is the best source of information in the company and we have historically thrown most of it away.",
+          },
+        ],
+      },
+      {
+        heading: "Every ticket is a learning opportunity",
+        blocks: [
+          {
+            type: "p",
+            text: "A ticket comes in, somebody finds a solution, feedback surfaces along the way, and something gets learned. That last part is where it falls down for most teams, because the learning tends to stay with the person who did the work and goes no further.",
+          },
+          {
+            type: "p",
+            text: "Support teams have understood this for as long as there have been support teams. What we have not had is any realistic way to act on it. An advisor working a queue is measured on serving the customer in front of them, and they are usually doing that at a volume where the ticket is closed and the next one is open before there is any room to think about what the ticket meant. Asking somebody to also write the documentation update, also flag the product pattern, and also brief the account team is asking for work that nobody has time to do.",
+          },
+          {
+            type: "quote",
+            text: "The knowledge was always in the tickets. The cost of getting it out is what kept it there.",
+          },
+          {
+            type: "p",
+            text: "That cost is the thing AI actually changes. What I find myself caring about most is how cheap it has become to learn from a ticket, because a lesson that makes it out of the queue keeps paying long after the ticket is closed.",
+          },
+        ],
+      },
+      {
+        heading: "What we are doing today",
+        blocks: [
+          {
+            type: "p",
+            text: "Both halves of this run through Pylon. There is an agent that triages tickets as they come in, and there is an escalation path that picks up the ones that turn out to be bugs.",
+          },
+        ],
+      },
+      {
+        heading: "Triage",
+        blocks: [
+          {
+            type: "p",
+            text: "We are using Pylon's own agent, which I would recommend to anybody in a similar position. The support platform already sits on the ticket, the account, and the history, and there was no good reason for us to rebuild that surface just to say we built it.",
+          },
+          {
+            type: "p",
+            text: "The agent triggers when a new ticket is created. It works through the research an advisor would otherwise be doing by hand, which is the account, the configuration, whether we have answered this before, and whether this is a known issue. It writes a suggested first response into the side panel that accompanies the ticket.",
+          },
+          {
+            type: "p",
+            text: "The advisor opens the ticket to research and a draft already sitting there. Every response is human-in-the-loop and approved by an advisor before it reaches a customer.",
+          },
+        ],
+      },
+      {
+        heading: "Escalation",
+        blocks: [
+          {
+            type: "p",
+            text: "The escalation path saves time somewhere else entirely.",
+          },
+          {
+            type: "p",
+            text: "Escalating a bug used to mean handing over what we believed the expected behavior to be without much ability to back it up, which left the engineer who picked it up working out from the code whether it was a bug at all. That triage now happens before the escalation ever leaves us.",
+          },
+          {
+            type: "code",
+            caption: "Escalation path",
+            code: `ticket in Pylon, flagged as a bug
+  -> Linear    search for related issues
+  -> Cursor    review the codebase for expected behavior
+  -> Sentry    errors tied to the issue
+  -> Slack     additional context
+  -> Linear    issue written to our support board`,
+          },
+          {
+            type: "p",
+            text: "Pylon holds the ticket and the customer, and none of the answers we needed were sitting in Pylon. The MCP connectors are what reach the systems that do hold them. Linear gets checked first for anything that looks related, so we are not filing the fourth copy of something already in flight. Cursor works out what the expected behavior is supposed to be based on what is actually written in the code, Sentry surfaces any errors tied to the issue, and Slack fills in whatever has already been discussed internally. The issue then lands on our support board with all of it attached.",
+          },
+          {
+            type: "p",
+            text: "An escalation now arrives with the intended behavior established, the customer's experience sitting next to it, and a view on whether this is a bug and how far it reaches. The first thing an engineer does with one is decide how to fix it.",
+          },
+          {
+            type: "p",
+            text: "The part I find genuinely satisfying is where the answer comes from. The code was always the authority on how the product was meant to work, and it was the one source our support team had no way to reach. Now we reach it before we ask anybody else to.",
+          },
+        ],
+      },
+      {
+        heading: "The part I am still building toward",
+        blocks: [
+          {
+            type: "p",
+            text: "Triage and escalation are the front half of the ticket. The back half is where the learning lives, and that is the work ahead.",
+          },
+          {
+            type: "p",
+            text: "What I want is for a closed ticket to feed the rest of the company without anybody having to remember to do it. A resolved question should be able to become a documentation update. A cluster of similar tickets should reach the product team as a counted, described pattern. An account that has had a rough month should be sitting in front of the account manager well ahead of the renewal conversation.",
+          },
+          {
+            type: "p",
+            text: "What has changed is that it is now a tractable problem, because the same tooling that reads a ticket well enough to draft a response can read a hundred closed tickets well enough to tell you what they have in common.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "launchpad-slack-app",
     title: "LaunchPad: build a Slack app that writes implementation plans",
     dek: "I built a Slack app because implementation plans that take an hour mostly don't get written. There's a Claude prompt at the top of the playbook to get you started.",
