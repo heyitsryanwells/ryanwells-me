@@ -127,16 +127,16 @@ export const guides: Guide[] = [
           {
             type: "code",
             caption: "Escalation path",
-            code: `ticket in Pylon, flagged as a bug
+            code: `ticket in Pylon, determined to be a bug, run the /escalation skill
+  -> Sentry    errors tied to the issue
+  -> Slack     conversations tied to the issue
   -> Linear    search for related issues
   -> Cursor    review the codebase for expected behavior
-  -> Sentry    errors tied to the issue
-  -> Slack     additional context
   -> Linear    issue written to our support board`,
           },
           {
             type: "p",
-            text: "Pylon holds the ticket and the customer, and none of the answers we needed were sitting in Pylon. The MCP connectors are what reach the systems that do hold them, and the Linear check at the top is what keeps us from filing the fourth copy of something already in flight.",
+            text: "Pylon holds the ticket and the customer, and none of the answers we needed were sitting in Pylon. The MCP connectors are what reach the systems that do hold them, and the Linear check is what keeps us from filing the fourth copy of something already in flight.",
           },
           {
             type: "p",
