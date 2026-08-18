@@ -148,7 +148,7 @@ export const expertise = {
         "Help center migration",
         "Operational workflow design",
         "AI triage and deflection",
-        "CSAT and volume reporting",
+        "KPI reporting",
       ],
     },
     {

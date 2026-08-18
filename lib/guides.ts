@@ -136,7 +136,7 @@ export const guides: Guide[] = [
           },
           {
             type: "p",
-            text: "Pylon holds the ticket and the customer, and none of the answers we needed were sitting in Pylon. The MCP connectors are what reach the systems that do hold them. Linear gets checked first for anything that looks related, so we are not filing the fourth copy of something already in flight. Cursor works out what the expected behavior is supposed to be based on what is actually written in the code, Sentry surfaces any errors tied to the issue, and Slack fills in whatever has already been discussed internally. The issue then lands on our support board with all of it attached.",
+            text: "Pylon holds the ticket and the customer, and none of the answers we needed were sitting in Pylon. The MCP connectors are what reach the systems that do hold them, and the Linear check at the top is what keeps us from filing the fourth copy of something already in flight.",
           },
           {
             type: "p",
